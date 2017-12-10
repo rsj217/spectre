@@ -40,3 +40,24 @@ class BinaryTree(object):
         node.insert_as_rc(e)
         self.update_height_above(node=node)
         return node.rchild
+
+    def preorder(self, node):
+        if node:
+            return
+        yield node.data
+        self.preorder(node.lchild)
+        self.preorder(node.rchild)
+
+    def inorder(self, node):
+        if node:
+            return
+        self.inorder(node.lchild)
+        yield node.data
+        self.inorder(node.rchild)
+
+    def postorder(self, node):
+        if node:
+            return
+        self.postorder(node.lchild)
+        self.postorder(node.rchild)
+        yield node
