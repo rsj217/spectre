@@ -61,7 +61,13 @@ class BinaryTree(object):
         return node.rchild
 
     def preorder(self):
-        return self._preorder(self._root)
+        self._preorder(self._root)
+
+    def inorder(self):
+        self._inorder(self._root)
+
+    def postorder(self):
+        self._postorder(self._root)
 
     def _preorder(self, node):
         if not node:
@@ -109,4 +115,6 @@ def gen_binary_tree():
 
 if __name__ == '__main__':
     bt = gen_binary_tree()
-    g = bt._preorder(bt.root)
+    bt.preorder()
+    bt.inorder()
+    bt.postorder()
