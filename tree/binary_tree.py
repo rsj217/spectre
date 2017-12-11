@@ -45,8 +45,8 @@ class BinaryTree(object):
 
     def insert_as_root(self, e):
         self._size = 1
-        root = BinNode(data=e)
-        return root
+        self._root = BinNode(data=e)
+        return self._root
 
     def insert_as_lc(self, node, e):
         self._size += 1
@@ -60,26 +60,29 @@ class BinaryTree(object):
         self.update_height_above(node=node)
         return node.rchild
 
-    def preorder(self, node):
-        if node:
-            return
-        yield node.data
-        self.preorder(node.lchild)
-        self.preorder(node.rchild)
+    def preorder(self):
+        return self._preorder(self._root)
 
-    def inorder(self, node):
-        if node:
+    def _preorder(self, node):
+        if not node:
             return
-        self.inorder(node.lchild)
-        yield node.data
-        self.inorder(node.rchild)
+        print(node.data)
+        self._preorder(node.lchild)
+        self._preorder(node.rchild)
 
-    def postorder(self, node):
-        if node:
+    def _inorder(self, node):
+        if not node:
             return
-        self.postorder(node.lchild)
-        self.postorder(node.rchild)
-        yield node
+        self._inorder(node.lchild)
+        print(node.data)
+        self._inorder(node.rchild)
+
+    def _postorder(self, node):
+        if not node:
+            return
+        self._postorder(node.lchild)
+        self._postorder(node.rchild)
+        print(node.data)
 
 
 def gen_binary_tree():
@@ -101,16 +104,9 @@ def gen_binary_tree():
     p = bt.insert_as_rc(n, 'p')
     o = bt.insert_as_lc(p, 'o')
 
-    print(root)
-    print(d), print(l)
-    print(c), print(h)
-    print(a), print(b)
+    return bt
 
-    print(f)
-
-    print(e), print(g)
-    print(k), print(n)
-    print(j), print(p), print(o)
 
 if __name__ == '__main__':
-    gen_binary_tree()
+    bt = gen_binary_tree()
+    g = bt._preorder(bt.root)
