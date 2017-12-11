@@ -60,6 +60,17 @@ class BinaryTree(object):
         self.update_height_above(node=node)
         return node.rchild
 
+    def trave_pre(self):
+        stack = []
+        stack.append(self.root)
+        while stack:
+            node = stack.pop()
+            yield node.data
+            if node.rchild:
+                stack.append(node.rchild)
+            if node.lchild:
+                stack.append(node.lchild)
+
     def preorder(self):
         self._preorder(self._root)
 
@@ -116,5 +127,7 @@ def gen_binary_tree():
 if __name__ == '__main__':
     bt = gen_binary_tree()
     bt.preorder()
-    bt.inorder()
-    bt.postorder()
+
+    g = bt.trave_pre()
+    for i in g:
+        print(i)
