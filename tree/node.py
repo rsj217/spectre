@@ -11,8 +11,11 @@ class BinNode(object):
         self.data = data
         self.height = 0
 
-    def insert_as_root(self, e):
-        return BinNode(data=e)
+    def __repr__(self):
+        pdata = getattr(self.parent, 'data', None)
+        ldata = getattr(self.lchild, 'data', None)
+        rdata = getattr(self.rchild, 'data', None)
+        return f'<BinNode>([{pdata}] {ldata}-{self.data}-{rdata}: {self.height})'
 
     def insert_as_lc(self, e):
         node = BinNode(parent=self, data=e)
