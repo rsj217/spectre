@@ -29,11 +29,20 @@ class BinaryTree(object):
     @staticmethod
     def update_height(node):
         node.height = 1 + max(BinaryTree.stature(node.lchild.height), BinaryTree.stature(node.rchild.height))
+        return node.height
 
     def update_height_above(self, node):
         while node:
-            self.update_height(node=node)
+            old_height = node.height
+            new_height = self.update_height(node=node)
+            if old_height == new_height:
+                break
             node = node.parent
+
+    def insert_as_root(self, e):
+        self._size = 1
+        root = self.insert_as_root(e)
+        return root
 
     def insert_as_rc(self, node, e):
         self._size += 1

@@ -9,7 +9,10 @@ class BinNode(object):
         self.lchild = lchild
         self.rchild = rchild
         self.data = data
-        self.height = -1
+        self.height = 0
+
+    def insert_as_root(self, e):
+        return BinNode(data=e)
 
     def insert_as_lc(self, e):
         node = BinNode(parent=self, data=e)
