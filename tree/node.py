@@ -31,9 +31,9 @@ class BinNode(object):
     def size(self):
         s = 1
         if self.lchild:
-            s += self.lchild.size()
+            s += self.lchild.size
         if self.rchild:
-            s += self.rchild.size()
+            s += self.rchild.size
         return s
 
     def succ(self):
