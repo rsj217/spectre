@@ -180,6 +180,38 @@ class BinaryTree(object):
                 yield node.data
                 node = node.rchild
 
+    def trave_post(self):
+        stack = []
+        node = self.root
+        rchild = None
+        while True:
+            while node:
+                stack.append(node)
+                node = node.lchild
+            if not stack:
+                break
+            if stack[-1].rchild != rchild:
+                node = stack[-1].rchild
+                rchild = None
+            else:
+                rchild = stack.pop()
+                yield rchild.data
+
+    def trave_post2(self):
+        stack = []
+        node = self.root
+        rchild = None
+        while stack or node:
+            if node:
+                stack.append(node)
+                node = node.lchild
+            elif stack[-1].rchild is not rchild:
+                node = stack[-1].rchild
+                rchild = None
+            else:
+                rchild = stack.pop()
+                yield rchild.data
+
     def postorder(self):
         self._postorder(self._root)
 
@@ -230,11 +262,6 @@ def gen_binary_tree():
 
 if __name__ == '__main__':
     bt = gen_binary_tree()
-    # bt.preorder()
-
-    # g = bt.trave_pre()
-    # for i in g:
-    #     print(i)
-    g = bt.trave_in2()
+    g = bt.trave_post2()
     for i in g:
         print(i)
