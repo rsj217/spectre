@@ -71,12 +71,30 @@ class BinaryTree(object):
             if node.lchild:
                 stack.append(node.lchild)
 
-    def trave_pre1(self):
+    def visit_along_left_branch(self, stack, node):
+        while node:
+            yield node.data
+            if node.rchild:
+                stack.append(node.rchild)
+            node = node.lchild
+
+    def trave_pre_along_left_branch2(self):
+        stack = []
+        node = self.root
+        while True:
+            g = self.visit_along_left_branch(stack, node)
+            for i in g:
+                yield i
+            if not stack:
+                break
+            node = stack.pop()
+
+    def trave_pre_along_left_branch(self):
         stack = []
         node = self.root
         while True:
             while node:
-                print(node.data)
+                yield node.data
                 if node.rchild:
                     stack.append(node.rchild)
                 node = node.lchild
@@ -84,25 +102,25 @@ class BinaryTree(object):
                 break
             node = stack.pop()
 
-    # def trave_pre2(self):
-    #     stack = []
-    #     node = self.root
-    #     need = True
-    #     while True:
-    #         if need:
-    #             while node:
-    #                 print(node.data)
-    #                 stack.append(node)
-    #                 node = node.lchild
-    #
-    #         if not stack:
-    #             break
-    #         node = stack.pop()
-    #         if node.rchild:
-    #             need = True
-    #             node = node.rchild
-    #         else:
-    #             need = False
+    def trave_pre2(self):
+        stack = []
+        node = self.root
+        need = True
+        while True:
+            if need:
+                while node:
+                    yield node.data
+                    stack.append(node)
+                    node = node.lchild
+
+            if not stack:
+                break
+            node = stack.pop()
+            if node.rchild:
+                need = True
+                node = node.rchild
+            else:
+                need = False
 
     def preorder(self):
         self._preorder(self._root)
@@ -165,4 +183,6 @@ if __name__ == '__main__':
     # g = bt.trave_pre()
     # for i in g:
     #     print(i)
-    bt.trave_pre1()
+    g = bt.trave_pre2()
+    for i in g:
+        print(i)
