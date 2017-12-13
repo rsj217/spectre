@@ -71,25 +71,38 @@ class BinaryTree(object):
             if node.lchild:
                 stack.append(node.lchild)
 
-    def trave_pre2(self):
+    def trave_pre1(self):
         stack = []
         node = self.root
-        need = True
         while True:
-            if need:
-                while node:
-                    print(node.data)
-                    stack.append(node)
-                    node = node.lchild
-
+            while node:
+                print(node.data)
+                if node.rchild:
+                    stack.append(node.rchild)
+                node = node.lchild
             if not stack:
                 break
             node = stack.pop()
-            if node.rchild:
-                need = True
-                node = node.rchild
-            else:
-                need = False
+
+    # def trave_pre2(self):
+    #     stack = []
+    #     node = self.root
+    #     need = True
+    #     while True:
+    #         if need:
+    #             while node:
+    #                 print(node.data)
+    #                 stack.append(node)
+    #                 node = node.lchild
+    #
+    #         if not stack:
+    #             break
+    #         node = stack.pop()
+    #         if node.rchild:
+    #             need = True
+    #             node = node.rchild
+    #         else:
+    #             need = False
 
     def preorder(self):
         self._preorder(self._root)
@@ -137,18 +150,19 @@ def gen_binary_tree():
     l = bt.insert_as_rc(root, 'l')
     k = bt.insert_as_lc(l, 'k')
     j = bt.insert_as_lc(k, 'j')
-    m = bt.insert_as_rc(l, 'm')
-    o = bt.insert_as_rc(m, 'o')
-    n = bt.insert_as_lc(o, 'n')
+    n = bt.insert_as_rc(l, 'n')
+    m = bt.insert_as_lc(n, 'm')
+    p = bt.insert_as_rc(n, 'p')
+    o = bt.insert_as_lc(p, 'o')
 
     return bt
 
 
 if __name__ == '__main__':
     bt = gen_binary_tree()
-    # bt.postorder()
+    # bt.preorder()
 
     # g = bt.trave_pre()
     # for i in g:
     #     print(i)
-    bt.trave_pre2()
+    bt.trave_pre1()
