@@ -117,6 +117,19 @@ class BinaryTree(object):
             node = stack.pop()
             node = node.rchild
 
+    def trave_pre_along_left_branch(self):
+        stack = []
+        node = self.root
+        while True:
+            while node:
+                yield node.data
+                if node.rchild:
+                    stack.append(node.rchild)
+                node = node.lchild
+            if not stack:
+                break
+            node = stack.pop()
+
     def visit_along_left_branch(self, stack, node):
         while node:
             yield node.data
@@ -135,37 +148,37 @@ class BinaryTree(object):
                 break
             node = stack.pop()
 
-    # def trave_pre_along_left_branch(self):
-    #     stack = []
-    #     node = self.root
-    #     while True:
-    #         while node:
-    #             yield node.data
-    #             if node.rchild:
-    #                 stack.append(node.rchild)
-    #             node = node.lchild
-    #         if not stack:
-    #             break
-    #         node = stack.pop()
+    def preorder(self):
+        self._preorder(self._root)
 
-    def trave_pre_along_left_branch(self):
+    def inorder(self):
+        self._inorder(self._root)
+
+    def trave_in(self):
         stack = []
         node = self.root
         while True:
             while node:
                 stack.append(node)
                 node = node.lchild
+
             if not stack:
                 break
             node = stack.pop()
-            print(node.data)
+            yield node.data
             node = node.rchild
 
-    def preorder(self):
-        self._preorder(self._root)
-
-    def inorder(self):
-        self._inorder(self._root)
+    def trave_in2(self):
+        stack = []
+        node = self.root
+        while stack or node:
+            if node:
+                stack.append(node)
+                node = node.lchild
+            else:
+                node = stack.pop()
+                yield node.data
+                node = node.rchild
 
     def postorder(self):
         self._postorder(self._root)
@@ -222,6 +235,6 @@ if __name__ == '__main__':
     # g = bt.trave_pre()
     # for i in g:
     #     print(i)
-    g = bt.trave_pre_left_stack2()
-    # for i in g:
-    #     print(i)
+    g = bt.trave_in2()
+    for i in g:
+        print(i)
