@@ -71,6 +71,38 @@ class BinaryTree(object):
             if node.lchild:
                 stack.append(node.lchild)
 
+    def trave_pre_left_stack(self):
+        stack = []
+        node = self.root
+        while stack or node:
+            if node:
+                yield node.data
+                stack.append(node)
+                node = node.lchild
+            else:
+                node = stack.pop()
+                node = node.rchild
+
+    def trave_pre_left_stack2(self):
+        stack = []
+        node = self.root
+        need = True
+        while True:
+            if need:
+                while node:
+                    yield node.data
+                    stack.append(node)
+                    node = node.lchild
+
+            if not stack:
+                break
+            node = stack.pop()
+            if node.rchild:
+                need = True
+                node = node.rchild
+            else:
+                need = False
+
     def visit_along_left_branch(self, stack, node):
         while node:
             yield node.data
@@ -101,26 +133,6 @@ class BinaryTree(object):
             if not stack:
                 break
             node = stack.pop()
-
-    def trave_pre2(self):
-        stack = []
-        node = self.root
-        need = True
-        while True:
-            if need:
-                while node:
-                    yield node.data
-                    stack.append(node)
-                    node = node.lchild
-
-            if not stack:
-                break
-            node = stack.pop()
-            if node.rchild:
-                need = True
-                node = node.rchild
-            else:
-                need = False
 
     def preorder(self):
         self._preorder(self._root)
@@ -183,6 +195,6 @@ if __name__ == '__main__':
     # g = bt.trave_pre()
     # for i in g:
     #     print(i)
-    g = bt.trave_pre2()
+    g = bt.trave_pre_left_stack()
     for i in g:
         print(i)
