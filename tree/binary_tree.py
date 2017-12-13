@@ -256,10 +256,11 @@ def gen_binary_tree():
     m = bt.insert_as_lc(n, 'm')
     p = bt.insert_as_rc(n, 'p')
     o = bt.insert_as_lc(p, 'o')
-
     return bt
 
 
 if __name__ == '__main__':
     bt = gen_binary_tree()
-    g = bt.trave_post2()
+    g = bt.trave_pre_along_left_branch()
+    for i in g:
+        print(i)
