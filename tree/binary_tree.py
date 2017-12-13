@@ -83,7 +83,7 @@ class BinaryTree(object):
                 node = stack.pop()
                 node = node.rchild
 
-    def trave_pre_left_stack2(self):
+    def trave_pre_left_stack1(self):
         stack = []
         node = self.root
         need = True
@@ -103,6 +103,20 @@ class BinaryTree(object):
             else:
                 need = False
 
+    def trave_pre_left_stack2(self):
+        stack = []
+        node = self.root
+        while True:
+            while node:
+                yield node.data
+                stack.append(node)
+                node = node.lchild
+
+            if not stack:
+                break
+            node = stack.pop()
+            node = node.rchild
+
     def visit_along_left_branch(self, stack, node):
         while node:
             yield node.data
@@ -121,18 +135,31 @@ class BinaryTree(object):
                 break
             node = stack.pop()
 
+    # def trave_pre_along_left_branch(self):
+    #     stack = []
+    #     node = self.root
+    #     while True:
+    #         while node:
+    #             yield node.data
+    #             if node.rchild:
+    #                 stack.append(node.rchild)
+    #             node = node.lchild
+    #         if not stack:
+    #             break
+    #         node = stack.pop()
+
     def trave_pre_along_left_branch(self):
         stack = []
         node = self.root
         while True:
             while node:
-                yield node.data
-                if node.rchild:
-                    stack.append(node.rchild)
+                stack.append(node)
                 node = node.lchild
             if not stack:
                 break
             node = stack.pop()
+            print(node.data)
+            node = node.rchild
 
     def preorder(self):
         self._preorder(self._root)
@@ -195,6 +222,6 @@ if __name__ == '__main__':
     # g = bt.trave_pre()
     # for i in g:
     #     print(i)
-    g = bt.trave_pre_left_stack()
-    for i in g:
-        print(i)
+    g = bt.trave_pre_left_stack2()
+    # for i in g:
+    #     print(i)
