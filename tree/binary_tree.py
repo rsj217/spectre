@@ -269,10 +269,10 @@ def gen_binary_tree():
     p = bt.insert_as_rc(n, 'p')
     o = bt.insert_as_lc(p, 'o')
 
-    # for item in [a, b, c, d, e, f, g, h, root, j, k, l, m, n, o, p]:
-    #     print(item.data, item.succ().data)
+    for item in [a, b, c, d, e, f, g, h, root, j, k, l, m, n, o, p]:
+        print(item.data, item.succ)
 
-    print(p.data, p.succ())
+    print(p.data, p.succ)
 
     return bt
 

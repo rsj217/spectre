@@ -36,6 +36,7 @@ class BinNode(object):
             s += self.rchild.size
         return s
 
+    @property
     def succ(self):
         node = self
         if node.rchild:
