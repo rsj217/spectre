@@ -180,6 +180,20 @@ class BinaryTree(object):
                 yield node.data
                 node = node.rchild
 
+    def trave_in3(self):
+        stack = []
+        node = self.root
+        while True:
+            if node:
+                stack.append(node)
+                node = node.lchild
+            elif not stack:
+                break
+            else:
+                node = stack.pop()
+                yield node.data
+                node = node.rchild
+
     def trave_post(self):
         stack = []
         node = self.root
@@ -206,6 +220,23 @@ class BinaryTree(object):
                 stack.append(node)
                 node = node.lchild
             elif stack[-1].rchild is not rchild:
+                node = stack[-1].rchild
+                rchild = None
+            else:
+                rchild = stack.pop()
+                yield rchild.data
+
+    def trave_post3(self):
+        stack = []
+        node = self.root
+        rchild = None
+        while True:
+            if node:
+                stack.append(node)
+                node = node.lchild
+            elif not stack:
+                break
+            elif stack[-1].rchild != rchild:
                 node = stack[-1].rchild
                 rchild = None
             else:
@@ -268,14 +299,17 @@ def gen_binary_tree():
     m = bt.insert_as_lc(n, 'm')
     p = bt.insert_as_rc(n, 'p')
     o = bt.insert_as_lc(p, 'o')
-
-    for item in [a, b, c, d, e, f, g, h, root, j, k, l, m, n, o, p]:
-        print(item.data, item.succ)
-
-    print(p.data, p.succ)
+    #
+    # for item in [a, b, c, d, e, f, g, h, root, j, k, l, m, n, o, p]:
+    #     print(item.data, item.succ)
+    #
+    # print(p.data, p.succ)
 
     return bt
 
 
 if __name__ == '__main__':
     bt = gen_binary_tree()
+    g = bt.trave_in3()
+    for i in g:
+        print(i)
