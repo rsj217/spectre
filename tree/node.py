@@ -37,4 +37,13 @@ class BinNode(object):
         return s
 
     def succ(self):
-        pass
+        node = self
+        if node.rchild:
+            node = node.rchild
+            while node.lchild:
+                node = node.lchild
+        else:
+            while node.parent and node.parent.rchild == node:
+                node = node.parent
+            node = node.parent
+        return node

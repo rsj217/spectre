@@ -218,7 +218,7 @@ class BinaryTree(object):
         queue.append(node)
         while queue:
             node = queue.pop(0)
-            yield node.data
+            yield node
             if node.lchild:
                 queue.append(node.lchild)
             if node.rchild:
@@ -268,11 +268,14 @@ def gen_binary_tree():
     m = bt.insert_as_lc(n, 'm')
     p = bt.insert_as_rc(n, 'p')
     o = bt.insert_as_lc(p, 'o')
+
+    # for item in [a, b, c, d, e, f, g, h, root, j, k, l, m, n, o, p]:
+    #     print(item.data, item.succ().data)
+
+    print(p.data, p.succ())
+
     return bt
 
 
 if __name__ == '__main__':
     bt = gen_binary_tree()
-    g = bt.trave_level()
-    for i in g:
-        print(i)
