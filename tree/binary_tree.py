@@ -71,7 +71,7 @@ class BinaryTree(object):
             if node.lchild:
                 stack.append(node.lchild)
 
-    def trave_pre_left_stack(self):
+    def trave_pre1(self):
         stack = []
         node = self.root
         while stack or node:
@@ -83,7 +83,7 @@ class BinaryTree(object):
                 node = stack.pop()
                 node = node.rchild
 
-    def trave_pre_left_stack1(self):
+    def trave_pre2(self):
         stack = []
         node = self.root
         need = True
@@ -103,7 +103,7 @@ class BinaryTree(object):
             else:
                 need = False
 
-    def trave_pre_left_stack2(self):
+    def trave_pre3(self):
         stack = []
         node = self.root
         while True:
@@ -117,7 +117,7 @@ class BinaryTree(object):
             node = stack.pop()
             node = node.rchild
 
-    def trave_pre_along_left_branch(self):
+    def trave_pre4(self):
         stack = []
         node = self.root
         while True:
@@ -137,7 +137,7 @@ class BinaryTree(object):
                 stack.append(node.rchild)
             node = node.lchild
 
-    def trave_pre_along_left_branch2(self):
+    def trave_pre_along_left_branch(self):
         stack = []
         node = self.root
         while True:
@@ -212,6 +212,18 @@ class BinaryTree(object):
                 rchild = stack.pop()
                 yield rchild.data
 
+    def trave_level(self):
+        queue = []
+        node = self.root
+        queue.append(node)
+        while queue:
+            node = queue.pop(0)
+            yield node.data
+            if node.lchild:
+                queue.append(node.lchild)
+            if node.rchild:
+                queue.append(node.rchild)
+
     def postorder(self):
         self._postorder(self._root)
 
@@ -261,6 +273,6 @@ def gen_binary_tree():
 
 if __name__ == '__main__':
     bt = gen_binary_tree()
-    g = bt.trave_pre_along_left_branch()
+    g = bt.trave_level()
     for i in g:
         print(i)
