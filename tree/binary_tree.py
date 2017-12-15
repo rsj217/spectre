@@ -65,7 +65,7 @@ class BinaryTree(object):
         stack.append(self.root)
         while stack:
             node = stack.pop()
-            yield node.data
+            yield node
             if node.rchild:
                 stack.append(node.rchild)
             if node.lchild:
@@ -76,7 +76,7 @@ class BinaryTree(object):
         node = self.root
         while stack or node:
             if node:
-                yield node.data
+                yield node
                 stack.append(node)
                 node = node.lchild
             else:
@@ -90,7 +90,7 @@ class BinaryTree(object):
         while True:
             if need:
                 while node:
-                    yield node.data
+                    yield node
                     stack.append(node)
                     node = node.lchild
 
@@ -108,7 +108,7 @@ class BinaryTree(object):
         node = self.root
         while True:
             while node:
-                yield node.data
+                yield node
                 stack.append(node)
                 node = node.lchild
 
@@ -122,7 +122,7 @@ class BinaryTree(object):
         node = self.root
         while True:
             while node:
-                yield node.data
+                yield node
                 if node.rchild:
                     stack.append(node.rchild)
                 node = node.lchild
@@ -132,7 +132,7 @@ class BinaryTree(object):
 
     def visit_along_left_branch(self, stack, node):
         while node:
-            yield node.data
+            yield node
             if node.rchild:
                 stack.append(node.rchild)
             node = node.lchild
@@ -165,7 +165,7 @@ class BinaryTree(object):
             if not stack:
                 break
             node = stack.pop()
-            yield node.data
+            yield node
             node = node.rchild
 
     def trave_in2(self):
@@ -177,7 +177,7 @@ class BinaryTree(object):
                 node = node.lchild
             else:
                 node = stack.pop()
-                yield node.data
+                yield node
                 node = node.rchild
 
     def trave_in3(self):
@@ -191,7 +191,7 @@ class BinaryTree(object):
                 break
             else:
                 node = stack.pop()
-                yield node.data
+                yield node
                 node = node.rchild
 
     def trave_post(self):
@@ -209,7 +209,7 @@ class BinaryTree(object):
                 rchild = None
             else:
                 rchild = stack.pop()
-                yield rchild.data
+                yield rchild
 
     def trave_post2(self):
         stack = []
@@ -224,24 +224,27 @@ class BinaryTree(object):
                 rchild = None
             else:
                 rchild = stack.pop()
-                yield rchild.data
+                yield rchild
 
     def trave_post3(self):
         stack = []
         node = self.root
-        rchild = None
+        last_visit = None
         while True:
             if node:
                 stack.append(node)
                 node = node.lchild
             elif not stack:
                 break
-            elif stack[-1].rchild != rchild:
+            elif stack[-1].rchild != last_visit:
                 node = stack[-1].rchild
-                rchild = None
+                last_visit = None
             else:
-                rchild = stack.pop()
-                yield rchild.data
+                last_visit = stack.pop()
+                yield last_visit
+
+    def trave_post4(self):
+        pass
 
     def trave_level(self):
         queue = []
@@ -261,7 +264,7 @@ class BinaryTree(object):
     def _preorder(self, node):
         if not node:
             return
-        print(node.data)
+        print(node)
         self._preorder(node.lchild)
         self._preorder(node.rchild)
 
@@ -269,7 +272,7 @@ class BinaryTree(object):
         if not node:
             return
         self._inorder(node.lchild)
-        print(node.data)
+        print(node)
         self._inorder(node.rchild)
 
     def _postorder(self, node):
@@ -277,7 +280,7 @@ class BinaryTree(object):
             return
         self._postorder(node.lchild)
         self._postorder(node.rchild)
-        print(node.data)
+        print(node)
 
 
 def gen_binary_tree():
@@ -310,6 +313,4 @@ def gen_binary_tree():
 
 if __name__ == '__main__':
     bt = gen_binary_tree()
-    g = bt.trave_in3()
-    for i in g:
-        print(i)
+    g = bt.trave_post4()
