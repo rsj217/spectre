@@ -48,3 +48,16 @@ class BinNode(object):
                 node = node.parent
             node = node.parent
         return node
+
+
+class BSNode(BinNode):
+
+    def __init__(self, key):
+        super(BSNode, self).__init__(parent=None, lchild=None, rchild=None, data=None)
+        self.key = key
+
+    def insert_as_lc(self, e):
+        raise NotImplementedError
+
+    def insert_as_rc(self, e):
+        raise NotImplementedError

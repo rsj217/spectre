@@ -313,4 +313,4 @@ def gen_binary_tree():
 
 if __name__ == '__main__':
     bt = gen_binary_tree()
-    g = bt.trave_post4()
+    print(bt)
