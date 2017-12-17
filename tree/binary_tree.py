@@ -40,15 +40,11 @@ class BinaryTree(object):
             step = 2 ** (vheight + 1)
             arr_index = start + (node._number - 1) * step
             inorder[arr_index] = node.data
-            if node._number == 1:
+            if node._number == 1 or not node.parent.lchild:
                 tree_str_arr.append('\n')
                 tree_str_arr.append(' ' * arr_index + str(node.data))
             else:
-                if not node.parent.lchild:
-                    tree_str_arr.append('\n')
-                    tree_str_arr.append(' ' * arr_index + str(node.data))
-                else:
-                    tree_str_arr.append(' ' * (arr_index - last_index - 1) + str(node.data))
+                tree_str_arr.append(' ' * (arr_index - last_index - 1) + str(node.data))
 
             if node.lchild:
                 node.lchild._number = 2 * node._number - 1
@@ -65,7 +61,7 @@ class BinaryTree(object):
 
         print(inorder)
 
-        return f'<BinaryTree>({s})'
+        return f'<BinaryTree>({s}\n)'
 
     def __repr__(self):
         return self.print_tree()
@@ -394,3 +390,4 @@ def print_tree():
 
 if __name__ == '__main__':
     bt = gen_binary_tree()
+    print(bt)
