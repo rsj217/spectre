@@ -10,6 +10,66 @@ class BinaryTree(object):
         self._root = root
         self._size = 0
 
+    def __iter__(self):
+        stack = []
+        node = self.root
+        while True:
+            if node:
+                stack.append(node)
+                node = node.lchild
+            elif not stack:
+                break
+            else:
+                node = stack.pop()
+                yield node.data
+                node = node.rchild
+
+    def print_tree(self):
+        inorder = {}
+
+        queue = []
+        node = self.root
+        node._number = 1
+        queue.append(node)
+        last_index = 1
+        tree_str_arr = []
+        while queue:
+            node = queue.pop(0)
+            vheight = self.root.height - node.deep
+            start = 2 ** vheight - 1
+            step = 2 ** (vheight + 1)
+            arr_index = start + (node._number - 1) * step
+            inorder[arr_index] = node.data
+            if node._number == 1:
+                tree_str_arr.append('\n')
+                tree_str_arr.append(' ' * arr_index + str(node.data))
+            else:
+                if not node.parent.lchild:
+                    tree_str_arr.append('\n')
+                    tree_str_arr.append(' ' * arr_index + str(node.data))
+                else:
+                    tree_str_arr.append(' ' * (arr_index - last_index - 1) + str(node.data))
+
+            if node.lchild:
+                node.lchild._number = 2 * node._number - 1
+                queue.append(node.lchild)
+
+            if node.rchild:
+                node.rchild._number = 2 * node._number
+                queue.append(node.rchild)
+
+            last_index = arr_index
+            del node._number
+
+        s = ''.join(tree_str_arr)
+
+        print(inorder)
+
+        return f'<BinaryTree>({s})'
+
+    def __repr__(self):
+        return self.print_tree()
+
     @property
     def size(self):
         return self._size
@@ -29,7 +89,7 @@ class BinaryTree(object):
         return -1
 
     @staticmethod
-    def update_height(node):
+    def _update_height(node):
         lheight = BinaryTree.stature(node.lchild) if node.lchild else 0
         rheight = BinaryTree.stature(node.rchild) if node.rchild else 0
         node.height = 1 + max(lheight, rheight)
@@ -38,7 +98,7 @@ class BinaryTree(object):
     def update_height_above(self, node):
         while node:
             old_height = node.height
-            new_height = self.update_height(node=node)
+            new_height = self._update_height(node=node)
             if old_height == new_height:
                 break
             node = node.parent
@@ -302,7 +362,7 @@ def gen_binary_tree():
     m = bt.insert_as_lc(n, 'm')
     p = bt.insert_as_rc(n, 'p')
     o = bt.insert_as_lc(p, 'o')
-    #
+
     # for item in [a, b, c, d, e, f, g, h, root, j, k, l, m, n, o, p]:
     #     print(item.data, item.succ)
     #
@@ -311,6 +371,26 @@ def gen_binary_tree():
     return bt
 
 
+def print_tree():
+    bt = BinaryTree()
+    root = bt.insert_as_root('50')
+    a = bt.insert_as_lc(root, '30')
+    b = bt.insert_as_lc(a, '10')
+    c = bt.insert_as_rc(a, '40')
+    bt.insert_as_lc(c, '35')
+    bt.insert_as_lc(b, '05')
+    bt.insert_as_rc(b, '15')
+
+    d = bt.insert_as_rc(root, '80')
+    e = bt.insert_as_lc(d, '70')
+    bt.insert_as_lc(e, '60')
+
+    f = bt.insert_as_rc(d, '90')
+    bt.insert_as_lc(f, '85')
+    bt.insert_as_rc(f, '95')
+
+    bt.print_tree()
+
+
 if __name__ == '__main__':
     bt = gen_binary_tree()
-    print(bt)

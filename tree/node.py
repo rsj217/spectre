@@ -49,12 +49,27 @@ class BinNode(object):
             node = node.parent
         return node
 
+    @property
+    def deep(self):
+        d = -1
+        node = self
+        while node:
+            node = node.parent
+            d += 1
+        return d
+
 
 class BSNode(BinNode):
 
-    def __init__(self, key):
-        super(BSNode, self).__init__(parent=None, lchild=None, rchild=None, data=None)
+    def __init__(self, key, parent=None):
+        super(BSNode, self).__init__(parent=parent, lchild=None, rchild=None, data=None)
         self.key = key
+
+    def __repr__(self):
+        pdata = getattr(self.parent, 'key', None)
+        ldata = getattr(self.lchild, 'key', None)
+        rdata = getattr(self.rchild, 'key', None)
+        return f'<BSNode>([{pdata}] {ldata}-{self.key}-{rdata}: {self.height})'
 
     def insert_as_lc(self, e):
         raise NotImplementedError
