@@ -56,17 +56,9 @@ def gen_binary_search_tree():
     bst = BinarySearchTree()
     bst.insert_as_root(36)
 
-    bst.insert(6)
     bst.insert(27)
-    #
-    # node = bst.search(27)
-    # print('node:--', node, 'hot:---', bst.hot)
+    bst.insert(6)
 
-    # print(bst.root, bst.root.lchild)
-    # bst.insert(27)
-
-    # for i in [6, 27]:
-    #     bst.insert(i)
     return bst
 
 
