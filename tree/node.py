@@ -61,8 +61,8 @@ class BinNode(object):
 
 class BSNode(BinNode):
 
-    def __init__(self, key, parent=None):
-        super(BSNode, self).__init__(parent=parent, lchild=None, rchild=None, data=None)
+    def __init__(self, key, data=None, parent=None):
+        super(BSNode, self).__init__(parent=parent, lchild=None, rchild=None, data=data)
         self.key = key
 
     def __repr__(self):
