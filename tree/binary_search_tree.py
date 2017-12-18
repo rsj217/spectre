@@ -91,6 +91,14 @@ class BinarySearchTree(BinaryTree):
 
 
 def gen_binary_search_tree():
+    """
+    <BinarySearchTree>(
+                  36
+          27              58
+      16              53      69
+                    46
+    )
+    """
     bst = BinarySearchTree()
     bst.insert_as_root(36)
 

@@ -346,6 +346,15 @@ class BinaryTree(object):
 
 
 def gen_binary_tree():
+    """
+    <BinaryTree>(
+                   i
+           d               l
+       c       h       k       n
+     a       f       j       m   p
+      b     e g                 o
+    )
+    """
     bt = BinaryTree()
     root = bt.insert_as_root('i')
     d = bt.insert_as_lc(root, 'd')
@@ -364,11 +373,6 @@ def gen_binary_tree():
     m = bt.insert_as_lc(n, 'm')
     p = bt.insert_as_rc(n, 'p')
     o = bt.insert_as_lc(p, 'o')
-
-    # for item in [a, b, c, d, e, f, g, h, root, j, k, l, m, n, o, p]:
-    #     print(item.data, item.succ)
-    #
-    # print(p.data, p.succ)
 
     return bt
 
