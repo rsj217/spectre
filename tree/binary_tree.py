@@ -31,13 +31,19 @@ class BinaryTree(object):
         queue.append(node)
         last_index = 1
         tree_str_arr = []
+
+        d = {}
+
         while queue:
             node = queue.pop(0)
-            vheight = self.root.height - node.deep
+            deep = node.deep
+            is_fist = bool(d.setdefault(deep, True))
+            vheight = self.root.height - deep
             start = 2 ** vheight - 1
             step = 2 ** (vheight + 1)
             arr_index = start + (node._number - 1) * step
-            if node._number == 1 or not node.parent.lchild:
+            if is_fist:
+                d[deep] = False
                 tree_str_arr.append('\n')
                 tree_str_arr.append(' ' * arr_index + str(node.data))
             else:
@@ -53,7 +59,7 @@ class BinaryTree(object):
 
             last_index = arr_index
             del node._number
-
+        del d
         s = ''.join(tree_str_arr)
         return f'<BinaryTree>({s}\n)'
 
