@@ -24,6 +24,13 @@ class BinaryTree(object):
                 yield node.data
                 node = node.rchild
 
+    def cal_arr_index(self, node, deep):
+        vheight = self.root.height - deep
+        start = 2 ** vheight - 1
+        step = 2 ** (vheight + 1)
+        arr_index = start + (node._number - 1) * step
+        return arr_index
+
     def print_tree(self):
         queue = []
         node = self.root
@@ -37,12 +44,11 @@ class BinaryTree(object):
         while queue:
             node = queue.pop(0)
             deep = node.deep
-            is_fist = bool(d.setdefault(deep, True))
-            vheight = self.root.height - deep
-            start = 2 ** vheight - 1
-            step = 2 ** (vheight + 1)
-            arr_index = start + (node._number - 1) * step
-            if is_fist:
+            is_first = bool(d.setdefault(deep, True))
+
+            arr_index = self.cal_arr_index(node, deep)
+
+            if is_first:
                 d[deep] = False
                 tree_str_arr.append('\n')
                 tree_str_arr.append(' ' * arr_index + str(node.data))
@@ -61,7 +67,7 @@ class BinaryTree(object):
             del node._number
         del d
         s = ''.join(tree_str_arr)
-        return f'<BinaryTree>({s}\n)'
+        return f'<{self.__class__.__name__}>({s}\n)'
 
     def __repr__(self):
         return self.print_tree()

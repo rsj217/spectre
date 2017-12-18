@@ -11,6 +11,44 @@ class BinarySearchTree(BinaryTree):
         super(BinarySearchTree, self).__init__(root=root)
         self.hot = None
 
+    def print_tree(self):
+        queue = []
+        node = self.root
+        node._number = 1
+        queue.append(node)
+        last_index = 1
+        tree_str_arr = []
+
+        d = {}
+        while queue:
+            node = queue.pop(0)
+            deep = node.deep
+            is_first = bool(d.setdefault(deep, True))
+            arr_index = self.cal_arr_index(node, deep)
+            if is_first:
+                d[deep] = False
+                tree_str_arr.append('\n')
+                tree_str_arr.append('  ' * arr_index + str(node.key))
+            else:
+                tree_str_arr.append('  ' * (arr_index - last_index - 1) + str(node.key))
+
+            if node.lchild:
+                node.lchild._number = 2 * node._number - 1
+                queue.append(node.lchild)
+
+            if node.rchild:
+                node.rchild._number = 2 * node._number
+                queue.append(node.rchild)
+
+            last_index = arr_index
+            del node._number
+        del d
+        s = ''.join(tree_str_arr)
+        return f'<{self.__class__.__name__}>({s}\n)'
+
+    def __repr__(self):
+        return self.print_tree()
+
     def search(self, e):
         return self._search_in(self.root, e, hot=None)
 
@@ -57,12 +95,15 @@ def gen_binary_search_tree():
     bst.insert_as_root(36)
 
     bst.insert(27)
-    bst.insert(6)
+    bst.insert(16)
+    bst.insert(58)
+    bst.insert(53)
+    bst.insert(46)
+    bst.insert(69)
 
     return bst
 
 
 if __name__ == '__main__':
     bst = gen_binary_search_tree()
-    print(bst.root, bst.root.lchild, bst.root.lchild.lchild)
-
+    print(bst)
