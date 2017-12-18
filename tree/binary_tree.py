@@ -25,8 +25,6 @@ class BinaryTree(object):
                 node = node.rchild
 
     def print_tree(self):
-        inorder = {}
-
         queue = []
         node = self.root
         node._number = 1
@@ -39,7 +37,6 @@ class BinaryTree(object):
             start = 2 ** vheight - 1
             step = 2 ** (vheight + 1)
             arr_index = start + (node._number - 1) * step
-            inorder[arr_index] = node.data
             if node._number == 1 or not node.parent.lchild:
                 tree_str_arr.append('\n')
                 tree_str_arr.append(' ' * arr_index + str(node.data))
@@ -58,9 +55,6 @@ class BinaryTree(object):
             del node._number
 
         s = ''.join(tree_str_arr)
-
-        print(inorder)
-
         return f'<BinaryTree>({s}\n)'
 
     def __repr__(self):
