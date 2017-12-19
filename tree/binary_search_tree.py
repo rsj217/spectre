@@ -30,9 +30,9 @@ class BinarySearchTree(BinaryTree):
             arr_index = self.cal_arr_index(node, deep)
             if is_first:
                 d[deep] = False
-                s = '{}{}'.format('\n', '  ' * arr_index + str(node.key))
+                s = '{}{}{}'.format('\n', '  ' * arr_index, str(node.key))
             else:
-                s = '  ' * (arr_index - last_index - 1) + str(node.key)
+                s = '{}{}'.format('  ' * (arr_index - last_index - 1), str(node.key))
             tree_str_arr.append(s)
 
             if node.lchild:
@@ -157,3 +157,4 @@ def gen_binary_search_tree():
 
 if __name__ == '__main__':
     bst = gen_binary_search_tree()
+    print(bst)
