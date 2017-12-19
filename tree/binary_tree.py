@@ -91,8 +91,8 @@ class BinaryTree(object):
 
     @staticmethod
     def _update_height(node):
-        lheight = BinaryTree.stature(node.lchild) if node.lchild else 0
-        rheight = BinaryTree.stature(node.rchild) if node.rchild else 0
+        lheight = BinaryTree.stature(node.lchild)
+        rheight = BinaryTree.stature(node.rchild)
         node.height = 1 + max(lheight, rheight)
         return node.height
 
