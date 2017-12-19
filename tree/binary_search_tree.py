@@ -27,10 +27,10 @@ class BinarySearchTree(BinaryTree):
             arr_index = self.cal_arr_index(node, deep)
             if is_first:
                 d[deep] = False
-                tree_str_arr.append('\n')
-                tree_str_arr.append('  ' * arr_index + str(node.key))
+                s = '{}{}'.format('\n', '  ' * arr_index + str(node.key))
             else:
-                tree_str_arr.append('  ' * (arr_index - last_index - 1) + str(node.key))
+                s = '  ' * (arr_index - last_index - 1) + str(node.key)
+            tree_str_arr.append(s)
 
             if node.lchild:
                 node.lchild._number = 2 * node._number - 1

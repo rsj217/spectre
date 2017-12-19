@@ -44,16 +44,15 @@ class BinaryTree(object):
         while queue:
             node = queue.pop(0)
             deep = node.deep
+
             is_first = bool(d.setdefault(deep, True))
-
             arr_index = self.cal_arr_index(node, deep)
-
             if is_first:
                 d[deep] = False
-                tree_str_arr.append('\n')
-                tree_str_arr.append(' ' * arr_index + str(node.data))
+                s = '{}{}'.format('\n\n', ' ' * arr_index + str(node.data))
             else:
-                tree_str_arr.append(' ' * (arr_index - last_index - 1) + str(node.data))
+                s = ' ' * (arr_index - last_index - 1) + str(node.data)
+            tree_str_arr.append(s)
 
             if node.lchild:
                 node.lchild._number = 2 * node._number - 1
