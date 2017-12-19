@@ -11,6 +11,9 @@ class BinarySearchTree(BinaryTree):
         super(BinarySearchTree, self).__init__(root=root)
         self.hot = None
 
+    def __repr__(self):
+        return self.print_tree()
+
     def print_tree(self):
         queue = []
         node = self.root
@@ -46,13 +49,10 @@ class BinarySearchTree(BinaryTree):
         s = ''.join(tree_str_arr)
         return f'<{self.__class__.__name__}>({s}\n)'
 
-    def __repr__(self):
-        return self.print_tree()
-
     def search(self, e):
-        return self._search_in(self.root, e, hot=None)
+        return self._search_in(self.root, e)
 
-    def _search_in(self, node, e, hot):
+    def _search_in(self, node, e):
         if node is None or node.key == e:
             return node
         self.hot = node
@@ -60,7 +60,7 @@ class BinarySearchTree(BinaryTree):
             node = node.rchild
         else:
             node = node.lchild
-        return self._search_in(node, e, hot=self.hot)
+        return self._search_in(node, e)
 
     def find(self, e):
         node = self
@@ -157,5 +157,4 @@ def gen_binary_search_tree():
 
 if __name__ == '__main__':
     bst = gen_binary_search_tree()
-    bst.remove(64)
     print(bst, bst.root.height, bst.size)
