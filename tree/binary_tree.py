@@ -4,6 +4,10 @@
 from tree.node import BinNode
 
 
+def visit(node):
+    print(node.key)
+
+
 class BinaryTree(object):
 
     def __init__(self, root=None):
@@ -325,7 +329,7 @@ class BinaryTree(object):
     def _preorder(self, node):
         if not node:
             return
-        print(node)
+        visit(node)
         self._preorder(node.lchild)
         self._preorder(node.rchild)
 
@@ -333,7 +337,7 @@ class BinaryTree(object):
         if not node:
             return
         self._inorder(node.lchild)
-        print(node)
+        visit(node)
         self._inorder(node.rchild)
 
     def _postorder(self, node):
@@ -341,7 +345,7 @@ class BinaryTree(object):
             return
         self._postorder(node.lchild)
         self._postorder(node.rchild)
-        print(node)
+        visit(node)
 
 
 def gen_binary_tree():

@@ -157,4 +157,3 @@ def gen_binary_search_tree():
 
 if __name__ == '__main__':
     bst = gen_binary_search_tree()
-    print(bst, bst.root.height, bst.size)
