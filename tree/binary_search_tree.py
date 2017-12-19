@@ -109,15 +109,19 @@ class BinarySearchTree(BinaryTree):
         else:
             succ = None
 
+        print('succ', succ, bool(succ))
+
         if succ:
             succ.parent = hot
+        else:
+            node.parent = succ
 
         if node is hot.lchild:
-            hot.lchild = None
+            hot.lchild = succ
         else:
-            hot.rchild = None
-        node.parent = None
+            hot.rchild = succ
         del node
+
         return succ
 
 
@@ -148,5 +152,5 @@ def gen_binary_search_tree():
 
 if __name__ == '__main__':
     bst = gen_binary_search_tree()
-    r = bst.remove(46)
+    bst.remove(53)
     print(bst, bst.root.height, bst.size)
