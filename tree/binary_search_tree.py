@@ -98,6 +98,11 @@ class BinarySearchTree(BinaryTree):
         self.update_height_above(self.hot)
         return True
 
+    def _swap(self, na, nb):
+        na.key, nb.key = nb.key, na.key
+        na.data, nb.data = nb.data, na.data
+        return na, nb
+
     def _remove_at(self, node):
         self.hot = node.parent
         if not node.lchild:
@@ -105,14 +110,12 @@ class BinarySearchTree(BinaryTree):
         elif not node.rchild:
             succ = node.lchild
         else:
-            w = node.succ
-            node.key, w.key = w.key, node.key
-            node.data, w.data = w.data, node.data
-            self.hot = w.parent
-            succ = w.rchild
-            node = w
+            succor = node.succ
+            self._swap(node, succor)
+            self.hot = succor.parent
+            succ = succor.rchild
+            node = succor
 
-        print('hot', self.hot)
         if succ:
             succ.parent = self.hot
         else:
@@ -154,5 +157,5 @@ def gen_binary_search_tree():
 
 if __name__ == '__main__':
     bst = gen_binary_search_tree()
-    bst.remove(0)
+    bst.remove(64)
     print(bst, bst.root.height, bst.size)
