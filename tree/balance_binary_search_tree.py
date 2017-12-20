@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-from tree.node import BSNode
 from tree.binary_search_tree import BinarySearchTree
 
 

@@ -129,6 +129,26 @@ class BinarySearchTree(BinaryTree):
         del node
         return succ
 
+    @property
+    def minimum(self):
+        node = self._root
+        while True:
+            if node.lchild:
+                node = node.lchild
+            else:
+                break
+        return node
+
+    @property
+    def maximum(self):
+        node = self._root
+        while True:
+            if node.rchild:
+                node = node.rchild
+            else:
+                break
+        return node
+
 
 def gen_binary_search_tree():
     """
@@ -157,4 +177,5 @@ def gen_binary_search_tree():
 
 if __name__ == '__main__':
     bst = gen_binary_search_tree()
-    print(bst)
+    print(bst.minimum)
+    print(bst.maximum)
