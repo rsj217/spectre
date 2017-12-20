@@ -74,6 +74,7 @@ class BinarySearchTree(BinaryTree):
             elif e < node.key:
                 node = node.lchild
             else:
+                self.hot = node.parent
                 return node
         return node
 
@@ -184,6 +185,6 @@ def gen_binary_search_tree():
 if __name__ == '__main__':
     bst = gen_binary_search_tree()
     print(bst)
-    print(bst.minimum)
-    print(bst.maximum)
-    print(bst.search(36))
+
+    print(bst.find(53))
+    print('hot', bst.hot)
