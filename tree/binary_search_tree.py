@@ -177,7 +177,6 @@ def gen_binary_search_tree():
     bst.insert(46)
     bst.insert(69)
     bst.insert(64)
-    bst.insert(64)
 
     return bst
 
@@ -185,6 +184,6 @@ def gen_binary_search_tree():
 if __name__ == '__main__':
     bst = gen_binary_search_tree()
     print(bst)
-
-    print(bst.find(53))
-    print('hot', bst.hot)
+    #
+    # print(bst.find(53))
+    # print('hot', bst.hot)
