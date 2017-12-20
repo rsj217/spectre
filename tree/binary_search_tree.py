@@ -52,6 +52,9 @@ class BinarySearchTree(BinaryTree):
     def search(self, e):
         return self._search_in(self.root, e)
 
+    def find(self, e):
+        return self._find_in(e)
+
     def _search_in(self, node, e):
         if node is None or node.key == e:
             return node
@@ -62,15 +65,17 @@ class BinarySearchTree(BinaryTree):
             node = node.lchild
         return self._search_in(node, e)
 
-    def find(self, e):
-        node = self
-        while True or node:
-            if e < node.key:
-                node = node.lchild
-            elif e > node.key:
+    def _find_in(self, e):
+        node = self._root
+        while node:
+            self.hot = node
+            if node.key < e:
                 node = node.rchild
+            elif e < node.key:
+                node = node.lchild
             else:
                 return node
+        return node
 
     def insert_as_root(self, e):
         self._size = 1
@@ -171,11 +176,14 @@ def gen_binary_search_tree():
     bst.insert(46)
     bst.insert(69)
     bst.insert(64)
+    bst.insert(64)
 
     return bst
 
 
 if __name__ == '__main__':
     bst = gen_binary_search_tree()
+    print(bst)
     print(bst.minimum)
     print(bst.maximum)
+    print(bst.search(36))
