@@ -5,7 +5,18 @@ from tree.binary_search_tree import BinarySearchTree
 
 
 class BalanceBinarySearchTree(BinarySearchTree):
-    pass
+
+    def bal_fac(self, node):
+        return self.stature(node.lchild) - self.stature(node.rchild)
+
+    def balanced(self, node):
+        return self.stature(node.lchild) == self.stature(node.rchild)
+
+    def left_rotate(self):
+        pass
+
+    def right_rotate(self):
+        pass
 
 
 class AVLTree(BalanceBinarySearchTree):
