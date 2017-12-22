@@ -308,9 +308,6 @@ class BinaryTree(object):
                 last_visit = stack.pop()
                 yield last_visit
 
-    def trave_post4(self):
-        pass
-
     def trave_level(self):
         queue = []
         node = self.root
