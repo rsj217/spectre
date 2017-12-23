@@ -50,6 +50,10 @@ class BinNode(object):
         return node
 
     @property
+    def precu(self):
+        return
+
+    @property
     def deep(self):
         d = -1
         node = self
