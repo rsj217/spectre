@@ -12,8 +12,24 @@ class BalanceBinarySearchTree(BinarySearchTree):
     def balanced(self, node):
         return self.stature(node.lchild) == self.stature(node.rchild)
 
-    def left_rotate(self):
-        pass
+    def zig_rotate(self, node):
+        p = node.parent
+        c = node.lchild
+
+        if p:
+            if node is p.lchild:
+                p.lchild = node
+            else:
+                p.rchild = node
+            node.parent = c
+        c.parent = p
+
+        node.lchild = c.rchild
+        if c.rchild:
+            c.rchild.parent = node
+
+        c.rchild = node
+        node.parent = c
 
     def right_rotate(self):
         pass
@@ -36,15 +52,12 @@ def gen_avl_tree():
     )
     """
     avl = AVLTree()
-    avl.insert_as_root(36)
+    avl.insert_as_root(58)
 
-    avl.insert(27)
-    avl.insert(16)
-    avl.insert(58)
     avl.insert(53)
     avl.insert(40)
     avl.insert(69)
-    avl.insert(64)
+    avl.insert(54)
 
     return avl
 
@@ -52,3 +65,10 @@ def gen_avl_tree():
 if __name__ == '__main__':
     avl = gen_avl_tree()
     print(avl)
+    avl.inorder()
+
+    avl.zig_rotate(avl.root)
+
+    # print(avl)
+
+    avl.inorder(avl.root.parent)

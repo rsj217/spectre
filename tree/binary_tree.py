@@ -213,11 +213,13 @@ class BinaryTree(object):
                 break
             node = stack.pop()
 
-    def preorder(self):
-        self._preorder(self._root)
+    def preorder(self, node=None):
+        n = node or self.root
+        self._preorder(n)
 
-    def inorder(self):
-        self._inorder(self._root)
+    def inorder(self, node=None):
+        n = node or self.root
+        self._inorder(n)
 
     def trave_in(self):
         stack = []
@@ -320,8 +322,9 @@ class BinaryTree(object):
             if node.rchild:
                 queue.append(node.rchild)
 
-    def postorder(self):
-        self._postorder(self._root)
+    def postorder(self, node=None):
+        n = node or self._root
+        self._postorder(n)
 
     def _preorder(self, node):
         if not node:
@@ -343,6 +346,7 @@ class BinaryTree(object):
         self._postorder(node.lchild)
         self._postorder(node.rchild)
         visit(node)
+
 
 if __name__ == '__main__':
     pass
