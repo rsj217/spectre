@@ -86,7 +86,7 @@ class TestTreeGen(unittest.TestCase):
         self.assertEqual(root.rchild, right)
         self.assertEqual(root.height, 2)
 
-    def test_height(self):
+    def test_height_and_succ(self):
         bt = self.bt
         root = bt.insert_as_root('i')
         d = bt.insert_as_lc(root, 'd')
@@ -124,6 +124,10 @@ class TestTreeGen(unittest.TestCase):
         self.assertEqual(e.height, 0)
         self.assertEqual(g.height, 0)
         self.assertEqual(o.height, 0)
+
+        self.assertEqual(root.succ.data, 'j')
+        self.assertEqual(k.succ.data, 'l')
+        self.assertEqual(b.succ.data, 'c')
 
 
 class TestTravel(unittest.TestCase):
@@ -165,7 +169,6 @@ class TestTravel(unittest.TestCase):
         ret = [i.data for i in g]
         self.assertEqual(self.preorder, ret)
 
-
     def test_trave_in(self):
         g = self.bt.trave_in()
         ret = [i.data for i in g]
@@ -180,7 +183,6 @@ class TestTravel(unittest.TestCase):
         g = self.bt.trave_in3()
         ret = [i.data for i in g]
         self.assertEqual(self.inorder, ret)
-
 
     def test_trave_post(self):
         g = self.bt.trave_post()
@@ -201,7 +203,6 @@ class TestTravel(unittest.TestCase):
         g = self.bt.trave_level()
         ret = [i.data for i in g]
         self.assertEqual(self.levelorder, ret)
-
 
 
 if __name__ == '__main__':

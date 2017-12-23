@@ -23,6 +23,7 @@ class TestNode(unittest.TestCase):
         node = self.node.insert_as_lc('left')
         self.assertEqual(node.data, 'left')
         self.assertEqual(self.node.lchild, node)
+        self.assertEqual(node.parent, self.node)
         self.assertEqual(node.height, 0)
         self.assertEqual(node.size, 1)
         self.assertEqual(self.node.size, 2)
