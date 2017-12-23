@@ -12,24 +12,20 @@ class BalanceBinarySearchTree(BinarySearchTree):
     def balanced(self, node):
         return self.stature(node.lchild) == self.stature(node.rchild)
 
-    def zig_rotate(self, node):
-        p = node.parent
-        c = node.lchild
+    def taller_child(self, node):
+        if self.stature(node.lchild) > self.stature(node.rchild):
+            return node.lchild
 
-        if p:
-            if node is p.lchild:
-                p.lchild = node
+        elif self.stature(node.lchild) > self.stature(node.rchild):
+            return node.rchild
+        else:
+            if node == node.parent.lchild:
+                return node.lchild
             else:
-                p.rchild = node
-            node.parent = c
-        c.parent = p
+                return node.rchild
 
-        node.lchild = c.rchild
-        if c.rchild:
-            c.rchild.parent = node
-
-        c.rchild = node
-        node.parent = c
+    def zig_rotate(self, node):
+        pass
 
     def right_rotate(self):
         pass
@@ -43,12 +39,10 @@ class AVLTree(BalanceBinarySearchTree):
 
 def gen_avl_tree():
     """
-    <BinarySearchTree>(
-                                  36
-                  27                              58
-          16                              53              69
-                                      40              64
-                                        46
+    <AVLTree>(
+          58
+      53      69
+    40  54
     )
     """
     avl = AVLTree()
@@ -64,11 +58,7 @@ def gen_avl_tree():
 
 if __name__ == '__main__':
     avl = gen_avl_tree()
-    print(avl)
-    avl.inorder()
-
-    avl.zig_rotate(avl.root)
-
-    # print(avl)
-
-    avl.inorder(avl.root.parent)
+    x = avl.insert(30)
+    while x:
+        print(avl.bal_fac(x))
+        x = x.parent
