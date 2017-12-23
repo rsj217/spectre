@@ -3,13 +3,17 @@
 
 import unittest
 from tree.node import BinNode
-from tree.binary_tree import BinaryTree
 
 
 class TestNode(unittest.TestCase):
 
     def setUp(self):
         self.node = BinNode()
+
+
+    def test_print_node(self):
+        node = BinNode(data='node')
+        self.assertEqual(node.__repr__(), '<BinNode>([None] None-node-None: 0)')
 
     def test_init_node(self):
         self.assertIsNone(self.node.parent)

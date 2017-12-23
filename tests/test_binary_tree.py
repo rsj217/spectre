@@ -87,6 +87,21 @@ class TestTreeGen(unittest.TestCase):
         self.assertEqual(root.height, 2)
 
     def test_height_and_succ(self):
+        """
+        <BinaryTree>(
+
+                       i
+
+               d               l
+
+           c       h       k       n
+
+         a       f       j       m   p
+
+          b     e g                 o
+        )
+        """
+
         bt = self.bt
         root = bt.insert_as_root('i')
         d = bt.insert_as_lc(root, 'd')
@@ -128,6 +143,9 @@ class TestTreeGen(unittest.TestCase):
         self.assertEqual(root.succ.data, 'j')
         self.assertEqual(k.succ.data, 'l')
         self.assertEqual(b.succ.data, 'c')
+
+        self.assertEqual(a.deep, 3)
+        self.assertEqual(b.deep, 4)
 
 
 class TestTravel(unittest.TestCase):
