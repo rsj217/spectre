@@ -54,6 +54,22 @@ class BinNode(object):
         return
 
     @property
+    def floor(self):
+        return
+
+    @property
+    def ceil(self):
+        return
+
+    @property
+    def rank(self):
+        return
+
+    @property
+    def select(self):
+        return
+
+    @property
     def deep(self):
         d = -1
         node = self
