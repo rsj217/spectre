@@ -78,6 +78,42 @@ class BinNode(object):
             d += 1
         return d
 
+    @property
+    def is_root(self):
+        return not self.parent
+
+    @property
+    def is_lchild(self):
+        return self is self.parent.lchild
+
+    @property
+    def is_rchild(self):
+        return self is self.parent.rchild
+
+    @property
+    def has_parent(self):
+        return not self.is_root
+
+    @property
+    def has_lchild(self):
+        return self.lchild
+
+    @property
+    def has_rchild(self):
+        return self.rchild
+
+    @property
+    def has_child(self):
+        return self.has_lchild or self.has_rchild
+
+    @property
+    def has_both_child(self):
+        return self.has_lchild and self.has_rchild
+
+    @property
+    def is_leaf(self):
+        return not self.has_child
+
 
 class BSNode(BinNode):
 

@@ -25,11 +25,21 @@ class TestAVLTree(unittest.TestCase):
         self.avl.insert(69)
         self.avl.insert(54)
 
-        print('hot', self.avl.hot)
+        node = self.avl.insert_e(30)
+        # node = self.avl.insert_e(20)
 
-        g = self.avl.trave_in()
+        # self.avl._root = node.parent.parent
+
+        g = self.avl.trave_level()
         for i in g:
             self.assertTrue(self.avl.avl_balanced(i))
+            print(i.key, i.height)
+
+        print(self.avl.root)
+        print(self.avl)
+
+
+
 
 
 if __name__ == '__main__':
