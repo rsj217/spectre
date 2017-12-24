@@ -18,12 +18,16 @@ class TestAVLTree(unittest.TestCase):
         40  54
         )
         """
-        self.avl.insert_as_root(58)
+        root = self.avl.insert_as_root(58)
 
         self.avl.insert(53)
         self.avl.insert(40)
         self.avl.insert(69)
         self.avl.insert(54)
+
+        g = self.avl.trave_in()
+        for i in g:
+            self.assertTrue(self.avl.avl_balanced(i))
 
 
 if __name__ == '__main__':
