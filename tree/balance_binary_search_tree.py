@@ -19,16 +19,7 @@ class BalanceBinarySearchTree(BinarySearchTree):
         elif self.stature(node.lchild) > self.stature(node.rchild):
             return node.rchild
         else:
-            if node == node.parent.lchild:
-                return node.lchild
-            else:
-                return node.rchild
-
-    def zig_rotate(self, node):
-        pass
-
-    def right_rotate(self):
-        pass
+            return node.lchild if node == node.parent.lchild else node.rchild
 
 
 class AVLTree(BalanceBinarySearchTree):
@@ -58,7 +49,3 @@ def gen_avl_tree():
 
 if __name__ == '__main__':
     avl = gen_avl_tree()
-    x = avl.insert(30)
-    while x:
-        print(avl.bal_fac(x))
-        x = x.parent
