@@ -55,6 +55,27 @@ class AVLTree(BalanceBinarySearchTree):
 
         return node
 
+    def remove(self, e):
+        node = self.search(e)
+        if not node:
+            return False
+        self._remove_at(node)
+        self._size -= 1
+        g = self.hot
+        while g:
+            if not self.avl_balanced(g):
+                if g.is_root:
+                    self._root = self.rotate_at(self.taller_child(self.taller_child(g)))
+                elif g.is_lchild:
+                    p = g.parent
+                    p.lchild = self.rotate_at(self.taller_child(self.taller_child(g)))
+                else:
+                    p = g.parent
+                    p.rchild = self.rotate_at(self.taller_child(self.taller_child(g)))
+            self._update_height(g)
+            g = g.parent
+        return True
+
     def rotate_at(self, v):
         p = v.parent
         g = p.parent
