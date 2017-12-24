@@ -13,9 +13,9 @@ class TestAVLTree(unittest.TestCase):
     def test_insert_node(self):
         """
         <AVLTree>(
-              58
-          53      69
-        40  54
+              53
+          40      58
+                54  69
         )
         """
         root = self.avl.insert_as_root(58)
@@ -24,9 +24,7 @@ class TestAVLTree(unittest.TestCase):
         self.avl.insert(40)
         self.avl.insert(69)
         self.avl.insert(54)
-        self.avl.insert(30)
-        self.avl.insert(20)
-
+        print(self.avl)
         g = self.avl.trave_level()
         for i in g:
             self.assertTrue(self.avl.avl_balanced(i))
@@ -34,9 +32,16 @@ class TestAVLTree(unittest.TestCase):
     def test_remove_node(self):
         """
         <AVLTree>(
-                      53
+                      50
               30              58
-          20      40      54      69
+          20              54      69
+                        52
+        )
+
+        <AVLTree>(
+              50
+          30      54
+        20      52  58
         )
         """
         root = self.avl.insert_as_root(50)
@@ -47,8 +52,8 @@ class TestAVLTree(unittest.TestCase):
         self.avl.insert(54)
         self.avl.insert(69)
         self.avl.insert(52)
-
         self.avl.remove(69)
+        print(self.avl)
         g = self.avl.trave_level()
         for i in g:
             self.assertTrue(self.avl.avl_balanced(i))
