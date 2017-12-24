@@ -25,6 +25,8 @@ class TestAVLTree(unittest.TestCase):
         self.avl.insert(69)
         self.avl.insert(54)
 
+        print('hot', self.avl.hot)
+
         g = self.avl.trave_in()
         for i in g:
             self.assertTrue(self.avl.avl_balanced(i))

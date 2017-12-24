@@ -28,7 +28,11 @@ class AVLTree(BalanceBinarySearchTree):
         return abs(self.bal_fac(node)) <= 1
 
     # def insert(self, e):
-    #     pass
+    #     node = self.search(e)
+    #     if not node:
+    #         pass
+    #     return node
+
 
 
 def gen_avl_tree():
