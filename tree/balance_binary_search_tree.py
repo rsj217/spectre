@@ -28,7 +28,7 @@ class AVLTree(BalanceBinarySearchTree):
     def avl_balanced(self, node):
         return abs(self.bal_fac(node)) <= 1
 
-    def insert_e(self, e):
+    def insert(self, e):
         node = self.search(e)
         if not node:
             node = BSNode(key=e, parent=self.hot)
