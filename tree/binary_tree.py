@@ -90,7 +90,6 @@ class BinaryTree(object):
     def attach(self):
         pass
 
-
     @staticmethod
     def stature(p):
         if p:
@@ -140,6 +139,9 @@ class BinaryTree(object):
 
     # def size(self, e):
     #     pass
+
+    def trav_preorder(self, node):
+        yield from node.trav_preorder()
 
     def trave_pre(self):
         stack = []
@@ -362,6 +364,15 @@ class BinaryTree(object):
         self._postorder(node.lchild)
         self._postorder(node.rchild)
         visit(node)
+
+    # def inorder1(self, node):
+    #     if not node:
+    #         return
+    #     for x in self.inorder1(node.lchild):
+    #         yield x
+    #     yield node
+    #     for x in self.inorder1(node.rchild):
+    #         yield x
 
 
 if __name__ == '__main__':

@@ -120,7 +120,19 @@ class BinNode(object):
     def zag(self):
         pass
 
-    
+    def trav_preorder(self):
+        stack = []
+        node = self
+        while True:
+            while node:
+                yield node
+                stack.append(node)
+                node = node.lchild
+            if not stack:
+                break
+            node = stack.pop()
+            node = node.rchild
+
 
 class BSNode(BinNode):
 
