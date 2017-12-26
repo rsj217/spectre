@@ -133,6 +133,51 @@ class BinNode(object):
             node = stack.pop()
             node = node.rchild
 
+    def trav_inorder(self):
+        stack = []
+        node = self
+        while True:
+            while node:
+                stack.append(node)
+                node = node.lchild
+
+            if not stack:
+                break
+            node = stack.pop()
+            yield node
+            node = node.rchild
+
+    def trav_postorder(self):
+        stack = []
+        node = self
+        last_visit = None
+        while True:
+            while node:
+                stack.append(node)
+                node = node.lchild
+
+            if not stack:
+                break
+
+            if stack[-1].rchild is not last_visit:
+                node = stack[-1].rchild
+                last_visit = None
+            else:
+                last_visit = stack.pop()
+                yield last_visit
+
+    def trav_levelorder(self):
+        queue = []
+        node = self
+        queue.append(node)
+        while queue:
+            node = queue.pop(0)
+            yield node
+            if node.lchild:
+                queue.append(node.lchild)
+            if node.rchild:
+                queue.append(node.rchild)
+
 
 class BSNode(BinNode):
 

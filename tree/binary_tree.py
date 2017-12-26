@@ -140,8 +140,20 @@ class BinaryTree(object):
     # def size(self, e):
     #     pass
 
-    def trav_preorder(self, node):
+    @staticmethod
+    def trav_preorder(node):
         yield from node.trav_preorder()
+
+    @staticmethod
+    def trav_inorder(node):
+        yield from node.trav_inorder()
+
+    @staticmethod
+    def trav_postorder(node):
+        yield from node.trav_postorder()
+
+    def trav_levelorder(self, node):
+        yield from node.trav_levelorder()
 
     def trave_pre(self):
         stack = []
@@ -224,9 +236,8 @@ class BinaryTree(object):
         stack = []
         node = self.root
         while True:
-            g = self.visit_along_left_branch(stack, node)
-            for i in g:
-                yield i
+            yield from self.visit_along_left_branch(stack, node)
+
             if not stack:
                 break
             node = stack.pop()
@@ -364,15 +375,6 @@ class BinaryTree(object):
         self._postorder(node.lchild)
         self._postorder(node.rchild)
         visit(node)
-
-    # def inorder1(self, node):
-    #     if not node:
-    #         return
-    #     for x in self.inorder1(node.lchild):
-    #         yield x
-    #     yield node
-    #     for x in self.inorder1(node.rchild):
-    #         yield x
 
 
 if __name__ == '__main__':

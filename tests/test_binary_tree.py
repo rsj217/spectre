@@ -157,6 +157,21 @@ class TestTravel(unittest.TestCase):
         self.postorder = ['b', 'a', 'c', 'e', 'g', 'f', 'h', 'd', 'j', 'k', 'm', 'o', 'p', 'n', 'l', 'i']
         self.levelorder = ['i', 'd', 'l', 'c', 'h', 'k', 'n', 'a', 'f', 'j', 'm', 'p', 'b', 'e', 'g', 'o']
 
+    def test_trav_inorder(self):
+        g = self.bt.trav_inorder(self.bt.root)
+        ret = [i.data for i in g]
+        self.assertEqual(self.inorder, ret)
+
+    def test_trav_postorder(self):
+        g = self.bt.trav_postorder(self.bt.root)
+        ret = [i.data for i in g]
+        self.assertEqual(self.postorder, ret)
+
+    def test_trav_levelorder(self):
+        g = self.bt.trav_levelorder(self.bt.root)
+        ret = [i.data for i in g]
+        self.assertEqual(self.levelorder, ret)
+
     def test_trave_pre(self):
         g = self.bt.trav_preorder(self.bt.root)
         ret = [i.data for i in g]
@@ -222,11 +237,6 @@ class TestTravel(unittest.TestCase):
         ret = [i.data for i in g]
         self.assertEqual(self.levelorder, ret)
 
-
-    def test_inorder1(self):
-        g = self.bt.inorder1(self.bt.root)
-        for i in g:
-            print(i.data)
 
 if __name__ == '__main__':
     unittest.main()
