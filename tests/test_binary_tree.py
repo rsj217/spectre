@@ -172,6 +172,11 @@ class TestTravel(unittest.TestCase):
         ret = [i.data for i in g]
         self.assertEqual(self.levelorder, ret)
 
+    def test_preorder(self):
+        g = self.bt.preorder(self.bt.root)
+        ret = [i.data for i in g]
+        self.assertEqual(self.preorder, ret)
+
     def test_trave_pre(self):
         g = self.bt.trav_preorder(self.bt.root)
         ret = [i.data for i in g]

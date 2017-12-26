@@ -178,6 +178,17 @@ class BinNode(object):
             if node.rchild:
                 queue.append(node.rchild)
 
+    def preorder(self):
+        node = self
+        yield from self._preorder(node)
+
+    def _preorder(self, node):
+        if not node:
+            return
+        yield node
+        yield from self._preorder(node.lchild)
+        yield from self._preorder(node.rchild)
+
 
 class BSNode(BinNode):
 
