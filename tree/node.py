@@ -114,6 +114,13 @@ class BinNode(object):
     def is_leaf(self):
         return not self.has_child
 
+    def zig(self):
+        pass
+
+    def zag(self):
+        pass
+
+    
 
 class BSNode(BinNode):
 

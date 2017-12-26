@@ -50,7 +50,7 @@ class AVLTree(BalanceBinarySearchTree):
                         p = g.parent
                         p.rchild = self.rotate_at(self.taller_child(self.taller_child(g)))
                 else:
-                    self._update_height(g)
+                    self.update_height(g)
                 g = g.parent
 
         return node
@@ -72,7 +72,7 @@ class AVLTree(BalanceBinarySearchTree):
                 else:
                     p = g.parent
                     p.rchild = self.rotate_at(self.taller_child(self.taller_child(g)))
-            self._update_height(g)
+            self.update_height(g)
             g = g.parent
         return True
 
@@ -103,7 +103,7 @@ class AVLTree(BalanceBinarySearchTree):
         a.rchild = t1
         if t1:
             t1.parent = a
-            self._update_height(a)
+            self.update_height(a)
 
         c.lchild = t2
         if t2:
@@ -112,11 +112,11 @@ class AVLTree(BalanceBinarySearchTree):
         c.rchild = t3
         if t3:
             t3.parent = c
-            self._update_height(c)
+            self.update_height(c)
 
         b.lchild, a.parent = a, b
         b.rchild, c.parent = c, b
-        self._update_height(b)
+        self.update_height(b)
         return b
 
 

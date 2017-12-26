@@ -87,6 +87,10 @@ class BinaryTree(object):
     def root(self):
         return self._root
 
+    def attach(self):
+        pass
+
+
     @staticmethod
     def stature(p):
         if p:
@@ -94,7 +98,7 @@ class BinaryTree(object):
         return -1
 
     @staticmethod
-    def _update_height(node):
+    def update_height(node):
         lheight = BinaryTree.stature(node.lchild)
         rheight = BinaryTree.stature(node.rchild)
         node.height = 1 + max(lheight, rheight)
@@ -103,7 +107,7 @@ class BinaryTree(object):
     def update_height_above(self, node):
         while node:
             old_height = node.height
-            new_height = self._update_height(node=node)
+            new_height = self.update_height(node=node)
             if old_height == new_height:
                 break
             node = node.parent
@@ -124,6 +128,18 @@ class BinaryTree(object):
         node.insert_as_rc(e)
         self.update_height_above(node=node)
         return node.rchild
+
+    def remove(self, e):
+        pass
+
+    def remove_at(self, e):
+        pass
+
+    def secede(self, e):
+        pass
+
+    # def size(self, e):
+    #     pass
 
     def trave_pre(self):
         stack = []
