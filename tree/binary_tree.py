@@ -176,6 +176,11 @@ class BinaryTree(object):
     def trave_pre2(node):
         yield from node.trave_pre()
 
+    @staticmethod
+    def inorder_py2(node):
+        for x in node.inorder_py2():
+            yield x
+
 
 if __name__ == '__main__':
     pass

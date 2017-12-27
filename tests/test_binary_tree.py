@@ -204,6 +204,10 @@ class TestTravel(unittest.TestCase):
         ret = [i.data for i in g]
         self.assertEqual(self.preorder, ret)
 
+    def test_inorder_py2(self):
+        g = self.bt.inorder_py2(self.bt.root)
+        ret = [i.data for i in g]
+        self.assertEqual(self.inorder, ret)
 
 if __name__ == '__main__':
     unittest.main()

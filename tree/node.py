@@ -236,8 +236,19 @@ class BinNode(object):
                 break
             node = stack.pop()
 
+    def inorder_py2(self):
+        node = self
+        for x in self._inorder_py2(node):
+            yield x
 
-
+    def _inorder_py2(self, node):
+        if not node:
+            return
+        for x in self._inorder_py2(node.lchild):
+            yield x
+        yield node
+        for x in self._inorder_py2(node.rchild):
+            yield x
 
 
 class BSNode(BinNode):
