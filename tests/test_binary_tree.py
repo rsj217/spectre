@@ -177,70 +177,80 @@ class TestTravel(unittest.TestCase):
         ret = [i.data for i in g]
         self.assertEqual(self.preorder, ret)
 
-    def test_trave_pre(self):
-        g = self.bt.trav_preorder(self.bt.root)
-        ret = [i.data for i in g]
-        self.assertEqual(self.preorder, ret)
-
-    def test_trave_pre1(self):
-        g = self.bt.trave_pre1()
-        ret = [i.data for i in g]
-        self.assertEqual(self.preorder, ret)
-
-    def test_trave_pre2(self):
-        g = self.bt.trave_pre2()
-        ret = [i.data for i in g]
-        self.assertEqual(self.preorder, ret)
-
-    def test_trave_pre3(self):
-        g = self.bt.trave_pre3()
-        ret = [i.data for i in g]
-        self.assertEqual(self.preorder, ret)
-
-    def test_trave_pre4(self):
-        g = self.bt.trave_pre4()
-        ret = [i.data for i in g]
-        self.assertEqual(self.preorder, ret)
-
-    def test_trave_pre_along_left_branch(self):
-        g = self.bt.trave_pre_along_left_branch()
-        ret = [i.data for i in g]
-        self.assertEqual(self.preorder, ret)
-
-    def test_trave_in(self):
-        g = self.bt.trave_in()
+    def test_inorder(self):
+        g = self.bt.inorder(self.bt.root)
         ret = [i.data for i in g]
         self.assertEqual(self.inorder, ret)
 
-    def test_trave_in2(self):
-        g = self.bt.trave_in2()
-        ret = [i.data for i in g]
-        self.assertEqual(self.inorder, ret)
-
-    def test_trave_in3(self):
-        g = self.bt.trave_in3()
-        ret = [i.data for i in g]
-        self.assertEqual(self.inorder, ret)
-
-    def test_trave_post(self):
-        g = self.bt.trave_post()
+    def test_postorder(self):
+        g = self.bt.postorder(self.bt.root)
         ret = [i.data for i in g]
         self.assertEqual(self.postorder, ret)
 
-    def test_trave_post2(self):
-        g = self.bt.trave_post2()
-        ret = [i.data for i in g]
-        self.assertEqual(self.postorder, ret)
-
-    def test_trave_post3(self):
-        g = self.bt.trave_post3()
-        ret = [i.data for i in g]
-        self.assertEqual(self.postorder, ret)
-
-    def test_trave_level(self):
-        g = self.bt.trave_level()
-        ret = [i.data for i in g]
-        self.assertEqual(self.levelorder, ret)
+    # def test_trave_pre(self):
+    #     g = self.bt.trav_preorder(self.bt.root)
+    #     ret = [i.data for i in g]
+    #     self.assertEqual(self.preorder, ret)
+    #
+    # def test_trave_pre1(self):
+    #     g = self.bt.trave_pre1()
+    #     ret = [i.data for i in g]
+    #     self.assertEqual(self.preorder, ret)
+    #
+    # def test_trave_pre2(self):
+    #     g = self.bt.trave_pre2()
+    #     ret = [i.data for i in g]
+    #     self.assertEqual(self.preorder, ret)
+    #
+    # def test_trave_pre3(self):
+    #     g = self.bt.trave_pre3()
+    #     ret = [i.data for i in g]
+    #     self.assertEqual(self.preorder, ret)
+    #
+    # def test_trave_pre4(self):
+    #     g = self.bt.trave_pre4()
+    #     ret = [i.data for i in g]
+    #     self.assertEqual(self.preorder, ret)
+    #
+    # def test_trave_pre_along_left_branch(self):
+    #     g = self.bt.trave_pre_along_left_branch()
+    #     ret = [i.data for i in g]
+    #     self.assertEqual(self.preorder, ret)
+    #
+    # def test_trave_in(self):
+    #     g = self.bt.trave_in()
+    #     ret = [i.data for i in g]
+    #     self.assertEqual(self.inorder, ret)
+    #
+    # def test_trave_in2(self):
+    #     g = self.bt.trave_in2()
+    #     ret = [i.data for i in g]
+    #     self.assertEqual(self.inorder, ret)
+    #
+    # def test_trave_in3(self):
+    #     g = self.bt.trave_in3()
+    #     ret = [i.data for i in g]
+    #     self.assertEqual(self.inorder, ret)
+    #
+    # def test_trave_post(self):
+    #     g = self.bt.trave_post()
+    #     ret = [i.data for i in g]
+    #     self.assertEqual(self.postorder, ret)
+    #
+    # def test_trave_post2(self):
+    #     g = self.bt.trave_post2()
+    #     ret = [i.data for i in g]
+    #     self.assertEqual(self.postorder, ret)
+    #
+    # def test_trave_post3(self):
+    #     g = self.bt.trave_post3()
+    #     ret = [i.data for i in g]
+    #     self.assertEqual(self.postorder, ret)
+    #
+    # def test_trave_level(self):
+    #     g = self.bt.trave_level()
+    #     ret = [i.data for i in g]
+    #     self.assertEqual(self.levelorder, ret)
 
 
 if __name__ == '__main__':

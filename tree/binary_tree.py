@@ -4,10 +4,6 @@
 from tree.node import BinNode
 
 
-def visit(node):
-    print(node.key)
-
-
 class BinaryTree(object):
 
     def __init__(self, root=None):
@@ -152,95 +148,9 @@ class BinaryTree(object):
     def trav_postorder(node):
         yield from node.trav_postorder()
 
-    def trav_levelorder(self, node):
+    @staticmethod
+    def trav_levelorder(node):
         yield from node.trav_levelorder()
-
-    def trave_pre(self):
-        stack = []
-        stack.append(self.root)
-        while stack:
-            node = stack.pop()
-            yield node
-            if node.rchild:
-                stack.append(node.rchild)
-            if node.lchild:
-                stack.append(node.lchild)
-
-    def trave_pre1(self):
-        stack = []
-        node = self.root
-        while stack or node:
-            if node:
-                yield node
-                stack.append(node)
-                node = node.lchild
-            else:
-                node = stack.pop()
-                node = node.rchild
-
-    def trave_pre2(self):
-        stack = []
-        node = self.root
-        need = True
-        while True:
-            if need:
-                while node:
-                    yield node
-                    stack.append(node)
-                    node = node.lchild
-
-            if not stack:
-                break
-            node = stack.pop()
-            if node.rchild:
-                need = True
-                node = node.rchild
-            else:
-                need = False
-
-    def trave_pre3(self):
-        stack = []
-        node = self.root
-        while True:
-            while node:
-                yield node
-                stack.append(node)
-                node = node.lchild
-
-            if not stack:
-                break
-            node = stack.pop()
-            node = node.rchild
-
-    def trave_pre4(self):
-        stack = []
-        node = self.root
-        while True:
-            while node:
-                yield node
-                if node.rchild:
-                    stack.append(node.rchild)
-                node = node.lchild
-            if not stack:
-                break
-            node = stack.pop()
-
-    def visit_along_left_branch(self, stack, node):
-        while node:
-            yield node
-            if node.rchild:
-                stack.append(node.rchild)
-            node = node.lchild
-
-    def trave_pre_along_left_branch(self):
-        stack = []
-        node = self.root
-        while True:
-            yield from self.visit_along_left_branch(stack, node)
-
-            if not stack:
-                break
-            node = stack.pop()
 
     @staticmethod
     def preorder(node):
@@ -254,135 +164,170 @@ class BinaryTree(object):
     def postorder(node):
         yield from node.postorder()
 
-    # def inorder(self, node=None):
-    #     n = node or self.root
-    #     self._inorder(n)
-
-    def trave_in(self):
-        stack = []
-        node = self.root
-        while True:
-            while node:
-                stack.append(node)
-                node = node.lchild
-
-            if not stack:
-                break
-            node = stack.pop()
-            yield node
-            node = node.rchild
-
-    def trave_in2(self):
-        stack = []
-        node = self.root
-        while stack or node:
-            if node:
-                stack.append(node)
-                node = node.lchild
-            else:
-                node = stack.pop()
-                yield node
-                node = node.rchild
-
-    def trave_in3(self):
-        stack = []
-        node = self.root
-        while True:
-            if node:
-                stack.append(node)
-                node = node.lchild
-            elif not stack:
-                break
-            else:
-                node = stack.pop()
-                yield node
-                node = node.rchild
-
-    def trave_post(self):
-        stack = []
-        node = self.root
-        rchild = None
-        while True:
-            while node:
-                stack.append(node)
-                node = node.lchild
-            if not stack:
-                break
-            if stack[-1].rchild != rchild:
-                node = stack[-1].rchild
-                rchild = None
-            else:
-                rchild = stack.pop()
-                yield rchild
-
-    def trave_post2(self):
-        stack = []
-        node = self.root
-        rchild = None
-        while stack or node:
-            if node:
-                stack.append(node)
-                node = node.lchild
-            elif stack[-1].rchild is not rchild:
-                node = stack[-1].rchild
-                rchild = None
-            else:
-                rchild = stack.pop()
-                yield rchild
-
-    def trave_post3(self):
-        stack = []
-        node = self.root
-        last_visit = None
-        while True:
-            if node:
-                stack.append(node)
-                node = node.lchild
-            elif not stack:
-                break
-            elif stack[-1].rchild != last_visit:
-                node = stack[-1].rchild
-                last_visit = None
-            else:
-                last_visit = stack.pop()
-                yield last_visit
-
-    def trave_level(self):
-        queue = []
-        node = self.root
-        queue.append(node)
-        while queue:
-            node = queue.pop(0)
-            yield node
-            if node.lchild:
-                queue.append(node.lchild)
-            if node.rchild:
-                queue.append(node.rchild)
-
-    # def postorder(self, node=None):
-    #     n = node or self._root
-    #     self._postorder(n)
-
-    def _preorder(self, node):
-        if not node:
-            return
-        visit(node)
-        self._preorder(node.lchild)
-        self._preorder(node.rchild)
-
-    def _inorder(self, node):
-        if not node:
-            return
-        self._inorder(node.lchild)
-        visit(node)
-        self._inorder(node.rchild)
-
-    def _postorder(self, node):
-        if not node:
-            return
-        self._postorder(node.lchild)
-        self._postorder(node.rchild)
-        visit(node)
+    # def trave_pre1(self):
+    #     stack = []
+    #     node = self.root
+    #     while stack or node:
+    #         if node:
+    #             yield node
+    #             stack.append(node)
+    #             node = node.lchild
+    #         else:
+    #             node = stack.pop()
+    #             node = node.rchild
+    #
+    # def trave_pre2(self):
+    #     stack = []
+    #     node = self.root
+    #     need = True
+    #     while True:
+    #         if need:
+    #             while node:
+    #                 yield node
+    #                 stack.append(node)
+    #                 node = node.lchild
+    #
+    #         if not stack:
+    #             break
+    #         node = stack.pop()
+    #         if node.rchild:
+    #             need = True
+    #             node = node.rchild
+    #         else:
+    #             need = False
+    #
+    # def trave_pre3(self):
+    #     stack = []
+    #     node = self.root
+    #     while True:
+    #         while node:
+    #             yield node
+    #             stack.append(node)
+    #             node = node.lchild
+    #
+    #         if not stack:
+    #             break
+    #         node = stack.pop()
+    #         node = node.rchild
+    #
+    # def trave_pre4(self):
+    #     stack = []
+    #     node = self.root
+    #     while True:
+    #         while node:
+    #             yield node
+    #             if node.rchild:
+    #                 stack.append(node.rchild)
+    #             node = node.lchild
+    #         if not stack:
+    #             break
+    #         node = stack.pop()
+    #
+    # def visit_along_left_branch(self, stack, node):
+    #     while node:
+    #         yield node
+    #         if node.rchild:
+    #             stack.append(node.rchild)
+    #         node = node.lchild
+    #
+    # def trave_pre_along_left_branch(self):
+    #     stack = []
+    #     node = self.root
+    #     while True:
+    #         yield from self.visit_along_left_branch(stack, node)
+    #
+    #         if not stack:
+    #             break
+    #         node = stack.pop()
+    #
+    # def trave_in(self):
+    #     stack = []
+    #     node = self.root
+    #     while True:
+    #         while node:
+    #             stack.append(node)
+    #             node = node.lchild
+    #
+    #         if not stack:
+    #             break
+    #         node = stack.pop()
+    #         yield node
+    #         node = node.rchild
+    #
+    # def trave_in2(self):
+    #     stack = []
+    #     node = self.root
+    #     while stack or node:
+    #         if node:
+    #             stack.append(node)
+    #             node = node.lchild
+    #         else:
+    #             node = stack.pop()
+    #             yield node
+    #             node = node.rchild
+    #
+    # def trave_in3(self):
+    #     stack = []
+    #     node = self.root
+    #     while True:
+    #         if node:
+    #             stack.append(node)
+    #             node = node.lchild
+    #         elif not stack:
+    #             break
+    #         else:
+    #             node = stack.pop()
+    #             yield node
+    #             node = node.rchild
+    #
+    # def trave_post(self):
+    #     stack = []
+    #     node = self.root
+    #     rchild = None
+    #     while True:
+    #         while node:
+    #             stack.append(node)
+    #             node = node.lchild
+    #         if not stack:
+    #             break
+    #         if stack[-1].rchild != rchild:
+    #             node = stack[-1].rchild
+    #             rchild = None
+    #         else:
+    #             rchild = stack.pop()
+    #             yield rchild
+    #
+    # def trave_post2(self):
+    #     stack = []
+    #     node = self.root
+    #     rchild = None
+    #     while stack or node:
+    #         if node:
+    #             stack.append(node)
+    #             node = node.lchild
+    #         elif stack[-1].rchild is not rchild:
+    #             node = stack[-1].rchild
+    #             rchild = None
+    #         else:
+    #             rchild = stack.pop()
+    #             yield rchild
+    #
+    # def trave_post3(self):
+    #     stack = []
+    #     node = self.root
+    #     last_visit = None
+    #     while True:
+    #         if node:
+    #             stack.append(node)
+    #             node = node.lchild
+    #         elif not stack:
+    #             break
+    #         elif stack[-1].rchild != last_visit:
+    #             node = stack[-1].rchild
+    #             last_visit = None
+    #         else:
+    #             last_visit = stack.pop()
+    #             yield last_visit
 
 
 if __name__ == '__main__':

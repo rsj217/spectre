@@ -54,22 +54,6 @@ class BinNode(object):
         return
 
     @property
-    def floor(self):
-        return
-
-    @property
-    def ceil(self):
-        return
-
-    @property
-    def rank(self):
-        return
-
-    @property
-    def select(self):
-        return
-
-    @property
     def deep(self):
         d = -1
         node = self
@@ -189,6 +173,28 @@ class BinNode(object):
         yield from self._preorder(node.lchild)
         yield from self._preorder(node.rchild)
 
+    def inorder(self):
+        node = self
+        yield from self._inorder(node)
+
+    def _inorder(self, node):
+        if not node:
+            return
+        yield from self._inorder(node.lchild)
+        yield node
+        yield from self._inorder(node.rchild)
+
+    def postorder(self):
+        node = self
+        yield from self._postorder(node)
+
+    def _postorder(self, node):
+        if not node:
+            return
+        yield from self._postorder(node.lchild)
+        yield from self._postorder(node.rchild)
+        yield node
+
 
 class BSNode(BinNode):
 
@@ -202,6 +208,22 @@ class BSNode(BinNode):
         ldata = getattr(self.lchild, 'key', None)
         rdata = getattr(self.rchild, 'key', None)
         return f'<BSNode>([{pdata}] {ldata}-{self.key}-{rdata}: {self.height})'
+
+    @property
+    def floor(self):
+        return
+
+    @property
+    def ceil(self):
+        return
+
+    @property
+    def rank(self):
+        return
+
+    @property
+    def select(self):
+        return
 
     def insert_as_lc(self, e):
         raise NotImplementedError
