@@ -104,6 +104,7 @@ class BinNode(object):
     def zag(self):
         pass
 
+    # Iter
     def trav_preorder(self):
         stack = []
         node = self
@@ -162,9 +163,18 @@ class BinNode(object):
             if node.rchild:
                 queue.append(node.rchild)
 
+    # Recursive
     def preorder(self):
         node = self
         yield from self._preorder(node)
+
+    def inorder(self):
+        node = self
+        yield from self._inorder(node)
+
+    def postorder(self):
+        node = self
+        yield from self._postorder(node)
 
     def _preorder(self, node):
         if not node:
@@ -173,10 +183,6 @@ class BinNode(object):
         yield from self._preorder(node.lchild)
         yield from self._preorder(node.rchild)
 
-    def inorder(self):
-        node = self
-        yield from self._inorder(node)
-
     def _inorder(self, node):
         if not node:
             return
@@ -184,16 +190,54 @@ class BinNode(object):
         yield node
         yield from self._inorder(node.rchild)
 
-    def postorder(self):
-        node = self
-        yield from self._postorder(node)
-
     def _postorder(self, node):
         if not node:
             return
         yield from self._postorder(node.lchild)
         yield from self._postorder(node.rchild)
         yield node
+
+    def trave_pre(self):
+        stack = []
+        node = self
+        while True:
+            if node:
+                yield node
+                stack.append(node)
+                node = node.lchild
+            elif not stack:
+                break
+            else:
+                node = stack.pop()
+                node = node.rchild
+
+    def trave_pre1(self):
+        stack = []
+        node = self
+        while stack or node:
+            if node:
+                yield node
+                stack.append(node)
+                node = node.lchild
+            else:
+                node = stack.pop()
+                node = node.rchild
+
+    def trave_pre2(self):
+        stack = []
+        node = self
+        while True:
+            while node:
+                yield node
+                if node.rchild:
+                    stack.append(node.rchild)
+                node = node.lchild
+            if not stack:
+                break
+            node = stack.pop()
+
+
+
 
 
 class BSNode(BinNode):
