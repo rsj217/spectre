@@ -170,11 +170,16 @@ class BinaryTree(object):
 
     @staticmethod
     def trave_pre1(node):
-        yield from node.trave_pre()
+        yield from node.trave_pre1()
 
     @staticmethod
     def trave_pre2(node):
-        yield from node.trave_pre()
+        yield from node.trave_pre2()
+
+    @staticmethod
+    def trave_pre3(node):
+        yield from node.trave_pre3()
+
 
     @staticmethod
     def inorder_py2(node):

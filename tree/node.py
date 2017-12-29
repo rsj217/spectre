@@ -144,7 +144,7 @@ class BinNode(object):
             if not stack:
                 break
 
-            if stack[-1].rchild is not last_visit:
+            if stack[-1].has_rchild is not last_visit:
                 node = stack[-1].rchild
                 last_visit = None
             else:
@@ -229,12 +229,24 @@ class BinNode(object):
         while True:
             while node:
                 yield node
-                if node.rchild:
+                if node.has_rchild:
                     stack.append(node.rchild)
                 node = node.lchild
             if not stack:
                 break
             node = stack.pop()
+
+    def trave_pre3(self):
+        stack = []
+        node = self
+        stack.append(node)
+        while stack:
+            node = stack.pop()
+            yield node
+            if node.has_rchild:
+                stack.append(node.rchild)
+            if node.has_lchild:
+                stack.append(node.lchild)
 
     def inorder_py2(self):
         node = self
