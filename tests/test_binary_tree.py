@@ -205,7 +205,7 @@ class TestTravel(unittest.TestCase):
         self.assertEqual(self.preorder, ret)
 
     def test_trave_pre3(self):
-        g = self.bt.trave_pre2(self.bt.root)
+        g = self.bt.trave_pre3(self.bt.root)
         ret = [i.data for i in g]
         self.assertEqual(self.preorder, ret)
 
