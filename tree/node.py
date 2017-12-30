@@ -120,7 +120,7 @@ class BinNode(object):
         if p.has_rchild:
             t3 = p.rchild
             t3.parent = g
-            g.lchild = p.rchild
+        g.lchild = p.rchild
 
         p.rchild = g
         g.parent = p
@@ -148,7 +148,7 @@ class BinNode(object):
         if p.has_lchild:
             t2 = p.lchild
             t2.parent = g
-            g.rchild = t2
+        g.rchild = p.lchild
 
         p.lchild = g
         g.parent = p

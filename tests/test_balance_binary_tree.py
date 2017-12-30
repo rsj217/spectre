@@ -25,7 +25,7 @@ class TestAVLTree(unittest.TestCase):
         self.avl.insert(69)
         self.avl.insert(54)
         print(self.avl)
-        g = self.avl.trave_level()
+        g = self.avl.trav_levelorder(self.avl.root)
         for i in g:
             self.assertTrue(self.avl.avl_balanced(i))
 
@@ -54,7 +54,7 @@ class TestAVLTree(unittest.TestCase):
         self.avl.insert(52)
         self.avl.remove(69)
         print(self.avl)
-        g = self.avl.trave_level()
+        g = self.avl.trav_levelorder(self.avl.root)
         for i in g:
             self.assertTrue(self.avl.avl_balanced(i))
 
