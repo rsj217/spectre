@@ -104,7 +104,6 @@ class AVLTree(BalanceBinarySearchTree):
         a.rchild = t1
         if t1:
             t1.parent = a
-
         self.update_height(a)
 
         c.lchild = t2
@@ -114,13 +113,12 @@ class AVLTree(BalanceBinarySearchTree):
         c.rchild = t3
         if t3:
             t3.parent = c
-
         self.update_height(c)
 
         b.lchild, a.parent = a, b
         b.rchild, c.parent = c, b
-
         self.update_height(b)
+
         return b
 
 
