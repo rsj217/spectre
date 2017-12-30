@@ -17,7 +17,7 @@ class BalanceBinarySearchTree(BinarySearchTree):
         if self.stature(node.lchild) > self.stature(node.rchild):
             return node.lchild
 
-        elif self.stature(node.lchild) > self.stature(node.rchild):
+        elif self.stature(node.lchild) < self.stature(node.rchild):
             return node.rchild
         else:
             return node.lchild if node == node.parent.lchild else node.rchild
@@ -38,7 +38,7 @@ class AVLTree(BalanceBinarySearchTree):
                 self.hot.rchild = node
             self._size += 1
 
-            g = node.parent
+            g = self.hot
             while g:
                 if not self.avl_balanced(g):
                     if g.is_root:
@@ -49,6 +49,7 @@ class AVLTree(BalanceBinarySearchTree):
                     else:
                         p = g.parent
                         p.rchild = self.rotate_at(self.taller_child(self.taller_child(g)))
+                    break
                 else:
                     self.update_height(g)
                 g = g.parent
