@@ -62,8 +62,8 @@ class TestAVLTree(unittest.TestCase):
         root = self.avl.insert_as_root(57)
         n36 = self.avl.inserte(36)
         n23 = self.avl.inserte(23)
-        # n11 = self.avl.inserte(11)
-        # n18 = self.avl.inserte(18)
+        n11 = self.avl.inserte(11)
+        n18 = self.avl.inserte(18)
         print(self.avl)
         #
         # n11.zag()

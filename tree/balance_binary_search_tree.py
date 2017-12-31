@@ -44,11 +44,11 @@ class AVLTree(BalanceBinarySearchTree):
                     if g.is_root:
                         self._root = self.rotate_at(self.taller_child(self.taller_child(g)))
                     elif g.is_lchild:
-                        p = g.parent
-                        p.lchild = self.rotate_at(self.taller_child(self.taller_child(g)))
+                        gg = g.parent
+                        gg.lchild = self.rotate_at(self.taller_child(self.taller_child(g)))
                     else:
-                        p = g.parent
-                        p.rchild = self.rotate_at(self.taller_child(self.taller_child(g)))
+                        gg = g.parent
+                        gg.rchild = self.rotate_at(self.taller_child(self.taller_child(g)))
                     break
                 else:
                     self.update_height(g)
@@ -68,11 +68,11 @@ class AVLTree(BalanceBinarySearchTree):
                 if g.is_root:
                     self._root = self.rotate_at(self.taller_child(self.taller_child(g)))
                 elif g.is_lchild:
-                    p = g.parent
-                    p.lchild = self.rotate_at(self.taller_child(self.taller_child(g)))
+                    gg = g.parent
+                    gg.lchild = self.rotate_at(self.taller_child(self.taller_child(g)))
                 else:
-                    p = g.parent
-                    p.rchild = self.rotate_at(self.taller_child(self.taller_child(g)))
+                    gg = g.parent
+                    gg.rchild = self.rotate_at(self.taller_child(self.taller_child(g)))
             self.update_height(g)
             g = g.parent
         return True
