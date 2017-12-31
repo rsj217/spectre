@@ -100,7 +100,6 @@ class AVLTree(BalanceBinarySearchTree):
         a.lchild = t0
         if t0:
             t0.parent = a
-
         a.rchild = t1
         if t1:
             t1.parent = a
@@ -109,7 +108,6 @@ class AVLTree(BalanceBinarySearchTree):
         c.lchild = t2
         if t2:
             t2.parent = c
-
         c.rchild = t3
         if t3:
             t3.parent = c
