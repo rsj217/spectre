@@ -155,6 +155,29 @@ class BinarySearchTree(BinaryTree):
                 break
         return node
 
+    def connect34(self, a, b, c, t0, t1, t2, t3):
+        a.lchild = t0
+        if t0:
+            t0.parent = a
+        a.rchild = t1
+        if t1:
+            t1.parent = a
+        self.update_height(a)
+
+        c.lchild = t2
+        if t2:
+            t2.parent = c
+        c.rchild = t3
+        if t3:
+            t3.parent = c
+        self.update_height(c)
+
+        b.lchild, a.parent = a, b
+        b.rchild, c.parent = c, b
+        self.update_height(b)
+
+        return b
+
 
 def gen_binary_search_tree():
     """

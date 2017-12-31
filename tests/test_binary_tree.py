@@ -147,6 +147,31 @@ class TestTreeGen(unittest.TestCase):
         self.assertEqual(a.deep, 3)
         self.assertEqual(b.deep, 4)
 
+    def test_attach_as_left(self):
+        self.bt = BinaryTree()
+        root = self.bt.insert_as_root('g')
+        f = self.bt.insert_as_lc(root, 'f')
+        h = self.bt.insert_as_rc(root, 'h')
+
+        sub_bt = BinaryTree()
+        d = sub_bt.insert_as_root('d')
+        b = self.bt.insert_as_lc(d, 'b')
+        e = self.bt.insert_as_rc(d, 'e')
+        a = self.bt.insert_as_lc(b, 'a')
+        c = self.bt.insert_as_rc(b, 'c')
+
+
+        self.bt.attach_as_lc(f, sub_bt)
+        # sub_bt = None
+
+        for i in sub_bt.inorder(sub_bt._root):
+            print(i)
+
+        print(self.bt)
+        print(sub_bt.root)
+        print(sub_bt)
+        #
+
 
 class TestTravel(unittest.TestCase):
 
