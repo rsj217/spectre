@@ -96,13 +96,11 @@ class SplayTree(BinarySearchTree):
         self._root = self._splay(n)
         return self._root
 
-    # def insert(self, e):
-    #     pass
-    #
-    # def remove(self, e):
-    #     pass
+    def insert(self, e):
+        pass
 
-
+    def remove(self, e):
+        pass
 
 
 if __name__ == '__main__':
