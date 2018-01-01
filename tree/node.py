@@ -291,3 +291,16 @@ class BSNode(BinNode):
 
     def insert_as_rc(self, e):
         raise NotImplementedError
+
+
+class BTNode(object):
+
+    def __init__(self, parent=None, key=None, lchild=None, rchild=None):
+        self._parent = parent
+        self._key = [key]
+        self._child = [lchild, rchild]
+
+        if lchild:
+            lchild.parent = self
+        if rchild:
+            rchild.parent = self
