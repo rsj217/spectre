@@ -25,6 +25,7 @@ class SplayTree(BinarySearchTree):
         g = p.parent
 
         while p and g:
+            # g的祖父，如果有祖父，就接入上升的v，如果没有则忽略
             gg = g.parent
             if v.is_lchild:
                 if p.is_lchild:
@@ -56,6 +57,7 @@ class SplayTree(BinarySearchTree):
             if not gg:
                 v.parent = None
             else:
+                # 接入上升的v
                 if g == gg.lchild:
                     self.attach_as_lc(gg, v)
                 else:
@@ -65,11 +67,13 @@ class SplayTree(BinarySearchTree):
             self.update_height(p)
             self.update_height(v)
 
+            # 第一轮调整之后，v已经上升，接下来再进行调整，直到v到达树根
             p = v.parent
             if not p:
                 break
             g = p.parent
 
+        # 针对只有父亲p而没有祖父g的情况，即只需要上升一层
         if p:
             if v.is_lchild:
                 # zig
@@ -83,6 +87,7 @@ class SplayTree(BinarySearchTree):
             self.update_height(p)
             self.update_height(v)
 
+        # v已经到达树根，重置其parent为None
         v.parent = None
         return v
 
