@@ -98,62 +98,6 @@ class BinNode(object):
     def is_leaf(self):
         return not self.has_child
 
-    def zig(self):
-        """
-                 g                                      p
-                / \                                   /   \
-               p   T4      Right Rotate (g)          v      g
-              / \          - - - - - - - - ->       / \    / \
-             v   T3                                T1  T2 T3 T4
-            / \
-          T1   T2
-
-        """
-        g = self
-        p = self.lchild
-        p.parent = g.parent
-        if p.parent:
-            if p.parent.rchild == g:
-                p.parent.rchild = p
-            else:
-                p.parent.lchild = p
-        if p.has_rchild:
-            t3 = p.rchild
-            t3.parent = g
-        g.lchild = p.rchild
-
-        p.rchild = g
-        g.parent = p
-
-    def zag(self):
-        """
-
-          g                                p
-         /  \                            /   \
-        T1   p     Left Rotate(z)       g      v
-            /  \   - - - - - - - ->    / \    / \
-           T2   v                     T1  T2 T3  T4
-               / \
-             T3  T4
-        """
-        g = self
-        p = g.rchild
-        p.parent = g.parent
-        if p.parent:
-            if p.parent.rchild == g:
-                p.parent.rchild = p
-            else:
-                p.parent.lchild = p
-
-        if p.has_lchild:
-            t2 = p.lchild
-            t2.parent = g
-        g.rchild = p.lchild
-
-        p.lchild = g
-        g.parent = p
-
-
     # Iter
     def trav_preorder(self):
         stack = []

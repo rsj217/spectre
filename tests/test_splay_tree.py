@@ -6,135 +6,140 @@ from tree.splay_tree import SplayTree
 from tree.binary_search_tree import BinarySearchTree
 
 
-class TestSplayTree(unittest.TestCase):
+class TestSplayTreeSearch(unittest.TestCase):
 
     def setUp(self):
         self.st = SplayTree()
 
     def test_search_zig(self):
-        self.st.insert_as_root(15)
-        n13 = self.st.insert(13)
-        n14 = self.st.insert(14)
-        n12 = self.st.insert(12)
+        bst = BinarySearchTree()
+        n20 = bst.insert_as_root(20)
+        n21 = bst.insert(21)
+        n17 = bst.insert(17)
+        n12 = bst.insert(12)
+        n16 = bst.insert(16)
 
-
+        self.st._root = n20
+        self.st._size = bst.size
+        del bst
         print(self.st)
-        self.st.searche(n13.key)
-        #
+        self.st.search(n17.key)
         print(self.st)
-
         for i in self.st.inorder(self.st.root):
             print(i)
 
     def test_search_zag(self):
-        self.st.insert_as_root(15)
-        n17 = self.st.insert(17)
-        self.st.insert(16)
-        self.st.insert(18)
+        bst = BinarySearchTree()
+        n20 = bst.insert_as_root(20)
+        n25 = bst.insert(25)
+        n17 = bst.insert(17)
+        n23 = bst.insert(23)
+        n28 = bst.insert(28)
 
-
+        self.st._root = n20
+        self.st._size = bst.size
+        del bst
         print(self.st)
-        self.st.searche(n17.key)
-        #
-        print(self.st)
 
-        # for i in self.st.inorder(self.st.root):
-        #     print(i)
+        self.st.search(n25.key)
+        print(self.st)
+        for i in self.st.inorder(self.st.root):
+            print(i)
+
+        self.assertEqual(self.st.root, n25)
 
     def test_search_zig_zig(self):
-        self.st.insert_as_root(15)
-        self.st.insert(14)
-        n13 = self.st.insert(13)
+        bst = BinarySearchTree()
+        n20 = bst.insert_as_root(20)
+        n21 = bst.insert(21)
+        n17 = bst.insert(17)
+        n12 = bst.insert(12)
+        n14 = bst.insert(14)
+        n10 = bst.insert(10)
+        n18 = bst.insert(18)
+        n13 = bst.insert(13)
+        n15 = bst.insert(15)
 
-
+        self.st._root = n20
+        self.st._size = bst.size
+        del bst
         print(self.st)
-        self.st.searche(n13.key)
-
+        self.st.search(n12.key)
         print(self.st)
-
         for i in self.st.inorder(self.st.root):
             print(i)
 
+        print(self.st.root)
+        self.assertEqual(self.st.root, n12)
 
     def test_search_zag_zag(self):
-        self.st.insert_as_root(15)
-        n17 = self.st.insert(17)
-        self.st.insert(16)
-        n19 = self.st.insert(19)
-        n18 = self.st.insert(18)
-        n20 = self.st.insert(20)
-
-        print(self.st)
-        self.st.searche(n19.key)
-
-        print(self.st)
-
-        for i in self.st.inorder(self.st.root):
-            print(i)
-
-
-    def test_search_zag_zig(self):
-        self.st.insert_as_root(15)
-        n11 = self.st.insert(11)
-        n10 = self.st.insert(10)
-        n13 = self.st.insert(13)
-        n12 = self.st.insert(12)
-        n14 = self.st.insert(14)
-
-        print(self.st)
-        self.st.searche(n13.key)
-
-        print(self.st)
-
-        for i in self.st.inorder(self.st.root):
-            print(i)
-
-    def test_search_zig_zag(self):
         bst = BinarySearchTree()
-        r = bst.insert_as_root(15)
-        n20 = bst.insert(20)
-        n18 = bst.insert(18)
-        n13 = bst.insert(10)
-        n12 = bst.insert(21)
-        n14 = bst.insert(16)
-        n14 = bst.insert(19)
-
-        self.st._root = r
-        self._size = bst.size
-
-
-        print(self.st)
-        self.st.searche(n18.key)
-        #
-        print(self.st)
-        #
-        # for i in self.st.inorder(self.st.root):
-        #     print(i)
-
-
-    def test_search_zig_zag_gg_rchild(self):
-        bst = BinarySearchTree()
-        r = bst.insert_as_root(14)
+        n20 = bst.insert_as_root(20)
+        n25 = bst.insert(25)
         n15 = bst.insert(15)
-        n20 = bst.insert(20)
-        n18 = bst.insert(18)
+        n23 = bst.insert(23)
+        n30 = bst.insert(30)
+        n27 = bst.insert(27)
+        n35 = bst.insert(35)
+        n26 = bst.insert(26)
+        n29 = bst.insert(29)
+
+        self.st._root = n20
+        self.st._size = bst.size
+        del bst
+        print(self.st)
+
+        self.st.search(n30.key)
+        print(self.st)
+        for i in self.st.inorder(self.st.root):
+            print(i)
+
+        self.assertEqual(self.st.root, n30)
+
+    def test_search_zig_zag_and_zag(self):
+        bst = BinarySearchTree()
+        n20 = bst.insert_as_root(20)
+        n25 = bst.insert(25)
+        n15 = bst.insert(15)
+        n23 = bst.insert(23)
+        n30 = bst.insert(30)
+        n27 = bst.insert(27)
+        n35 = bst.insert(35)
+        n26 = bst.insert(26)
+        n29 = bst.insert(29)
+
+        self.st._root = n20
+        self.st._size = bst.size
+        del bst
+        print(self.st)
+
+        self.st.search(n27.key)
+        print(self.st)
+        for i in self.st.inorder(self.st.root):
+            print(i)
+
+    def test_search_zag_zig_and_zig(self):
+        bst = BinarySearchTree()
+        n20 = bst.insert_as_root(20)
         n21 = bst.insert(21)
-        n16 = bst.insert(16)
-        n19 = bst.insert(19)
+        n17 = bst.insert(17)
         n12 = bst.insert(12)
-        n12 = bst.insert(11)
+        n14 = bst.insert(14)
+        n10 = bst.insert(10)
+        n18 = bst.insert(18)
+        n13 = bst.insert(13)
+        n15 = bst.insert(15)
 
-        self.st._root = r
-        self._size = bst.size
-
-
+        self.st._root = n20
+        self.st._size = bst.size
+        del bst
         print(self.st)
-        self.st.searche(n18.key)
-        #
+        self.st.search(n14.key)
         print(self.st)
-        #
-        # for i in self.st.inorder(self.st.root):
-        #     print(i)
+        for i in self.st.inorder(self.st.root):
+            print(i)
+
+        self.assertEqual(self.st.root, n14)
 
 
 if __name__ == '__main__':

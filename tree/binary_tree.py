@@ -4,6 +4,7 @@
 from tree.node import BinNode
 from copy import deepcopy
 
+
 class BinaryTree(object):
 
     def __init__(self, root=None):
@@ -21,7 +22,7 @@ class BinaryTree(object):
                 break
             else:
                 node = stack.pop()
-                yield node.data
+                yield node
                 node = node.rchild
 
     def cal_arr_index(self, node, deep):
@@ -123,22 +124,6 @@ class BinaryTree(object):
         self.update_height_above(node=node)
         return node.rchild
 
-    def attach_as_lc(self, node, tree):
-        # tree = deepcopy(tree)
-        node.lchild = tree._root
-        node.lchild.parent = node
-        self._size += 1
-        self.update_height_above(node)
-        return node
-
-    def attach_as_rc(self, node, tree):
-        # tree = deepcopy(tree)
-        node.rchild = tree._root
-        node.rchild.parent = node
-        self._size += 1
-        self.update_height_above(node)
-        return node
-
     def remove(self, e):
         pass
 
@@ -148,8 +133,8 @@ class BinaryTree(object):
     def secede(self, e):
         pass
 
-    # def size(self, e):
-    #     pass
+    def count(self, e):
+        return e.size
 
     @staticmethod
     def trav_preorder(node):
@@ -201,68 +186,5 @@ class BinaryTree(object):
             yield x
 
 
-def test_attach_as_left():
-    bt = BinaryTree()
-    root = bt.insert_as_root('g')
-    f = bt.insert_as_lc(root, 'f')
-    h = bt.insert_as_rc(root, 'h')
-
-    sub_bt = BinaryTree()
-    root = sub_bt.insert_as_root('d')
-    b = bt.insert_as_lc(root, 'b')
-    e = bt.insert_as_rc(root, 'e')
-    a = bt.insert_as_lc(b, 'a')
-    c = bt.insert_as_rc(b, 'c')
-
-    # print(sub_bt)
-
-    bt.attach_as_lc(f, sub_bt)
-    # sub_bt = None
-
-    print(id(sub_bt))
-    print(sub_bt.root)
-    print(id(sub_bt))
-
-    # for i in sub_bt.inorder(sub_bt._root):
-    #     print(i)
-
-
-
-def gen_binary_tree():
-    """
-    <BinaryTree>(
-                   i
-           d               l
-       c       h       k       n
-     a       f       j       m   p
-      b     e g                 o
-    )
-    """
-    bt = BinaryTree()
-    root = bt.insert_as_root('i')
-    d = bt.insert_as_lc(root, 'd')
-    c = bt.insert_as_lc(d, 'c')
-    a = bt.insert_as_lc(c, 'a')
-    b = bt.insert_as_rc(a, 'b')
-    h = bt.insert_as_rc(d, 'h')
-    f = bt.insert_as_lc(h, 'f')
-    e = bt.insert_as_lc(f, 'e')
-    g = bt.insert_as_rc(f, 'g')
-
-    l = bt.insert_as_rc(root, 'l')
-    k = bt.insert_as_lc(l, 'k')
-    j = bt.insert_as_lc(k, 'j')
-    n = bt.insert_as_rc(l, 'n')
-    m = bt.insert_as_lc(n, 'm')
-    p = bt.insert_as_rc(n, 'p')
-    o = bt.insert_as_lc(p, 'o')
-
-    print(bt.print_tree())
-
-    print(bt.print_tree(d))
-
-    return bt
-
 if __name__ == '__main__':
-    test_attach_as_left()
-    # gen_binary_tree()
+    pass

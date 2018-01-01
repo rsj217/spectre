@@ -70,7 +70,6 @@ class SplayTree(BinarySearchTree):
                 break
             g = p.parent
 
-        # p = v.parent
         if p:
             if v.is_lchild:
                 # zig
@@ -87,7 +86,7 @@ class SplayTree(BinarySearchTree):
         v.parent = None
         return v
 
-    def searche(self, e):
+    def search(self, e):
         n = self._search_in(self._root, e)
         self._root = self._splay(n)
         return self._root
