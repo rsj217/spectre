@@ -83,9 +83,6 @@ class BinaryTree(object):
     def root(self):
         return self._root
 
-    def attach(self):
-        pass
-
     @staticmethod
     def stature(p):
         if p:
@@ -123,15 +120,6 @@ class BinaryTree(object):
         node.insert_as_rc(e)
         self.update_height_above(node=node)
         return node.rchild
-
-    def remove(self, e):
-        pass
-
-    def remove_at(self, e):
-        pass
-
-    def secede(self, e):
-        pass
 
     def count(self, e):
         return e.size
