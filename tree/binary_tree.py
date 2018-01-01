@@ -124,16 +124,17 @@ class BinaryTree(object):
         return node.rchild
 
     def attach_as_lc(self, node, tree):
-        tree = deepcopy(tree)
+        # tree = deepcopy(tree)
         node.lchild = tree._root
         node.lchild.parent = node
         self._size += 1
         self.update_height_above(node)
         return node
 
-    def attach_as_right(self, node, tree):
-        tree = deepcopy(tree)
-        node.rchild, node.rchild.parent = tree._root, node
+    def attach_as_rc(self, node, tree):
+        # tree = deepcopy(tree)
+        node.rchild = tree._root
+        node.rchild.parent = node
         self._size += 1
         self.update_height_above(node)
         return node
@@ -218,11 +219,13 @@ def test_attach_as_left():
     bt.attach_as_lc(f, sub_bt)
     # sub_bt = None
 
+    print(id(sub_bt))
+    print(sub_bt.root)
+    print(id(sub_bt))
 
-    for i in sub_bt.inorder(sub_bt._root):
-        print(i)
+    # for i in sub_bt.inorder(sub_bt._root):
+    #     print(i)
 
-    print(sub_bt.print_tree())
 
 
 def gen_binary_tree():
@@ -261,5 +264,5 @@ def gen_binary_tree():
     return bt
 
 if __name__ == '__main__':
-    # test_attach_as_left()
-    gen_binary_tree()
+    test_attach_as_left()
+    # gen_binary_tree()
