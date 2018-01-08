@@ -196,19 +196,19 @@ class BinaryTree(object):
 
         return bt
 
-
     def _construct(self, preorder, inorder):
 
-        if not preorder or not inorder:
+        if not all([preorder, inorder]):
             return None
 
         root_data = preorder[0]
-        for i in range(0, len(inorder)):
-            if inorder[i] == root_data:
+        index = 0
+        for index, item in enumerate(inorder):
+            if item == root_data:
                 break
 
-        lchild = self._construct(preorder[1: 1 + i], inorder[:i])
-        rchild = self._construct(preorder[1 + i:], inorder[i + 1:])
+        lchild = self._construct(preorder[1: 1 + index], inorder[:index])
+        rchild = self._construct(preorder[1 + index:], inorder[index + 1:])
         node = BinNode(lchild=lchild, rchild=rchild, data=root_data)
         self.update_height(node)
         if lchild:
