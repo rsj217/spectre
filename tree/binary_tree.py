@@ -35,6 +35,8 @@ class BinaryTree(object):
     def print_tree(self):
         queue = []
         node = self._root
+        if node is None:
+            return f'<{self.__class__.__name__}>()'
         node._number = 1
         queue.append(node)
         last_index = 1
@@ -173,6 +175,51 @@ class BinaryTree(object):
         for x in node.inorder_py2():
             yield x
 
+    @classmethod
+    def construct(cls, preorder, inorder):
+        """
+               1
+            /     \
+           2       3
+          /       / \
+         4       5   6
+          \         /
+           7       8
+
+        :param preorder:
+        :param inorder:
+        :return:
+        """
+        bt = cls()
+        root = bt._construct(preorder, inorder)
+        bt._root = root
+
+        return bt
+
+
+    def _construct(self, preorder, inorder):
+
+        if not preorder or not inorder:
+            return None
+
+        root_data = preorder[0]
+        for i in range(0, len(inorder)):
+            if inorder[i] == root_data:
+                break
+
+        lchild = self._construct(preorder[1: 1 + i], inorder[:i])
+        rchild = self._construct(preorder[1 + i:], inorder[i + 1:])
+        node = BinNode(lchild=lchild, rchild=rchild, data=root_data)
+        self.update_height(node)
+        if lchild:
+            lchild.parent = node
+        if rchild:
+            rchild.parent = node
+        return node
+
 
 if __name__ == '__main__':
-    pass
+    preorder = [1, 2, 4, 7, 3, 5, 6, 8]
+    inorder = [4, 7, 2, 1, 5, 3, 8, 6]
+    bt = BinaryTree.construct(preorder, inorder)
+    print(bt)
