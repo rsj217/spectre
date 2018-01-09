@@ -123,13 +123,13 @@ class AVLTree(BalanceBinarySearchTree):
 def gen_avl_tree():
     """
     <AVLTree>(
-          58
-      53      69
-    40  54
+          53
+      40      58
+            54  69
     )
     """
     avl = AVLTree()
-    avl.insert_as_root(58)
+    avl.insert(58)
 
     avl.insert(53)
     avl.insert(40)
@@ -141,3 +141,4 @@ def gen_avl_tree():
 
 if __name__ == '__main__':
     avl = gen_avl_tree()
+    print(avl)
