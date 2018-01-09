@@ -129,7 +129,7 @@ def gen_avl_tree():
     )
     """
     avl = AVLTree()
-    avl.insert(58)
+    avl.insert_as_root(58)
 
     avl.insert(53)
     avl.insert(40)
