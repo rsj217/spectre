@@ -219,10 +219,82 @@ class TestTravel(unittest.TestCase):
         ret = [i.data for i in g]
         self.assertEqual(self.inorder, ret)
 
-
     def test_iter(self):
         ret = [i.data for i in self.bt]
         self.assertEqual(self.inorder, ret)
+
+    def test_construct(self):
+        preorder = [1, 2, 4, 7, 3, 5, 6, 8]
+        inorder = [4, 7, 2, 1, 5, 3, 8, 6]
+        bt = BinaryTree.construct(preorder, inorder)
+
+        g = bt.preorder(bt.root)
+        ret = [i.data for i in g]
+        self.assertEqual(ret, preorder)
+
+        g = bt.inorder(bt.root)
+        ret = [i.data for i in g]
+        self.assertEqual(ret, inorder)
+
+    def test_construct_right(self):
+        preorder = [1, 2, 3, 4, 5]
+        inorder = [5, 4, 3, 2, 1]
+        bt = BinaryTree.construct(preorder, inorder)
+
+        print(bt)
+
+        g = bt.preorder(bt.root)
+        ret = [i.data for i in g]
+        self.assertEqual(ret, preorder)
+
+        g = bt.inorder(bt.root)
+        ret = [i.data for i in g]
+        self.assertEqual(ret, inorder)
+
+    def test_construct_left(self):
+        preorder = [1, 2, 3, 4, 5]
+        inorder = [1, 2, 3, 4, 5]
+        bt = BinaryTree.construct(preorder, inorder)
+
+        print(bt)
+
+        g = bt.preorder(bt.root)
+        ret = [i.data for i in g]
+        self.assertEqual(ret, preorder)
+
+        g = bt.inorder(bt.root)
+        ret = [i.data for i in g]
+        self.assertEqual(ret, inorder)
+
+    def test_construct_only_one_node(self):
+        preorder = [1]
+        inorder = [1]
+        bt = BinaryTree.construct(preorder, inorder)
+
+        print(bt)
+
+        g = bt.preorder(bt.root)
+        ret = [i.data for i in g]
+        self.assertEqual(ret, preorder)
+
+        g = bt.inorder(bt.root)
+        ret = [i.data for i in g]
+        self.assertEqual(ret, inorder)
+
+    def test_construct_complete_tree(self):
+        preorder = [1, 2, 4, 5, 3, 6, 7]
+        inorder = [4, 2, 5, 1, 6, 3, 7]
+        bt = BinaryTree.construct(preorder, inorder)
+
+        print(bt)
+
+        g = bt.preorder(bt.root)
+        ret = [i.data for i in g]
+        self.assertEqual(ret, preorder)
+
+        g = bt.inorder(bt.root)
+        ret = [i.data for i in g]
+        self.assertEqual(ret, inorder)
 
 
 if __name__ == '__main__':
