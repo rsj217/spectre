@@ -56,15 +56,15 @@ class TestVector(unittest.TestCase):
         v = Vector(size=0, capacity=3)
         v.insert(0, 9)
         self.assertEqual(v.size, 1)
-        self.assertEqual(v._elem,  [9, None, None])
-        self.assertEqual((v.data, [9]))
+        self.assertEqual(v._elem, [9, None, None])
+        self.assertEqual(v.data, [9])
         v.insert(0, 4)
-        self.assertEqual(v._elem,  [4, 9, None])
-        self.assertEqual(v.data,  [4, 9])
+        self.assertEqual(v._elem, [4, 9, None])
+        self.assertEqual(v.data, [4, 9])
         v.insert(1, 5)
-        self.assertEqual(v._elem,  [4, 5, 9])
+        self.assertEqual(v._elem, [4, 5, 9])
         v[1] = 2
-        self.assertEqual(v._elem,  [4, 2, 9])
+        self.assertEqual(v._elem, [4, 2, 9])
         self.assertEqual(v[1], 2)
         v.insert(3, 6)
         self.assertEqual(v.size, 4)
@@ -78,13 +78,13 @@ class TestVector(unittest.TestCase):
         v = Vector(size=0, capacity=3)
         v.insert(0, 9)
         self.assertEqual(v.size, 1)
-        self.assertEqual(v._elem,  [9, None, None])
+        self.assertEqual(v._elem, [9, None, None])
         v.insert(0, 4)
-        self.assertEqual(v._elem,  [4, 9, None])
+        self.assertEqual(v._elem, [4, 9, None])
         v.insert(1, 5)
-        self.assertEqual(v._elem,  [4, 5, 9])
+        self.assertEqual(v._elem, [4, 5, 9])
         v[1] = 2
-        self.assertEqual(v._elem,  [4, 2, 9])
+        self.assertEqual(v._elem, [4, 2, 9])
         self.assertEqual(v[1], 2)
         v.insert(3, 6)
         self.assertEqual(v.size, 4)
@@ -103,6 +103,16 @@ class TestVector(unittest.TestCase):
         v.insert(3, 4)
         self.assertEqual(v._elem, [4, 3, 7, 4, 9, 6])
         self.assertEqual(v.data, [4, 3, 7, 4, 9, 6])
+
+    def test_find(self):
+        v = Vector(capacity=6)
+        for i in [6, 9, 4, 7, 3, 4]:
+            v.insert(0, i)
+        self.assertEqual(v.find(9), 4)
+        self.assertEqual(v.find(5), -1)
+
+        print(v)
+
 
 if __name__ == '__main__':
     unittest.main()

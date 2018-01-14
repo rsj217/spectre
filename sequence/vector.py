@@ -61,9 +61,15 @@ class Vector(object):
         self._elem = _elem
         self._capacity = new_capacity
 
-    def find(self, e):
-        """ 无序查找 """
-        pass
+    def find(self, e, lo=0, hi=None):
+        if hi is None:
+            hi = self._size
+
+        while lo < hi:
+            hi -= 1
+            if self._elem[hi] == e:
+                return hi
+        return -1
 
     def search(self, e):
         """ 有序查找 """
@@ -71,13 +77,14 @@ class Vector(object):
 
     def remove(self, r):
         assert r < self.size, 'index error'
-        return self.remove_(r, r + 1)
+        e = self._elem[r]
+        self.remove_(r, r + 1)
+        return e
 
     def remove_(self, lo, hi):
         assert lo >= 0, 'index error'
         assert hi <= self.size, 'index error'
 
-        e = self._elem[lo]
         count = hi - lo
         size = self._size
         for i in range(hi, size):
@@ -86,7 +93,7 @@ class Vector(object):
             lo += 1
 
         self._size -= count
-        return e
+        return count
 
     def insert(self, r, e):
         if self._size >= self._capacity:
