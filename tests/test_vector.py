@@ -41,7 +41,7 @@ class TestVector(unittest.TestCase):
         try:
             v[10]
         except Exception as e:
-            self.assertNotEquals(AssertionError, type(e))
+            self.assertNotEqual(AssertionError, type(e))
             self.assertEqual(IndexError, type(e))
 
     def test_expand(self):
