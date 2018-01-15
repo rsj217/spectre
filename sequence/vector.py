@@ -78,10 +78,10 @@ class Vector(object):
     def remove(self, r):
         assert r < self.size, 'index error'
         e = self._elem[r]
-        self.remove_(r, r + 1)
+        self.remove_range(r, r + 1)
         return e
 
-    def remove_(self, lo, hi):
+    def remove_range(self, lo, hi):
         assert lo >= 0, 'index error'
         assert hi <= self.size, 'index error'
 
