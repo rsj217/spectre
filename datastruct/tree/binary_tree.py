@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-from tree.node import BinNode
-from copy import deepcopy
+from datastruct.tree.node import BinNode
 
 
 class BinaryTree(object):
