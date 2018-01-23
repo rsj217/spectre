@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 
 import unittest
-from datastruct.tree.balance_binary_search_tree import AVLTree
+from structure.tree.balance_binary_search_tree import AVLTree
 
 
 class TestAVLTree(unittest.TestCase):

@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 
 import unittest
-from datastruct.tree.binary_tree import BinaryTree
+from structure.tree.binary_tree import BinaryTree
 
 
 def gen_binary_tree():

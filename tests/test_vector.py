@@ -4,7 +4,7 @@
 __author__ = 'master'
 
 import unittest
-from datastruct.sequence.vector import Vector
+from structure.sequence.vector import Vector
 
 
 class TestVector(unittest.TestCase):

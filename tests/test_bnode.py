@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 
 import unittest
-from datastruct.tree.node import BinNode
+from structure.tree.node import BinNode
 
 
 class TestNode(unittest.TestCase):

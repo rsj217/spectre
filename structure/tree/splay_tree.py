@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 
 
-from datastruct.tree.binary_search_tree import BinarySearchTree
+from structure.tree.binary_search_tree import BinarySearchTree
 
 
 class SplayTree(BinarySearchTree):

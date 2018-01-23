@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-from datastruct.tree.node import BSNode
-from datastruct.tree.binary_search_tree import BinarySearchTree
+from structure.tree.node import BSNode
+from structure.tree.binary_search_tree import BinarySearchTree
 
 
 class BalanceBinarySearchTree(BinarySearchTree):

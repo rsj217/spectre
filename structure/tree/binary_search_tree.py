@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-from datastruct.tree.node import BSNode
-from datastruct.tree.binary_tree import BinaryTree
+from structure.tree.node import BSNode
+from structure.tree.binary_tree import BinaryTree
 
 
 class BinarySearchTree(BinaryTree):
