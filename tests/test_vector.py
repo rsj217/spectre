@@ -108,7 +108,7 @@ class TestVector(unittest.TestCase):
         v = Vector(capacity=6)
         for i in [6, 9, 4, 7, 3, 4]:
             v.insert(0, i)
-        print(v)
+        # print(v)
         self.assertEqual(v.find(9), 4)
         self.assertEqual(v.find(5), -1)
 
@@ -116,7 +116,7 @@ class TestVector(unittest.TestCase):
         v = Vector(capacity=6)
         for i in [6, 9, 4, 7, 3, 4]:
             v.insert(0, i)
-        print(v)
+        # print(v)
         self.assertEqual(v.find(9, 0, 5), 4)
         self.assertEqual(v.find(9, 0, 4), -1)
         self.assertEqual(v.find(5), -1)
@@ -125,10 +125,10 @@ class TestVector(unittest.TestCase):
         v = Vector(capacity=6)
         for i in [6, 9, 4, 7, 3, 6, 6, 7, 1, 4]:
             v.insert(0, i)
-        print(v)
+        # print(v)
         old_size = v.size
         size = v.deduplicate()
-        print(v)
+        # print(v)
         new_size = v.size
         self.assertEqual(old_size - new_size, size)
         size = v.deduplicate()
@@ -143,6 +143,26 @@ class TestVector(unittest.TestCase):
             s.append(i)
 
         self.assertEqual(s, [4, 1, 7, 6, 6, 3, 7, 4, 9, 6])
+
+    def test_disordered(self):
+        v = Vector(capacity=6)
+        for i in [6, 9, 4, 7, 3, 1]:
+            v.insert(0, i)
+        # print(v)
+        print(v.disordered())
+        self.assertEqual(v.disordered(), 2)
+
+        v = Vector(capacity=6)
+        for i in range(5, 0, -1):
+            v.insert(0, i)
+        # print(v)
+        self.assertEqual(v.disordered(), 0)
+
+        v = Vector(capacity=6)
+        for i in [6, 9, 4, 7, 3, 6, 6, 7, 1, 4]:
+            v.insert(0, i)
+        # print(v)
+        self.assertEqual(v.disordered(), 5)
 
 if __name__ == '__main__':
     unittest.main()

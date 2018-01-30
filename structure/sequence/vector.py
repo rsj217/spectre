@@ -21,6 +21,12 @@ class Vector(object):
     def __iter__(self):
         return (i for i in self._elem if i is not None)
 
+    def __repr__(self):
+        return '<Vector>({})'.format([e for e in self._elem if e is not None])
+
+    def __len__(self):
+        return self._size
+
     def init_elem(self, size, capacity, value):
         elem = [value for i in range(size)]
         elem.extend([None for i in range(capacity - size)])
@@ -127,11 +133,12 @@ class Vector(object):
                 self.remove(i)
         return old_size - self._size
 
-    def __repr__(self):
-        return '<Vector>({})'.format([e for e in self._elem if e is not None])
-
-    def __len__(self):
-        return self._size
+    def disordered(self):
+        n = 0
+        for i in range(1, self._size):
+            if self[i - 1] > self[i]:
+                n += 1
+        return n
 
 
 if __name__ == '__main__':
