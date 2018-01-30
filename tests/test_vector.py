@@ -134,5 +134,15 @@ class TestVector(unittest.TestCase):
         size = v.deduplicate()
         self.assertEqual(size, 0)
 
+    def test_travel(self):
+        v = Vector(capacity=6)
+        for i in [6, 9, 4, 7, 3, 6, 6, 7, 1, 4]:
+            v.insert(0, i)
+        s = []
+        for i in v:
+            s.append(i)
+
+        self.assertEqual(s, [4, 1, 7, 6, 6, 3, 7, 4, 9, 6])
+
 if __name__ == '__main__':
     unittest.main()

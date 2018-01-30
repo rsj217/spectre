@@ -11,17 +11,20 @@ class Vector(object):
         self._capacity = capacity
         self._elem = self.init_elem(size, capacity, value)
 
-    def init_elem(self, size, capacity, value):
-        elem = [value for i in range(size)]
-        elem.extend([None for i in range(capacity - size)])
-        return elem
-
     def __getitem__(self, item):
         return self._elem[item]
 
     def __setitem__(self, key, value):
         assert key < self._size, 'index error'
         self._elem[key] = value
+
+    def __iter__(self):
+        return (i for i in self._elem if i is not None)
+
+    def init_elem(self, size, capacity, value):
+        elem = [value for i in range(size)]
+        elem.extend([None for i in range(capacity - size)])
+        return elem
 
     @property
     def size(self):
