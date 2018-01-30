@@ -121,6 +121,18 @@ class TestVector(unittest.TestCase):
         self.assertEqual(v.find(9, 0, 4), -1)
         self.assertEqual(v.find(5), -1)
 
+    def test_deduplicate(self):
+        v = Vector(capacity=6)
+        for i in [6, 9, 4, 7, 3, 6, 6, 7, 1, 4]:
+            v.insert(0, i)
+        print(v)
+        old_size = v.size
+        size = v.deduplicate()
+        print(v)
+        new_size = v.size
+        self.assertEqual(old_size - new_size, size)
+        size = v.deduplicate()
+        self.assertEqual(size, 0)
 
 if __name__ == '__main__':
     unittest.main()

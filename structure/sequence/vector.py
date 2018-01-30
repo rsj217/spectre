@@ -114,7 +114,15 @@ class Vector(object):
         """ 整体置乱 """
 
     def deduplicate(self):
-        """  """
+        """ 无序向量唯一化 """
+        old_size = self._size
+        i = 1
+        while i < self._size:
+            if self.find(self[i], 0, i) < 0:
+                i += 1
+            else:
+                self.remove(i)
+        return old_size - self._size
 
     def __repr__(self):
         return '<Vector>({})'.format([e for e in self._elem if e is not None])
