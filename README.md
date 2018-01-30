@@ -1,4 +1,4 @@
-# -eternal
+# Spectre
 
 ### install
 
