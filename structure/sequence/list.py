@@ -9,19 +9,28 @@ class Node(object):
         self._pred = pred
         self._succ = succ
 
+    def __repr__(self):
+        return '<Node>({})'.format(self._data)
+
     @property
     def pred(self):
-        return
+        return self._pred
 
     @property
     def succ(self):
-        return
+        return self._succ
 
     def insert_as_pred(self, e):
-        pass
+        node = Node(data=e, pred=self._pred, succ=self)
+        self._pred._succ = node
+        self._pred = node
+        return node
 
     def insert_as_succ(self, e):
-        pass
+        node = Node(data=e, pred=self, succ=self._succ)
+        self._succ = node
+        self._succ._pred = node
+        return node
 
 
 class List(object):
@@ -33,17 +42,27 @@ class List(object):
         self._trailer._pred = self._header
         self._size = 0
 
+    def __repr__(self):
+        return '<List>({})'.format(self._size)
+
+    def __getitem__(self, r):
+        assert r < self._size, 'index error'
+        p = self.first
+        for i in range(r):
+            p = p.succ
+        return p
+
     @property
     def size(self):
         return self._size
 
     @property
     def first(self):
-        return ''
+        return self._header.succ
 
     @property
     def last(self):
-        return ''
+        return self._trailer.pred
 
     def insert_as_first(self, e):
         pass
@@ -74,3 +93,10 @@ class List(object):
 
     def uniquify(self):
         pass
+
+
+if __name__ == '__main__':
+    n = Node(123)
+    l = List()
+    print(n, l)
+    print(l[-1])
