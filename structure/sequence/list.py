@@ -65,16 +65,22 @@ class List(object):
         return self._trailer.pred
 
     def insert_as_first(self, e):
-        pass
+        self._size += 1
+        node = self._header.insert_as_succ(e)
+        return node
 
     def insert_as_last(self, e):
-        pass
+        self._size += 1
+        node = self._trailer.insert_as_pred(e)
+        return node
 
-    def insert_before(self, e):
-        pass
+    def insert_before(self, node, e):
+        self._size += 1
+        return node.insert_as_pred(e)
 
-    def insert_after(self, e):
-        pass
+    def insert_after(self, node, e):
+        self._size += 1
+        return node.insert_as_succ(e)
 
     def remove(self):
         pass
