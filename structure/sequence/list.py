@@ -113,7 +113,6 @@ class List(object):
         return -1
 
     def reverse(self):
-
         p = self._header
         for i in range(self.size + 2):
             p._pred, p._succ = p.succ, p.pred

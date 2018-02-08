@@ -172,6 +172,7 @@ class TestList(unittest.TestCase):
 
     def test_reverse(self):
         l = List()
+        l.reverse()
         n5 = l.insert_as_first(5)
         for i in range(5):
             l.insert_before(n5, i)
