@@ -33,8 +33,8 @@ class Node(object):
 
     def insert_as_succ(self, e):
         node = Node(data=e, pred=self, succ=self._succ)
-        self._succ = node
         self._succ._pred = node
+        self._succ = node
         return node
 
 
@@ -42,9 +42,9 @@ class List(object):
 
     def __init__(self):
         self._header = Node()
-        self._trailer = Node()
-        self._header._succ = self._trailer
-        self._trailer._pred = self._header
+        self._tailer = Node()
+        self._header._succ = self._tailer
+        self._tailer._pred = self._header
         self._size = 0
 
     def __repr__(self):
@@ -58,9 +58,20 @@ class List(object):
             p = p.succ
         return p
 
+    def __iter__(self):
+        p = self.first
+        for i in range(self.size):
+            yield p.data
+            p = p.succ
+
+
     @property
     def size(self):
         return self._size
+
+    @property
+    def empty(self):
+        return self._size == 0
 
     @property
     def first(self):
@@ -68,7 +79,7 @@ class List(object):
 
     @property
     def last(self):
-        return self._trailer.pred
+        return self._tailer.pred
 
     def insert_as_first(self, e):
         self._size += 1
@@ -76,7 +87,7 @@ class List(object):
 
     def insert_as_last(self, e):
         self._size += 1
-        return self._trailer.insert_as_pred(e)
+        return self._tailer.insert_as_pred(e)
 
     def insert_before(self, node, e):
         self._size += 1
