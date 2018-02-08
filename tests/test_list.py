@@ -4,7 +4,7 @@
 __author__ = 'master'
 
 import unittest
-from structure.sequence.list import List, Node
+from spectre.sequence.list import List, Node
 
 
 class TestNode(unittest.TestCase):

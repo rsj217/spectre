@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 
 import unittest
-from structure.tree.node import BinNode
+from spectre.tree.node import BinNode
 
 
 class TestNode(unittest.TestCase):

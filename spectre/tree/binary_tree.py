@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-from structure.tree.node import BinNode
+from spectre.tree.node import BinNode
 
 
 class BinaryTree(object):

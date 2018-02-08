@@ -2,8 +2,8 @@
 # -*- coding:utf-8 -*-
 
 import unittest
-from structure.tree.splay_tree import SplayTree
-from structure.tree.binary_search_tree import BinarySearchTree
+from spectre.tree.splay_tree import SplayTree
+from spectre.tree.binary_search_tree import BinarySearchTree
 
 
 class TestSplayTreeSearch(unittest.TestCase):
