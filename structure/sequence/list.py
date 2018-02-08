@@ -113,17 +113,17 @@ class List(object):
         return -1
 
     def reverse(self):
-        pass
+
+        p = self._header
+        for i in range(self.size + 2):
+            p._pred, p._succ = p.succ, p.pred
+            p = p.pred
+
+        self._header, self._tailer = self._tailer, self._header
 
     def sort(self):
         pass
 
 
 if __name__ == '__main__':
-    l = List()
-    f = l.insert_as_first(1)
-    print(l)
-    l.insert_after(f, 2)
-    print(l[0])
-    print(l[1])
-    print(l)
+    pass

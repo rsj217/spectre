@@ -11,9 +11,9 @@ class TestNode(unittest.TestCase):
 
     def test_node(self):
         n = Node()
-        self.assertEqual(n.data, None)
-        self.assertEqual(n.pred, None)
-        self.assertEqual(n.succ, None)
+        self.assertIsNone(n.data)
+        self.assertIsNone(n.pred)
+        self.assertIsNone(n.succ)
 
 
 class TestList(unittest.TestCase):
@@ -26,10 +26,10 @@ class TestList(unittest.TestCase):
     def test_header_trailer(self):
         l = List()
         self.assertEqual(l._header.succ, l._tailer)
-        self.assertEqual(l._header.pred, None)
+        self.assertIsNone(l._header.pred)
 
         self.assertEqual(l._tailer.pred, l._header)
-        self.assertEqual(l._tailer.succ, None)
+        self.assertIsNone(l._tailer.succ)
 
     def test_insert_as_first_pred_succ_first_last(self):
         l = List()
@@ -169,6 +169,23 @@ class TestList(unittest.TestCase):
 
         r = l.find(5)
         self.assertEqual(r, -1)
+
+    def test_reverse(self):
+        l = List()
+        n5 = l.insert_as_first(5)
+        for i in range(5):
+            l.insert_before(n5, i)
+
+        l.reverse()
+        r = [i.data for i in l]
+        self.assertEqual(r, [5, 4, 3, 2, 1, 0])
+
+        self.assertEqual(l.first.data, 5)
+        self.assertEqual(l.last.data, 0)
+        self.assertEqual(l._header.succ, l[0])
+        self.assertIsNone(l._header.pred)
+        self.assertEqual(l._tailer.pred, l[5])
+        self.assertIsNone(l._tailer.succ)
 
 
 if __name__ == '__main__':
