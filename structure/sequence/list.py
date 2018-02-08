@@ -10,7 +10,12 @@ class Node(object):
         self._succ = succ
 
     def __repr__(self):
-        return '<Node>({})'.format(self._data)
+        data = self._data
+        return '<Node>({})'.format(data)
+
+    @property
+    def data(self):
+        return self._data
 
     @property
     def pred(self):
@@ -43,7 +48,8 @@ class List(object):
         self._size = 0
 
     def __repr__(self):
-        return '<List>({})'.format(self._size)
+        data = [self[i].data for i in range(self._size)]
+        return '<List>({}-{})'.format(data, self._size)
 
     def __getitem__(self, r):
         assert r < self._size, 'index error'
@@ -66,13 +72,11 @@ class List(object):
 
     def insert_as_first(self, e):
         self._size += 1
-        node = self._header.insert_as_succ(e)
-        return node
+        return self._header.insert_as_succ(e)
 
     def insert_as_last(self, e):
         self._size += 1
-        node = self._trailer.insert_as_pred(e)
-        return node
+        return self._trailer.insert_as_pred(e)
 
     def insert_before(self, node, e):
         self._size += 1
@@ -102,7 +106,13 @@ class List(object):
 
 
 if __name__ == '__main__':
-    n = Node(123)
+
     l = List()
-    print(n, l)
-    print(l[-1])
+    f = l.insert_as_first(1)
+    print(l)
+    l.insert_after(f, 2)
+    print(l[0])
+    print(l[1])
+    print(l)
+
+
