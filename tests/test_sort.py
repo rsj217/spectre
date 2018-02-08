@@ -58,14 +58,21 @@ class TestBubbleSort(unittest.TestCase):
         ret = test_random_helper(common_sort, 1000, 0, 10)
         self.assertTrue(ret)
 
-        print('ORDER')
+        print('NEARLY ORDER')
         ret = test_nearly_order_helper(common_sort, 1000, 10)
         self.assertTrue(ret)
 
 
-
 class TestSortSpeed(unittest.TestCase):
-    pass
+
+    def test_random(self):
+        pass
+
+    def test_repeat(self):
+        pass
+
+    def test_nearly_order(self):
+        pass
 
 
 if __name__ == '__main__':
