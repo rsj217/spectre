@@ -64,7 +64,6 @@ class List(object):
             yield p.data
             p = p.succ
 
-
     @property
     def size(self):
         return self._size
@@ -97,8 +96,16 @@ class List(object):
         self._size += 1
         return node.insert_as_succ(e)
 
-    def remove(self):
-        pass
+    def remove(self, node):
+        self._size -= 1
+        pred = node.pred
+        succ = node.succ
+        pred._succ = succ
+        succ._pred = pred
+
+        node._pred = None
+        node._succ = None
+
 
     def disordered(self):
         pass
@@ -117,7 +124,6 @@ class List(object):
 
 
 if __name__ == '__main__':
-
     l = List()
     f = l.insert_as_first(1)
     print(l)
@@ -125,5 +131,3 @@ if __name__ == '__main__':
     print(l[0])
     print(l[1])
     print(l)
-
-
