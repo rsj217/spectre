@@ -98,6 +98,22 @@ class TestList(unittest.TestCase):
         r = [i for i in l]
         self.assertEqual(r, [1, 2, 3])
 
+    def test_get(self):
+        l = List()
+        try:
+            l[0]
+        except AssertionError as e:
+            self.assertEqual(AssertionError, type(e))
+            self.assertEqual(e.args[0], 'index error')
+
+        n2 = l.insert_as_first(2)
+        n1 = l.insert_before(n2, 1)
+        n3 = l.insert_after(n2, 3)
+
+        self.assertEqual(l[0], n1)
+        self.assertEqual(l[1], n2)
+        self.assertEqual(l[2], n3)
+
 
 if __name__ == '__main__':
     unittest.main()
