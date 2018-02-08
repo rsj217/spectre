@@ -96,7 +96,7 @@ class TestList(unittest.TestCase):
         n1 = l.insert_before(n2, 1)
         n3 = l.insert_after(n2, 3)
 
-        r = [i for i in l]
+        r = [i.data for i in l]
         self.assertEqual(r, [1, 2, 3])
 
     def test_get(self):
@@ -150,6 +150,25 @@ class TestList(unittest.TestCase):
         except AssertionError as e:
             self.assertEqual(AssertionError, type(e))
             self.assertEqual(e.args[0], 'index error')
+
+    def test_find(self):
+        l = List()
+        n2 = l.insert_as_first(2)
+        n1 = l.insert_before(n2, 1)
+        n3 = l.insert_after(n2, 3)
+        n4 = l.insert_after(n3, 3)
+
+        r = l.find(1)
+        self.assertEqual(n1, r)
+
+        r = l.find(3)
+        self.assertEqual(n3, r)
+
+        r = l.find(-1)
+        self.assertEqual(r, -1)
+
+        r = l.find(5)
+        self.assertEqual(r, -1)
 
 
 if __name__ == '__main__':

@@ -61,7 +61,7 @@ class List(object):
     def __iter__(self):
         p = self.first
         for i in range(self.size):
-            yield p.data
+            yield p
             p = p.succ
 
     @property
@@ -106,20 +106,16 @@ class List(object):
         node._pred = None
         node._succ = None
 
+    def find(self, e):
+        for i in self:
+            if i.data == e:
+                return i
+        return -1
 
-    def disordered(self):
+    def reverse(self):
         pass
 
     def sort(self):
-        pass
-
-    def find(self, e):
-        pass
-
-    def search(self, e):
-        pass
-
-    def uniquify(self):
         pass
 
 
