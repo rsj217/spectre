@@ -62,6 +62,19 @@ class TestBubbleSort(unittest.TestCase):
         ret = test_nearly_order_helper(common_sort, 1000, 10)
         self.assertTrue(ret)
 
+    def test_opm_sort(self):
+        print('RANDOM')
+        ret = test_random_helper(opm_sort, 1000, 0, 1000)
+        self.assertTrue(ret)
+
+        print('REPEAT')
+        ret = test_random_helper(opm_sort, 1000, 0, 10)
+        self.assertTrue(ret)
+
+        print('NEARLY ORDER')
+        ret = test_nearly_order_helper(opm_sort, 1000, 10)
+        self.assertTrue(ret)
+
 
 class TestSortSpeed(unittest.TestCase):
 
