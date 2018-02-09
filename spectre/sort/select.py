@@ -4,39 +4,64 @@
 __author__ = 'master'
 
 
-def select_sort(l):
-    for i in range(len(l)):
+def select_sort(lst):
+    for i in range(len(lst)):
         min_index = i
-        for j in range(i, len(l)):
-            if l[j] < l[min_index]:
+        for j in range(i, len(lst)):
+            if lst[j] < lst[min_index]:
                 min_index = j
-        l[min_index], l[i] = l[i], l[min_index]
-    return l
+        lst[min_index], lst[i] = lst[i], lst[min_index]
+    return lst
 
 
-def select_sort_while(l):
+def select_sort_while(lst):
     i = 0
-    while i < len(l):
+    while i < len(lst):
         min_index, j = i, i
-        while j < len(l):
-            if l[j] < l[min_index]:
+        while j < len(lst):
+            if lst[j] < lst[min_index]:
                 min_index = j
             j += 1
-        l[min_index], l[i] = l[i], l[min_index]
+        lst[min_index], lst[i] = lst[i], lst[min_index]
         i += 1
-    return l
+    return lst
 
 
-def select_max_sort(l):
-    for i in range(len(l)):
+def find_min_index(lst):
+    def _find_min_index(lst, i, min_index):
+        if i >= len(lst):
+            return min_index
+        if lst[i] < lst[min_index]:
+            min_index = i
+        return _find_min_index(lst, i + 1, min_index)
+
+    return _find_min_index(l, 0, 0)
+
+
+def select_recursive_sort(lst):
+    def _select_recursive_sort(lst, i):
+        if i >= len(lst):
+            return lst
+        lst_ = lst[i:]
+        min_index = find_min_index(lst_)
+        lst[i], lst[min_index] = lst[min_index], lst[i]
+        return _select_recursive_sort(lst, i+1)
+
+    return _select_recursive_sort(lst, 0)
+
+
+def select_max_sort(lst):
+    for i in range(len(lst)):
         max_index = 0
-        for j in range(len(l) - i):
-            if l[max_index] < l[j]:
+        for j in range(len(lst) - i):
+            if lst[max_index] < lst[j]:
                 max_index = j
-        l[max_index], l[len(l) - i - 1] = l[len(l) - i - 1], l[max_index]
-    return l
+        lst[max_index], lst[len(lst) - i - 1] = lst[len(lst) - i - 1], lst[max_index]
+    return lst
 
 
 if __name__ == '__main__':
-    l = [2, 1, 3, 4, 10]
-    print(select_sort_while(l))
+    l = [2, 1, 1, 10]
+    # print(find_min_index(l))
+    print(select_recursive_sort(l))
+    print(l)

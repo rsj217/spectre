@@ -5,7 +5,7 @@ import time
 import random
 import unittest
 from spectre.sort.bubble import bubble_sort, opm_sort, opm_sort_other
-from spectre.sort.select import select_sort, select_max_sort
+from spectre.sort.select import select_sort, select_max_sort, select_sort_while, select_recursive_sort
 
 now = lambda: time.time()
 
@@ -117,6 +117,33 @@ class TestSelectSort(unittest.TestCase):
         print('NEARLY ORDER')
         ret = test_nearly_order_helper(select_max_sort, 1000, 10)
         self.assertTrue(ret)
+
+    def test_select_sort_while(self):
+        print('RANDOM')
+        ret = test_random_helper(select_sort_while, 1000, 0, 1000)
+        self.assertTrue(ret)
+
+        print('REPEAT')
+        ret = test_random_helper(select_sort_while, 1000, 0, 10)
+        self.assertTrue(ret)
+
+        print('NEARLY ORDER')
+        ret = test_nearly_order_helper(select_sort_while, 1000, 10)
+        self.assertTrue(ret)
+
+    def test_select_recursive_sort(self):
+        pass
+        # print('RANDOM')
+        # ret = test_random_helper(select_recursive_sort, 100, 0, 100)
+        # self.assertTrue(ret)
+        #
+        # print('REPEAT')
+        # ret = test_random_helper(select_recursive_sort, 100, 0, 10)
+        # self.assertTrue(ret)
+        #
+        # print('NEARLY ORDER')
+        # ret = test_nearly_order_helper(select_recursive_sort, 100, 10)
+        # self.assertTrue(ret)
 
 
 class TestSortSpeed(unittest.TestCase):
