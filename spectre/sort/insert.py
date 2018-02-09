@@ -12,6 +12,18 @@ def insert_sort(lst):
     return lst
 
 
+def insert_sort_while(lst):
+    i = 1
+    while i < len(lst):
+        j = i - 1
+        while j >= 0:
+            if lst[j] > lst[j + 1]:
+                lst[j], lst[j + 1] = lst[j + 1], lst[j]
+            j -= 1
+        i += 1
+    return lst
+
+
 if __name__ == '__main__':
-    lst = [1, 2, 4, 6, 3]
-    print(insert_sort(lst))
+    lst = [1, 1, 4, 6, 3, 0]
+    print(insert_sort_while(lst))

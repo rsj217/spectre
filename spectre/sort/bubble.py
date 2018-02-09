@@ -12,7 +12,7 @@ def bubble_sort(lst):
     return lst
 
 
-def opm_sort(lst):
+def bubble_opm_sort(lst):
     is_sorted = False
     for i in range(len(lst) - 1):
         if not is_sorted:
@@ -24,7 +24,7 @@ def opm_sort(lst):
     return lst
 
 
-def opm_sort_other(lst):
+def bubble_opm_sort_while(lst):
     i = 0
     is_sorted = False
     while i < len(lst) - 1 and not is_sorted:
