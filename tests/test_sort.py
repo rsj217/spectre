@@ -6,7 +6,7 @@ import random
 import unittest
 from spectre.sort.bubble import bubble_sort, bubble_opm_sort, bubble_opm_sort_while
 from spectre.sort.select import select_sort, select_max_sort, select_sort_while, select_recursive_sort
-from spectre.sort.insert import insert_sort, insert_sort_while, insert_opm_sort
+from spectre.sort.insert import insert_sort, insert_sort_while, insert_sort_opm, insert_sort_recursive
 
 now = lambda: time.time()
 
@@ -174,18 +174,32 @@ class TestInsertSort(unittest.TestCase):
         ret = test_nearly_order_helper(insert_sort_while, 1000, 10)
         self.assertTrue(ret)
 
-    def test_insert_opm_sort(self):
+    def test_insert_sort_opm(self):
         print('RANDOM')
-        ret = test_random_helper(insert_opm_sort, 1000, 0, 1000)
+        ret = test_random_helper(insert_sort_opm, 1000, 0, 1000)
         self.assertTrue(ret)
 
         print('REPEAT')
-        ret = test_random_helper(insert_opm_sort, 1000, 0, 10)
+        ret = test_random_helper(insert_sort_opm, 1000, 0, 10)
         self.assertTrue(ret)
 
         print('NEARLY ORDER')
-        ret = test_nearly_order_helper(insert_opm_sort, 1000, 10)
+        ret = test_nearly_order_helper(insert_sort_opm, 1000, 10)
         self.assertTrue(ret)
+
+    def test_insert_sort_recursive(self):
+        print('RANDOM')
+        ret = test_random_helper(insert_sort_recursive, 500, 0, 500)
+        self.assertTrue(ret)
+
+        print('REPEAT')
+        ret = test_random_helper(insert_sort_recursive, 500, 0, 10)
+        self.assertTrue(ret)
+
+        print('NEARLY ORDER')
+        ret = test_nearly_order_helper(insert_sort_recursive, 500, 10)
+        self.assertTrue(ret)
+
 
 
 class TestSortSpeed(unittest.TestCase):
@@ -198,7 +212,7 @@ class TestSortSpeed(unittest.TestCase):
         ret = test_random_helper(select_sort, 2000, 0, 2000)
         self.assertTrue(ret)
 
-        ret = test_random_helper(insert_opm_sort, 2000, 0, 2000)
+        ret = test_random_helper(insert_sort_opm, 2000, 0, 2000)
         self.assertTrue(ret)
 
     def test_repeat(self):
@@ -209,7 +223,7 @@ class TestSortSpeed(unittest.TestCase):
         ret = test_random_helper(select_sort, 1000, 0, 10)
         self.assertTrue(ret)
 
-        ret = test_random_helper(insert_opm_sort, 1000, 0, 10)
+        ret = test_random_helper(insert_sort_opm, 1000, 0, 10)
         self.assertTrue(ret)
 
     def test_nearly_order(self):
@@ -220,7 +234,7 @@ class TestSortSpeed(unittest.TestCase):
         ret = test_nearly_order_helper(select_sort, 1000, 10)
         self.assertTrue(ret)
 
-        ret = test_nearly_order_helper(insert_opm_sort, 1000, 10)
+        ret = test_nearly_order_helper(insert_sort_opm, 1000, 10)
         self.assertTrue(ret)
 
 

@@ -35,7 +35,7 @@ def insert_sort_while(lst):
     return lst
 
 
-def insert_opm_sort(lst):
+def insert_sort_opm(lst):
     for i in range(1, len(lst)):
         cur_item = lst[i]
         j = i - 1
@@ -46,5 +46,25 @@ def insert_opm_sort(lst):
     return lst
 
 
+def insert_item(lst, item):
+    if not lst:
+        return [item]
+    *head, tail = lst
+    if item >= tail:
+        lst.append(item)
+        return lst
+    l = insert_item(head, item)
+    l.append(tail)
+    return l
+
+
+def insert_sort_recursive(lst):
+    if not lst:
+        return []
+    *head, tail = lst
+    return insert_item(insert_sort_recursive(head), tail)
+
+
 if __name__ == '__main__':
-    pass
+    lst = [1, 2, 5, 2, 3]
+    print(insert_sort_recursive(lst))
