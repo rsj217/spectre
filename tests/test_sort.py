@@ -19,8 +19,8 @@ def gen_random_lst(n, l, r):
 def gen_nearly_order_list(n, s):
     lst = list(range(n))
     for i in range(s):
-        x = random.randint(0, n)
-        y = random.randint(0, n)
+        x = random.randint(0, n - 1)
+        y = random.randint(0, n - 1)
         lst[x], lst[y] = lst[y], lst[x]
     # print('nearly order list {}'.format(lst[:30]))
     return lst

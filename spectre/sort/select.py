@@ -62,6 +62,5 @@ def select_max_sort(lst):
 
 
 if __name__ == '__main__':
-    l = [2, 1, 1, 10]
-    print(find_min_index(l))
-    print(select_recursive_sort(l))
+    lst = [2, 1, 1, 10]
+    print(select_recursive_sort(lst))
