@@ -47,5 +47,4 @@ def insert_opm_sort(lst):
 
 
 if __name__ == '__main__':
-    lst = [0, 2, 6]
-    print(insert_opm_sort(lst))
+    pass
