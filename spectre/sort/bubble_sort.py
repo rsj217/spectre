@@ -23,5 +23,17 @@ def opm_sort(l):
                     is_sorted = False
 
 
+def opm_sort_other(l):
+    i = 0
+    is_sorted = False
+    while i < len(l) - 1 and not is_sorted:
+        is_sorted = True
+        for j in range(len(l) - i - 1):
+            if l[j] > l[j + 1]:
+                l[j], l[j + 1] = l[j + 1], l[j]
+                is_sorted = False
+        i += 1
+
+
 if __name__ == '__main__':
     pass

@@ -4,7 +4,7 @@
 import time
 import random
 import unittest
-from spectre.sort.bubble_sort import common_sort, opm_sort
+from spectre.sort.bubble_sort import common_sort, opm_sort, opm_sort_other
 
 now = lambda: time.time()
 
@@ -74,6 +74,19 @@ class TestBubbleSort(unittest.TestCase):
         print('NEARLY ORDER')
         ret = test_nearly_order_helper(opm_sort, 1000, 10)
         self.assertTrue(ret)
+
+    def test_opm_sort_other(self):
+        print('RANDOM')
+        ret = test_random_helper(opm_sort_other, 1000, 0, 1000)
+        self.assertTrue(ret)
+
+        # print('REPEAT')
+        # ret = test_random_helper(opm_sort_other, 1000, 0, 10)
+        # self.assertTrue(ret)
+        #
+        # print('NEARLY ORDER')
+        # ret = test_nearly_order_helper(opm_sort_other, 1000, 10)
+        # self.assertTrue(ret)
 
 
 class TestSortSpeed(unittest.TestCase):
