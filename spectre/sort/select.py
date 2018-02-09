@@ -31,11 +31,12 @@ def find_min_index(lst):
     def _find_min_index(lst, i, min_index):
         if i >= len(lst):
             return min_index
+
         if lst[i] < lst[min_index]:
             min_index = i
         return _find_min_index(lst, i + 1, min_index)
 
-    return _find_min_index(l, 0, 0)
+    return _find_min_index(lst, 0, 0)
 
 
 def select_recursive_sort(lst):
@@ -44,8 +45,8 @@ def select_recursive_sort(lst):
             return lst
         lst_ = lst[i:]
         min_index = find_min_index(lst_)
-        lst[i], lst[min_index] = lst[min_index], lst[i]
-        return _select_recursive_sort(lst, i+1)
+        lst[i], lst[i + min_index] = lst[i + min_index], lst[i]
+        return _select_recursive_sort(lst, i + 1)
 
     return _select_recursive_sort(lst, 0)
 
@@ -62,6 +63,5 @@ def select_max_sort(lst):
 
 if __name__ == '__main__':
     l = [2, 1, 1, 10]
-    # print(find_min_index(l))
+    print(find_min_index(l))
     print(select_recursive_sort(l))
-    print(l)

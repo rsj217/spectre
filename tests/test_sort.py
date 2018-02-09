@@ -132,18 +132,17 @@ class TestSelectSort(unittest.TestCase):
         self.assertTrue(ret)
 
     def test_select_recursive_sort(self):
-        pass
-        # print('RANDOM')
-        # ret = test_random_helper(select_recursive_sort, 100, 0, 100)
-        # self.assertTrue(ret)
-        #
-        # print('REPEAT')
-        # ret = test_random_helper(select_recursive_sort, 100, 0, 10)
-        # self.assertTrue(ret)
-        #
-        # print('NEARLY ORDER')
-        # ret = test_nearly_order_helper(select_recursive_sort, 100, 10)
-        # self.assertTrue(ret)
+        print('RANDOM')
+        ret = test_random_helper(select_recursive_sort, 500, 0, 500)
+        self.assertTrue(ret)
+
+        print('REPEAT')
+        ret = test_random_helper(select_recursive_sort, 500, 0, 10)
+        self.assertTrue(ret)
+
+        print('NEARLY ORDER')
+        ret = test_nearly_order_helper(select_recursive_sort, 500, 10)
+        self.assertTrue(ret)
 
 
 class TestSortSpeed(unittest.TestCase):
