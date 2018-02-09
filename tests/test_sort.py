@@ -4,7 +4,8 @@
 import time
 import random
 import unittest
-from spectre.sort.bubble_sort import common_sort, opm_sort, opm_sort_other
+from spectre.sort.bubble_sort import bubble_sort, opm_sort, opm_sort_other
+from spectre.sort.select_sort import select_sort
 
 now = lambda: time.time()
 
@@ -30,7 +31,7 @@ def test_random_helper(func, n, l, r):
     sorted_lst = lst.copy()
     sorted_lst.sort()
     start = now()
-    func(lst)
+    lst = func(lst)
     ret = True if lst == sorted_lst else False
     print("{} - {} - {}s".format(func.__name__.upper(), ret, now() - start))
     return ret
@@ -41,7 +42,7 @@ def test_nearly_order_helper(func, l, s):
     sorted_lst = lst.copy()
     sorted_lst.sort()
     start = now()
-    func(lst)
+    lst = func(lst)
     ret = True if lst == sorted_lst else False
     print("{} - {} - {}s".format(func.__name__.upper(), ret, now() - start))
     return ret
@@ -51,15 +52,15 @@ class TestBubbleSort(unittest.TestCase):
 
     def test_common_sort(self):
         print('RANDOM')
-        ret = test_random_helper(common_sort, 1000, 0, 1000)
+        ret = test_random_helper(bubble_sort, 1000, 0, 1000)
         self.assertTrue(ret)
 
         print('REPEAT')
-        ret = test_random_helper(common_sort, 1000, 0, 10)
+        ret = test_random_helper(bubble_sort, 1000, 0, 10)
         self.assertTrue(ret)
 
         print('NEARLY ORDER')
-        ret = test_nearly_order_helper(common_sort, 1000, 10)
+        ret = test_nearly_order_helper(bubble_sort, 1000, 10)
         self.assertTrue(ret)
 
     def test_opm_sort(self):
@@ -80,25 +81,58 @@ class TestBubbleSort(unittest.TestCase):
         ret = test_random_helper(opm_sort_other, 1000, 0, 1000)
         self.assertTrue(ret)
 
-        # print('REPEAT')
-        # ret = test_random_helper(opm_sort_other, 1000, 0, 10)
-        # self.assertTrue(ret)
-        #
-        # print('NEARLY ORDER')
-        # ret = test_nearly_order_helper(opm_sort_other, 1000, 10)
-        # self.assertTrue(ret)
+        print('REPEAT')
+        ret = test_random_helper(opm_sort_other, 1000, 0, 10)
+        self.assertTrue(ret)
+
+        print('NEARLY ORDER')
+        ret = test_nearly_order_helper(opm_sort_other, 1000, 10)
+        self.assertTrue(ret)
+
+
+class TestSelectSort(unittest.TestCase):
+
+    def test_select_sort(self):
+        print('RANDOM')
+        ret = test_random_helper(select_sort, 1000, 0, 1000)
+        self.assertTrue(ret)
+
+        print('REPEAT')
+        ret = test_random_helper(select_sort, 1000, 0, 10)
+        self.assertTrue(ret)
+
+        print('NEARLY ORDER')
+        ret = test_nearly_order_helper(select_sort, 1000, 10)
+        self.assertTrue(ret)
 
 
 class TestSortSpeed(unittest.TestCase):
 
     def test_random(self):
-        pass
+        print('RANDOM --- ')
+        ret = test_random_helper(opm_sort, 2000, 0, 2000)
+        self.assertTrue(ret)
+
+        ret = test_random_helper(select_sort, 2000, 0, 2000)
+        self.assertTrue(ret)
 
     def test_repeat(self):
-        pass
+        print('REPEAT --- ')
+        ret = test_random_helper(opm_sort, 1000, 0, 10)
+        self.assertTrue(ret)
+
+        print('REPEAT')
+        ret = test_random_helper(select_sort, 1000, 0, 10)
+        self.assertTrue(ret)
 
     def test_nearly_order(self):
-        pass
+        print('NEARLY ORDER ---')
+        ret = test_nearly_order_helper(opm_sort, 1000, 10)
+        self.assertTrue(ret)
+
+        print('NEARLY ORDER')
+        ret = test_nearly_order_helper(select_sort, 1000, 10)
+        self.assertTrue(ret)
 
 
 if __name__ == '__main__':
