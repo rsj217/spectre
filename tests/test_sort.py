@@ -4,8 +4,8 @@
 import time
 import random
 import unittest
-from spectre.sort.bubble_sort import bubble_sort, opm_sort, opm_sort_other
-from spectre.sort.select_sort import select_sort
+from spectre.sort.bubble import bubble_sort, opm_sort, opm_sort_other
+from spectre.sort.select import select_sort
 
 now = lambda: time.time()
 
@@ -33,7 +33,7 @@ def test_random_helper(func, n, l, r):
     start = now()
     lst = func(lst)
     ret = True if lst == sorted_lst else False
-    print("{} - {} - {}s".format(func.__name__.upper(), ret, now() - start))
+    print("{} - {} - {} s".format(func.__name__.upper(), ret, now() - start))
     return ret
 
 
@@ -44,7 +44,7 @@ def test_nearly_order_helper(func, l, s):
     start = now()
     lst = func(lst)
     ret = True if lst == sorted_lst else False
-    print("{} - {} - {}s".format(func.__name__.upper(), ret, now() - start))
+    print("{} - {} - {} s".format(func.__name__.upper(), ret, now() - start))
     return ret
 
 

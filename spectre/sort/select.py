@@ -8,10 +8,16 @@ def select_sort(l):
     for i in range(len(l)):
         min_index = i
         for j in range(i, len(l)):
-            if l[min_index] > l[j]:
+            if l[j] < l[min_index]:
                 min_index = j
         l[min_index], l[i] = l[i], l[min_index]
     return l
+
+
+def select_sort_max(l):
+
+    return l
+
 
 
 if __name__ == '__main__':
