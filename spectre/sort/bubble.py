@@ -36,5 +36,6 @@ def bubble_opm_sort_while(lst):
         i += 1
     return lst
 
+
 if __name__ == '__main__':
     pass
