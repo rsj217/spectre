@@ -70,14 +70,15 @@ class Vector(object):
         self._elem = _elem
         self._capacity = new_capacity
 
+
     def find(self, e, lo=0, hi=None):
         if hi is None:
             hi = self._size
 
         while lo < hi:
-            hi -= 1
-            if self._elem[hi] == e:
-                return hi
+            if self._elem[lo] == e:
+                return lo
+            lo += 1
         return -1
 
     def search(self, e):

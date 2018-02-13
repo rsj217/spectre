@@ -108,7 +108,8 @@ class TestVector(unittest.TestCase):
         v = Vector(capacity=6)
         for i in [6, 9, 4, 7, 3, 4]:
             v.insert(0, i)
-        # print(v)
+        print(v)
+        self.assertEqual(v.find(4), 0)
         self.assertEqual(v.find(9), 4)
         self.assertEqual(v.find(5), -1)
 
@@ -116,7 +117,8 @@ class TestVector(unittest.TestCase):
         v = Vector(capacity=6)
         for i in [6, 9, 4, 7, 3, 4]:
             v.insert(0, i)
-        # print(v)
+        print(v)
+        self.assertEqual(v.find(4, 0, 5), 0)
         self.assertEqual(v.find(9, 0, 5), 4)
         self.assertEqual(v.find(9, 0, 4), -1)
         self.assertEqual(v.find(5), -1)
