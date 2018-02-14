@@ -23,7 +23,7 @@ class Vector(object):
             yield self._elem[i]
 
     def __repr__(self):
-        return '<Vector>({})'.format([e for e in self._elem if e is not None])
+        return '<Vector>({})'.format([e for e in range(self._size)])
 
     def __len__(self):
         return self._size
