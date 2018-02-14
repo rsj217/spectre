@@ -340,6 +340,10 @@ class BSNode(BinNode):
     def key(self):
         return self._entry.key
 
+    @key.setter
+    def key(self, value):
+        self._entry._key = value
+
     @property
     def value(self):
         return self._entry.value

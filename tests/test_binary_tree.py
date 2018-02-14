@@ -45,8 +45,8 @@ class TestTreeGen(unittest.TestCase):
     def test_empty_tree(self):
         self.assertEqual(self.bt.root, None, msg='空树没有一个节点')
         self.assertEqual(self.bt.stature(self.bt.root), -1, msg="空树的高度为-1")
-        self.assertEqual(self.bt.size, 0)
-        self.assertEqual(self.bt.is_empty, True)
+        self.assertEqual(self.bt.size, 0, msg='空树的size是0')
+        self.assertEqual(self.bt.is_empty, True, msg='空树的empty返回True')
 
     def test_insert_root(self):
         root = self.bt.insert_as_root(e='root')
@@ -64,7 +64,6 @@ class TestTreeGen(unittest.TestCase):
         self.assertEqual(left.data, 'left')
         self.assertEqual(left.size, 1)
         self.assertEqual(left.height, 0)
-
         self.assertEqual(root.height, 1)
 
     def test_insert_as_right_child_update_height_parent(self):
