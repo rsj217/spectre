@@ -146,6 +146,17 @@ class Vector(object):
 
         return old_size - self._size
 
+    def uniquify(self):
+        i, j = 0, 1
+        while j < self._size:
+            if self[i] != self[j]:
+                self[i + 1] = self[j]
+                i += 1
+            j += 1
+        i += 1
+        self._size = i
+        return j - i
+
     def disordered(self):
         n = 0
         for i in range(1, self._size):

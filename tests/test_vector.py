@@ -137,6 +137,15 @@ class TestVector(unittest.TestCase):
         self.assertEqual(s, 6)
         self.assertEqual(v.data, [1, 3, 5, 6])
 
+    def test_uniquify(self):
+        v = Vector(capacity=10)
+        for i in [13, 13, 13, 13, 8, 8, 8, 5, 5, 5, 5, 5, 3, 3, 3, 3]:
+            v.insert(0, i)
+        print(v)
+        s = v.uniquify()
+        self.assertEqual(s, 12)
+        self.assertEqual(v.data, [3, 5, 8, 13])
+
     def test_travel(self):
         v = Vector(capacity=6)
         for i in [6, 9, 4, 7, 3, 6, 6, 7, 1, 4]:
