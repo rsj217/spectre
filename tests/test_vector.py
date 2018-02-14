@@ -128,6 +128,15 @@ class TestVector(unittest.TestCase):
         size = v.deduplicate()
         self.assertEqual(size, 0)
 
+    def test_low_uniquify(self):
+        v = Vector(capacity=10)
+        for i in [6, 6, 6, 5, 5, 3, 3, 3, 1, 1]:
+            v.insert(0, i)
+        print(v)
+        s = v.low_uniquify()
+        self.assertEqual(s, 6)
+        self.assertEqual(v.data, [1, 3, 5, 6])
+
     def test_travel(self):
         v = Vector(capacity=6)
         for i in [6, 9, 4, 7, 3, 6, 6, 7, 1, 4]:
@@ -157,6 +166,7 @@ class TestVector(unittest.TestCase):
             v.insert(0, i)
         # print(v)
         self.assertEqual(v.disordered(), 5)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -23,7 +23,7 @@ class Vector(object):
             yield self._elem[i]
 
     def __repr__(self):
-        return '<Vector>({})'.format([e for e in range(self._size)])
+        return '<Vector>({})'.format([self._elem[e] for e in range(self._size)])
 
     def __len__(self):
         return self._size
@@ -132,6 +132,18 @@ class Vector(object):
                 i += 1
             else:
                 self.remove(i)
+        return old_size - self._size
+
+    def low_uniquify(self):
+        old_size = self._size
+        i = 0
+
+        while i < self._size - 1:
+            if self[i] == self[i + 1]:
+                self.remove(i + 1)
+            else:
+                i += 1
+
         return old_size - self._size
 
     def disordered(self):
