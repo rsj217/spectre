@@ -326,15 +326,15 @@ class Entry(object):
 
 class BSNode(BinNode):
 
-    def __init__(self, key, data=None, parent=None):
+    def __init__(self, key, value, parent=None):
         super(BSNode, self).__init__(parent=parent, lchild=None, rchild=None, data=None)
-        self._entry = Entry(key=key, value=data)
+        self._entry = Entry(key=key, value=value)
 
     def __repr__(self):
         pdata = getattr(self.parent, 'key', None)
         ldata = getattr(self.lchild, 'key', None)
         rdata = getattr(self.rchild, 'key', None)
-        return f'<BSNode>([{pdata}] {ldata}-{self.key}-{rdata}: {self.height})'
+        return f'<BSNode>([{pdata}] {ldata}-{self.key}-{rdata}: {self.height} - {self.value})'
 
     @property
     def key(self):
@@ -369,6 +369,7 @@ class BSNode(BinNode):
 
     def insert_as_rc(self, e):
         raise NotImplementedError
+
 
 if __name__ == '__main__':
     pass
