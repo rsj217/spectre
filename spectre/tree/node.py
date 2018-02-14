@@ -259,9 +259,9 @@ class BinNode(object):
 
 class Entry(object):
 
-    def __init__(self, key, data):
+    def __init__(self, key, value=None):
         self._key = key
-        self._data = data or key
+        self._value = value or key
 
     def __gt__(self, other):
         return self._key > other._key
@@ -278,19 +278,75 @@ class Entry(object):
     def __eq__(self, other):
         return self._key == other._key
 
+    @property
+    def key(self):
+        return self._key
+
+    @property
+    def value(self):
+        return self._value
+
+
+#
+# class BSNode(BinNode):
+#
+#     def __init__(self, key, data=None, parent=None):
+#         data = data or key
+#         super(BSNode, self).__init__(parent=parent, lchild=None, rchild=None, data=data)
+#         self.key = key
+#
+#     def __repr__(self):
+#         pdata = getattr(self.parent, 'key', None)
+#         ldata = getattr(self.lchild, 'key', None)
+#         rdata = getattr(self.rchild, 'key', None)
+#         return f'<BSNode>([{pdata}] {ldata}-{self.key}-{rdata}: {self.height})'
+#
+#     @property
+#     def floor(self):
+#         return
+#
+#     @property
+#     def ceil(self):
+#         return
+#
+#     @property
+#     def rank(self):
+#         return
+#
+#     @property
+#     def select(self):
+#         return
+#
+#     def insert_as_lc(self, e):
+#         raise NotImplementedError
+#
+#     def insert_as_rc(self, e):
+#         raise NotImplementedError
+#
 
 class BSNode(BinNode):
 
     def __init__(self, key, data=None, parent=None):
-        data = data or key
-        super(BSNode, self).__init__(parent=parent, lchild=None, rchild=None, data=data)
-        self.key = key
+        super(BSNode, self).__init__(parent=parent, lchild=None, rchild=None, data=None)
+        self._entry = Entry(key=key, value=data)
 
     def __repr__(self):
         pdata = getattr(self.parent, 'key', None)
         ldata = getattr(self.lchild, 'key', None)
         rdata = getattr(self.rchild, 'key', None)
         return f'<BSNode>([{pdata}] {ldata}-{self.key}-{rdata}: {self.height})'
+
+    @property
+    def key(self):
+        return self._entry.key
+
+    @property
+    def value(self):
+        return self._entry.value
+
+    @value.setter
+    def value(self, value):
+        self._entry._value = value
 
     @property
     def floor(self):
@@ -313,20 +369,6 @@ class BSNode(BinNode):
 
     def insert_as_rc(self, e):
         raise NotImplementedError
-
-
-class BTNode(object):
-
-    def __init__(self, parent=None, key=None, lchild=None, rchild=None):
-        self._parent = parent
-        self._key = [key]
-        self._child = [lchild, rchild]
-
-        if lchild:
-            lchild.parent = self
-        if rchild:
-            rchild.parent = self
-
 
 if __name__ == '__main__':
     pass
