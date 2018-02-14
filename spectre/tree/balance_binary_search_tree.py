@@ -52,9 +52,9 @@ class AVLTree(BalanceBinarySearchTree):
         return abs(self.bal_fac(node)) <= 1
 
     def insert(self, e):
-        node = self.search(e)
+        node = self.search(key=e.key)
         if not node:
-            node = BSNode(key=e, parent=self.hot)
+            node = BSNode(key=e.key, parent=self.hot, value=e.value)
             if node.key < self.hot.key:
                 self.hot.lchild = node
             else:
@@ -79,8 +79,8 @@ class AVLTree(BalanceBinarySearchTree):
 
         return node
 
-    def remove(self, e):
-        node = self.search(e)
+    def remove(self, key):
+        node = self.search(key=key)
         if not node:
             return False
         self._remove_at(node)
@@ -120,25 +120,5 @@ class AVLTree(BalanceBinarySearchTree):
                 return self.connect34(g, v, p, g.lchild, v.lchild, v.rchild, p.rchild)
 
 
-def gen_avl_tree():
-    """
-    <AVLTree>(
-          53
-      40      58
-            54  69
-    )
-    """
-    avl = AVLTree()
-    avl.insert_as_root(58)
-
-    avl.insert(53)
-    avl.insert(40)
-    avl.insert(69)
-    avl.insert(54)
-
-    return avl
-
-
 if __name__ == '__main__':
-    avl = gen_avl_tree()
-    print(avl)
+    pass

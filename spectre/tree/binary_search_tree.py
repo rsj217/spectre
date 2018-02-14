@@ -49,29 +49,29 @@ class BinarySearchTree(BinaryTree):
         s = ''.join(tree_str_arr)
         return f'<{self.__class__.__name__}>({s}\n)'
 
-    def search(self, e):
-        return self._search_in(self.root, e)
+    def search(self, key):
+        return self._search_in(self.root, key)
 
     def find(self, e):
         return self._find_in(e)
 
-    def _search_in(self, node, e):
-        if node is None or node.key == e:
+    def _search_in(self, node, key):
+        if node is None or node.key == key:
             return node
         self.hot = node
-        if node.key < e:
+        if node.key < key:
             node = node.rchild
         else:
             node = node.lchild
-        return self._search_in(node, e)
+        return self._search_in(node, key)
 
     def _find_in(self, e):
         node = self._root
         while node:
             self.hot = node
-            if node.key < e:
+            if node.key < e.key:
                 node = node.rchild
-            elif e < node.key:
+            elif e.key < node.key:
                 node = node.lchild
             else:
                 self.hot = node.parent
@@ -80,13 +80,13 @@ class BinarySearchTree(BinaryTree):
 
     def insert_as_root(self, e):
         self._size = 1
-        self._root = BSNode(key=e)
+        self._root = BSNode(key=e.key, value=e.value)
         return self._root
 
     def insert(self, e):
-        node = self.search(e)
+        node = self.search(e.key)
         if not node:
-            node = BSNode(parent=self.hot, key=e)
+            node = BSNode(parent=self.hot, key=e.key, value=e.value)
             if node.key < self.hot.key:
                 self.hot.lchild = node
             else:
@@ -95,8 +95,8 @@ class BinarySearchTree(BinaryTree):
             self.update_height_above(self.hot)
         return node
 
-    def remove(self, e):
-        node = self.search(e)
+    def remove(self, key):
+        node = self.search(key)
         if not node:
             return False
         self._remove_at(node)
@@ -106,7 +106,7 @@ class BinarySearchTree(BinaryTree):
 
     def _swap(self, na, nb):
         na.key, nb.key = nb.key, na.key
-        na.data, nb.data = nb.data, na.data
+        na.value, nb.value = nb.value, na.value
         return na, nb
 
     def _remove_at(self, node):
@@ -156,34 +156,5 @@ class BinarySearchTree(BinaryTree):
         return node
 
 
-def gen_binary_search_tree():
-    """
-    <BinarySearchTree>(
-                                  36
-                  27                              58
-          16                              53              69
-                                      40              64
-                                        46
-    )
-    """
-    bst = BinarySearchTree()
-    bst.insert_as_root(36)
-
-    bst.insert(27)
-    bst.insert(16)
-    bst.insert(58)
-    bst.insert(53)
-    bst.insert(40)
-    bst.insert(46)
-    bst.insert(69)
-    bst.insert(64)
-
-    return bst
-
-
 if __name__ == '__main__':
-    bst = gen_binary_search_tree()
-    print(bst)
-    #
-    # print(bst.find(53))
-    # print('hot', bst.hot)
+    pass
