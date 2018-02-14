@@ -19,7 +19,8 @@ class Vector(object):
         self._elem[key] = value
 
     def __iter__(self):
-        return (i for i in self._elem if i is not None)
+        for i in range(self._size):
+            yield self._elem[i]
 
     def __repr__(self):
         return '<Vector>({})'.format([e for e in self._elem if e is not None])
@@ -70,7 +71,6 @@ class Vector(object):
         self._elem = _elem
         self._capacity = new_capacity
 
-
     def find(self, e, lo=0, hi=None):
         if hi is None:
             hi = self._size
@@ -99,7 +99,7 @@ class Vector(object):
         size = self._size
         for i in range(hi, size):
             self._elem[lo] = self._elem[i]
-            self._elem[i] = None
+            # self._elem[i] = None
             lo += 1
 
         self._size -= count

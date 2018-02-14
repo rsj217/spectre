@@ -69,18 +69,14 @@ class TestVector(unittest.TestCase):
         v.insert(3, 6)
         self.assertEqual(v.size, 4)
         self.assertEqual(v.cap, 6)
-        self.assertEqual(v._elem, [4, 2, 9, 6, None, None])
         self.assertEqual(v.data, [4, 2, 9, 6])
         v.insert(1, 7)
-        self.assertEqual(v._elem, [4, 7, 2, 9, 6, None])
 
     def test_remove(self):
         v = Vector(size=0, capacity=3)
         v.insert(0, 9)
         self.assertEqual(v.size, 1)
-        self.assertEqual(v._elem, [9, None, None])
         v.insert(0, 4)
-        self.assertEqual(v._elem, [4, 9, None])
         v.insert(1, 5)
         self.assertEqual(v._elem, [4, 5, 9])
         v[1] = 2
@@ -89,15 +85,11 @@ class TestVector(unittest.TestCase):
         v.insert(3, 6)
         self.assertEqual(v.size, 4)
         self.assertEqual(v.cap, 6)
-        self.assertEqual(v._elem, [4, 2, 9, 6, None, None])
         v.insert(1, 7)
-        self.assertEqual(v._elem, [4, 7, 2, 9, 6, None])
         self.assertEqual(v.remove(2), 2)
-        self.assertEqual(v._elem, [4, 7, 9, 6, None, None])
         self.assertEqual(v.data, [4, 7, 9, 6])
 
         v.insert(1, 3)
-        self.assertEqual(v._elem, [4, 3, 7, 9, 6, None])
         self.assertEqual(v.data, [4, 3, 7, 9, 6])
 
         v.insert(3, 4)
