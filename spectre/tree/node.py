@@ -257,6 +257,28 @@ class BinNode(object):
             yield x
 
 
+class Entry(object):
+
+    def __init__(self, key, data):
+        self._key = key
+        self._data = data or key
+
+    def __gt__(self, other):
+        return self._key > other._key
+
+    def __ge__(self, other):
+        return self._key >= other._key
+
+    def __lt__(self, other):
+        return self._key < other._key
+
+    def __le__(self, other):
+        return self._key <= other._key
+
+    def __eq__(self, other):
+        return self._key == other._key
+
+
 class BSNode(BinNode):
 
     def __init__(self, key, data=None, parent=None):
@@ -304,3 +326,7 @@ class BTNode(object):
             lchild.parent = self
         if rchild:
             rchild.parent = self
+
+
+if __name__ == '__main__':
+    pass
