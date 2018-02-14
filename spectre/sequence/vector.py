@@ -114,15 +114,6 @@ class Vector(object):
         self._elem[r] = e
         self._size += 1
 
-    def append(self, e):
-        """ 追加 """
-
-    def sort(self):
-        """ 整体排序 """
-
-    def unsort(self):
-        """ 整体置乱 """
-
     def deduplicate(self):
         """ 无序向量唯一化 """
         old_size = self._size
@@ -135,6 +126,7 @@ class Vector(object):
         return old_size - self._size
 
     def low_uniquify(self):
+        """ 有序向量唯一化 低效版"""
         old_size = self._size
         i = 0
 
@@ -147,6 +139,7 @@ class Vector(object):
         return old_size - self._size
 
     def uniquify(self):
+        """ 有序向量唯一化 """
         i, j = 0, 1
         while j < self._size:
             if self[i] != self[j]:
