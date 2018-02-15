@@ -52,22 +52,12 @@ class Vector(object):
     def empty(self):
         return self._size == 0
 
-    def copy_form(self, V, lo, hi):
-        _capacity = 2 * (hi - lo)
-        _size = 0
-        _elem = [None for i in range(_capacity)]
-        while lo < hi:
-            _elem[_size] = V[lo]
-            _size += 1
-            lo += 1
-
     def expand(self):
         if self._size < self._capacity:
             return
 
         old_elem = self._elem
         new_capacity = 2 * self._capacity
-        # _elem = [None for i in range(new_capacity)]
         _elem = (new_capacity * ctypes.py_object)()
         for index, i in enumerate(old_elem):
             _elem[index] = old_elem[index]
