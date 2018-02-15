@@ -3,13 +3,15 @@
 
 __author__ = 'master'
 
+import ctypes
+
 
 class Vector(object):
 
-    def __init__(self, size=0, capacity=0, value=0):
+    def __init__(self, size=0, capacity=0):
         self._size = size
         self._capacity = capacity
-        self._elem = self.init_elem(size, capacity, value)
+        self._elem = self.__make_elem(size, capacity)
 
     def __getitem__(self, item):
         return self._elem[item]
@@ -28,9 +30,10 @@ class Vector(object):
     def __len__(self):
         return self._size
 
-    def init_elem(self, size, capacity, value):
-        elem = [value for i in range(size)]
-        elem.extend([None for i in range(capacity - size)])
+    def __make_elem(self, size, capacity):
+        elem = (capacity * ctypes.py_object)()
+        for i in range(size):
+            elem[i] = 0
         return elem
 
     @property
@@ -64,7 +67,8 @@ class Vector(object):
 
         old_elem = self._elem
         new_capacity = 2 * self._capacity
-        _elem = [None for i in range(new_capacity)]
+        # _elem = [None for i in range(new_capacity)]
+        _elem = (new_capacity * ctypes.py_object)()
         for index, i in enumerate(old_elem):
             _elem[index] = old_elem[index]
         del old_elem
