@@ -20,14 +20,12 @@ class TestVector(unittest.TestCase):
         self.assertFalse(v.empty)
         self.assertEqual(v.size, 2)
         self.assertEqual(v.cap, 4)
-        self.assertEqual(v._elem, [0, 0, None, None])
 
     def test_get_put(self):
-        v = Vector(size=2, capacity=4, value=10)
-        self.assertEqual(v[0], 10)
+        v = Vector(size=2, capacity=4)
+        self.assertEqual(v[0], 0)
         v[1] = 11
         self.assertEqual(v[1], 11)
-        self.assertIsNone(v[2])
 
     def test_put_error(self):
         v = Vector(size=2, capacity=4)
@@ -45,26 +43,23 @@ class TestVector(unittest.TestCase):
             self.assertEqual(IndexError, type(e))
 
     def test_expand(self):
-        v = Vector(size=2, capacity=2, value=10)
-        self.assertEqual(v._elem, [10, 10])
+        v = Vector(size=2, capacity=2)
+        self.assertEqual(v.data, [0, 0])
         v.expand()
         self.assertEqual(v.size, 2)
         self.assertEqual(v.cap, 4)
-        self.assertEqual(v._elem, [10, 10, None, None])
 
     def test_insert(self):
         v = Vector(size=0, capacity=3)
         v.insert(0, 9)
         self.assertEqual(v.size, 1)
-        self.assertEqual(v._elem, [9, None, None])
         self.assertEqual(v.data, [9])
         v.insert(0, 4)
-        self.assertEqual(v._elem, [4, 9, None])
         self.assertEqual(v.data, [4, 9])
         v.insert(1, 5)
-        self.assertEqual(v._elem, [4, 5, 9])
+        self.assertEqual(v.data, [4, 5, 9])
         v[1] = 2
-        self.assertEqual(v._elem, [4, 2, 9])
+        self.assertEqual(v.data, [4, 2, 9])
         self.assertEqual(v[1], 2)
         v.insert(3, 6)
         self.assertEqual(v.size, 4)
@@ -78,9 +73,9 @@ class TestVector(unittest.TestCase):
         self.assertEqual(v.size, 1)
         v.insert(0, 4)
         v.insert(1, 5)
-        self.assertEqual(v._elem, [4, 5, 9])
+        self.assertEqual(v.data, [4, 5, 9])
         v[1] = 2
-        self.assertEqual(v._elem, [4, 2, 9])
+        self.assertEqual(v.data, [4, 2, 9])
         self.assertEqual(v[1], 2)
         v.insert(3, 6)
         self.assertEqual(v.size, 4)
@@ -93,7 +88,7 @@ class TestVector(unittest.TestCase):
         self.assertEqual(v.data, [4, 3, 7, 9, 6])
 
         v.insert(3, 4)
-        self.assertEqual(v._elem, [4, 3, 7, 4, 9, 6])
+        self.assertEqual(v.data, [4, 3, 7, 4, 9, 6])
         self.assertEqual(v.data, [4, 3, 7, 4, 9, 6])
 
     def test_find(self):
