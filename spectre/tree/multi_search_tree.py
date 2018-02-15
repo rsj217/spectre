@@ -4,11 +4,27 @@
 
 class BTree(object):
 
-    def __init__(self, size=0, order=0, root=None):
-        self._root = root
-        self._size = size
+    def __init__(self, order=3):
+        self._size = 0
         self._order = order
-        self.hot = None
+        self._root = None
+        self._hot = None
+
+    @property
+    def size(self):
+        return self._size
+
+    @property
+    def order(self):
+        return self._order
+
+    @property
+    def root(self):
+        return self._root
+
+    @property
+    def empty(self):
+        return not self._root
 
     def search(self):
         pass
@@ -17,4 +33,10 @@ class BTree(object):
         pass
 
     def remove(self):
+        pass
+
+    def solve_overflow(self):
+        pass
+
+    def solve_underflow(self):
         pass
