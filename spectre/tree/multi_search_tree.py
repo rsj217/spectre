@@ -39,8 +39,16 @@ class BTree(object):
 
         return None
 
-    def insert(self):
-        pass
+    def insert(self, key):
+        node = self.search(key)
+        if node:
+            return False
+        r = self.key_search(self._hot._key, key)
+        self.key_insert(self._hot._key, r + 1, key)
+        self.key_insert(self._hot._child, r + 2, None)
+        self._size += 1
+        # self.solve_overflow(self._hot)
+        return True
 
     def remove(self):
         pass
@@ -58,6 +66,10 @@ class BTree(object):
                 break
             n -= 1
         return n
+
+    def key_insert(self, lst, rank, key):
+        lst.insert(rank, key)
+        return lst
 
     def insert_as_root(self, node):
         self._root = node
@@ -107,5 +119,6 @@ if __name__ == '__main__':
 
     n344349._child.extend([n28, n374041, n46, n52])
 
-    r = bt.search(40)
+    r = bt.search(8)
+    r = bt.insert(8)
     print(r)
