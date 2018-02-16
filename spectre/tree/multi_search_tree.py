@@ -45,16 +45,21 @@ class BTree(object):
             return False
         r = self.key_search(self._hot._key, key)
         self.key_insert(self._hot._key, r + 1, key)
-        self.key_insert(self._hot._child, r + 2, None)
+        # self.key_insert(self._hot._child, r + 2, None)
+        self._hot._child.append(None)
         self._size += 1
-        # self.solve_overflow(self._hot)
+        self.solve_overflow(self._hot)
         return True
 
     def remove(self):
         pass
 
-    def solve_overflow(self):
-        pass
+    def solve_overflow(self, node):
+        if self._order >= len(node.child):
+            return
+        r = self._order // 2
+        u = BTNode()
+
 
     def solve_underflow(self):
         pass
@@ -119,6 +124,5 @@ if __name__ == '__main__':
 
     n344349._child.extend([n28, n374041, n46, n52])
 
-    r = bt.search(8)
-    r = bt.insert(8)
+    r = bt.search(52)
     print(r)

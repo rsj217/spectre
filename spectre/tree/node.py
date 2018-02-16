@@ -343,11 +343,7 @@ class BTNode(object):
     def __init__(self, parent=None, lchild=None, rchild=None):
         self._parent = parent
         self._key = []
-        self._child = []
-        if lchild:
-            self._child.append(lchild)
-        if rchild:
-            self._child.append(rchild)
+        self._child = [None]
 
     def __repr__(self):
         return '<BTNode>(parent:{} key:{} child:{})'.format(
@@ -360,6 +356,15 @@ class BTNode(object):
     @property
     def child(self):
         return self._child
+
+    def insert_as_root(self, key, lchild=None, rchild=None):
+        self._key.insert(0, key)
+        self._child.insert(0, lchild)
+        self._child.insert(1, rchild)
+        if lchild:
+            lchild._parent = self
+        if rchild:
+            rchild._parent = self
 
 
 if __name__ == '__main__':
