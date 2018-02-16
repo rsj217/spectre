@@ -349,6 +349,18 @@ class BTNode(object):
         if rchild:
             self._child.append(rchild)
 
+    def __repr__(self):
+        return '<BTNode>(parent:{} key:{} child:{})'.format(
+            self._parent._key, self._key, self._child)
+
+    @property
+    def key(self):
+        return self._key
+
+    @property
+    def child(self):
+        return self._child
+
 
 if __name__ == '__main__':
     pass
