@@ -3,6 +3,7 @@
 
 from spectre.tree.node import BTNode
 
+
 class BTree(object):
 
     def __init__(self, order=3):
@@ -128,10 +129,8 @@ class BTree(object):
 
 if __name__ == '__main__':
     bt = BTree()
-    print(bt.size)
-    r = bt.search(53)
-    print(bt.size, r)
+    for key in [53, 36, 77, 89, 19, 41, 51, 75, 97, 79, 84]:
+        bt.insert(key)
 
-    bt.insert(53)
-    print(bt.root)
-    print(bt.size)
+    root = bt.root
+    print(root, bt.size)
