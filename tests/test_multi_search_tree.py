@@ -7,6 +7,12 @@ from spectre.tree.multi_search_tree import BTree
 
 
 def gen_a_btree():
+    """
+                 53
+        36              7789
+
+    19    4151      75  7984  97
+    """
     n53 = BTNode()
     n53.insert_as_root(key=53)
 
@@ -126,6 +132,17 @@ class TestBTree(unittest.TestCase):
         n4151 = bt.search(41)
 
         self.assertEqual(n23.child, [n19, n29, n4151])
+
+        bt.insert(45)
+        n45 = bt.search(45)
+        print(n45)
+        self.assertEqual([i for i in bt], [19, 23, 29, 36, 41, 45, 51, 53, 75, 77, 79, 84, 89, 97])
+
+        bt.insert(87)
+        print(bt.root)
+        self.assertEqual([i for i in bt], [19, 23, 29, 36, 41, 45, 51, 53, 75, 77, 79, 84, 87, 89, 97])
+        n53 = bt.search(53)
+        self.assertEqual(bt.root, n53)
 
 
 if __name__ == '__main__':

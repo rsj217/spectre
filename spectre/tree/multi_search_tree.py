@@ -82,7 +82,7 @@ class BTree(object):
         if not p:
             self._root = p = BTNode()
             p.child[0] = node
-            node.parent = p
+            node._parent = p
 
         r = 1 + self.key_search(p.key, node.key[0])
         self.key_insert(p.key, r, self.key_remove(node.key, s))
