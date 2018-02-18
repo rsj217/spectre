@@ -10,6 +10,9 @@ class BTree(object):
         self._root = None
         self._hot = None
 
+    def __iter__(self):
+        yield from self.inorder(self.root)
+
     @property
     def size(self):
         return self._size
@@ -129,8 +132,5 @@ if __name__ == '__main__':
     bt.insert_as_root(n53)
     bt._size = 8
 
-    print(bt)
-
-    g = bt.inorder(n53)
-    for i in g:
-        print(i)
+    r = bt.search(19)
+    print(r)
