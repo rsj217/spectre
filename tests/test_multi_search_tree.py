@@ -82,6 +82,51 @@ class TestBTree(unittest.TestCase):
         bt = gen_a_btree()
         self.assertEqual([i for i in bt], [19, 36, 41, 51, 53, 75, 77, 79, 84, 89, 97])
 
+    def test_insert_without_overflow(self):
+        bt = gen_a_btree()
+        r = bt.search(23)
+        self.assertIsNone(r)
+
+        r = bt.insert(23)
+        self.assertTrue(r)
+        self.assertEqual(bt.size, 9)
+
+        self.assertEqual([i for i in bt], [19, 23, 36, 41, 51, 53, 75, 77, 79, 84, 89, 97])
+
+        n23 = bt.search(23)
+        print(n23)
+
+    def test_insert_overflow(self):
+        bt = gen_a_btree()
+        r = bt.search(23)
+        self.assertIsNone(r)
+
+        r = bt.insert(23)
+        self.assertTrue(r)
+        self.assertEqual(bt.size, 9)
+
+        self.assertEqual([i for i in bt], [19, 23, 36, 41, 51, 53, 75, 77, 79, 84, 89, 97])
+
+        r = bt.insert(29)
+        self.assertTrue(r)
+        self.assertEqual(bt.size, 10)
+        self.assertEqual([i for i in bt], [19, 23, 29, 36, 41, 51, 53, 75, 77, 79, 84, 89, 97])
+
+        n29 = bt.search(29)
+        print(n29)
+        self.assertEqual(n29.parent.key, [23, 36])
+
+        n19 = bt.search(19)
+        print(n19)
+
+        n23 = bt.search(23)
+        n36 = bt.search(36)
+        self.assertEqual(n23, n36)
+
+        n4151 = bt.search(41)
+
+        self.assertEqual(n23.child, [n19, n29, n4151])
+
 
 if __name__ == '__main__':
     unittest.main()

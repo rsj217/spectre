@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
+from spectre.tree.node import BTNode
 
 class BTree(object):
 
@@ -48,8 +49,8 @@ class BTree(object):
             return False
         r = self.key_search(self._hot._key, key)
         self.key_insert(self._hot._key, r + 1, key)
-        # self.key_insert(self._hot._child, r + 2, None)
-        self._hot._child.append(None)
+        self.key_insert(self._hot._child, r + 2, None)
+        # self._hot._child.append(None)
         self._size += 1
         self.solve_overflow(self._hot)
         return True
@@ -58,7 +59,36 @@ class BTree(object):
         pass
 
     def solve_overflow(self, node):
-        pass
+        if self._order >= len(node.child):
+            return
+        s = self._order // 2
+        u = BTNode()
+        j = 0
+        while j < self._order - s - 1:
+            self.key_insert(u.child, j, self.key_remove(node.child, s + 1))
+            self.key_insert(u.key, j, self.key_remove(node.key, s + 1))
+            j += 1
+
+        u.child[self._order - s - 1] = self.key_remove(node.child, s + 1)
+
+        if u.child[0]:
+            j = 0
+            while j < self._order - s:
+                u.child[j]._parent = u
+                j += 1
+
+        p = node.parent
+
+        if not p:
+            self._root = p = BTNode()
+            p.child[0] = node
+            node.parent = p
+
+        r = 1 + self.key_search(p.key, node.key[0])
+        self.key_insert(p.key, r, self.key_remove(node.key, s))
+        self.key_insert(p.child, r + 1, u)
+        u._parent = p
+        self.solve_overflow(p)
 
     def solve_underflow(self):
         pass
