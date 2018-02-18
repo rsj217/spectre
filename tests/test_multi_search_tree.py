@@ -13,8 +13,7 @@ def gen_a_btree():
 
     19    4151      75  7984  97
     """
-    n53 = BTNode()
-    n53.insert_as_root(key=53)
+    n53 = BTNode(key=53)
 
     n36 = BTNode(parent=n53)
     n36._key = [36]

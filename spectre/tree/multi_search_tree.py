@@ -44,6 +44,11 @@ class BTree(object):
         return None
 
     def insert(self, key):
+        if not self.root:
+            node = BTNode(parent=None, key=key)
+            self.insert_as_root(node)
+            return True
+
         node = self.search(key)
         if node:
             return False
@@ -122,45 +127,11 @@ class BTree(object):
 
 
 if __name__ == '__main__':
-    from spectre.tree.node import BTNode
-
-    n53 = BTNode()
-    n53.insert_as_root(key=53)
-
-    n36 = BTNode(parent=n53)
-    n36._key = [36]
-
-    n7789 = BTNode(parent=n53)
-    n7789._key = [77, 89]
-    n53._child = [n36, n7789]
-
-    n19 = BTNode(parent=n36)
-    n19._key = [19]
-    n19._child.append(None)
-
-    n4151 = BTNode(parent=n36)
-    n4151._key = [41, 51]
-    n4151._child = [None, None, None]
-
-    n36._child = [n19, n4151]
-
-    n75 = BTNode(parent=n7789)
-    n75._key = [75]
-    n75._child = [None, None]
-
-    n97 = BTNode(parent=n7789)
-    n97._key = [97]
-    n97._child = [None, None]
-
-    n7984 = BTNode(parent=n7789)
-    n7984._key = [79, 84]
-    n7984._child = [None, None, None]
-
-    n7789._child = [n75, n7984, n97]
-
     bt = BTree()
-    bt.insert_as_root(n53)
-    bt._size = 8
+    print(bt.size)
+    r = bt.search(53)
+    print(bt.size, r)
 
-    r = bt.search(19)
-    print(r)
+    bt.insert(53)
+    print(bt.root)
+    print(bt.size)

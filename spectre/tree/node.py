@@ -340,10 +340,15 @@ class BSNode(BinNode):
 
 class BTNode(object):
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, key=None):
         self._parent = parent
-        self._key = []
-        self._child = [None]
+        if key:
+            _key, _child = [key], [None, None]
+        else:
+            _key, _child = [], [None]
+
+        self._key = _key
+        self._child = _child
 
     def __repr__(self):
         parent = self._parent._key if self._parent else None
@@ -361,15 +366,6 @@ class BTNode(object):
     @property
     def child(self):
         return self._child
-
-    def insert_as_root(self, key, lchild=None, rchild=None):
-        self._key.insert(0, key)
-        self._child.insert(0, lchild)
-        self._child.insert(1, rchild)
-        if lchild:
-            lchild._parent = self
-        if rchild:
-            rchild._parent = self
 
 
 if __name__ == '__main__':
