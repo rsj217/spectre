@@ -340,7 +340,7 @@ class BSNode(BinNode):
 
 class BTNode(object):
 
-    def __init__(self, parent=None, lchild=None, rchild=None):
+    def __init__(self, parent=None):
         self._parent = parent
         self._key = []
         self._child = [None]
@@ -365,7 +365,6 @@ class BTNode(object):
             lchild._parent = self
         if rchild:
             rchild._parent = self
-
 
 if __name__ == '__main__':
     pass
