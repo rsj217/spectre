@@ -141,7 +141,7 @@ class BTree(object):
             this_level = next_level
 
 
-    def iter(self):
+    def trav_inorder(self):
         stack = []
 
         def push_left_path(node):
@@ -178,5 +178,5 @@ if __name__ == '__main__':
     a = [i for i in bt]
     print(a)
 
-    b = [i for i in bt.iter()]
+    b = [i for i in bt.trav_inorder()]
     print(b)
