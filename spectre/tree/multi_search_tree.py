@@ -126,6 +126,46 @@ class BTree(object):
             yield node.key[i]
         yield from self.inorder(node.child[len(node.key)])
 
+    def print(self):
+        this_level = [self._root]
+
+        while this_level:
+            next_level = []
+            output = ''
+            for node in this_level:
+                if node and node.child:
+                    next_level.extend(node.child)
+                if node:
+                    output += str(node.key) + ' '
+            print(output)
+            this_level = next_level
+
+
+    def iter(self):
+        stack = []
+
+        def push_left_path(node):
+            while True:
+                stack.append((node, 0))
+                if node.is_leaf:
+                    break
+                node = node.child[0]
+        push_left_path(self._root)
+
+        while len(stack) > 0:
+            node, index = stack.pop()
+            if node.is_leaf:
+                for obj in node.key:
+                    yield obj
+            else:
+                yield node.key[index]
+                index += 1
+                if index < len(node.key):
+                    stack.append((node, index))
+                push_left_path(node.child[index])
+
+
+
 
 if __name__ == '__main__':
     bt = BTree()
@@ -134,3 +174,9 @@ if __name__ == '__main__':
 
     root = bt.root
     print(root, bt.size)
+
+    a = [i for i in bt]
+    print(a)
+
+    b = [i for i in bt.iter()]
+    print(b)
