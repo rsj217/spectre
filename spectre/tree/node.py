@@ -367,6 +367,13 @@ class BTNode(object):
     def child(self):
         return self._child
 
+    @property
+    def is_leaf(self):
+        for i in self._child:
+            if i is not None:
+                return False
+        return True
+
 
 if __name__ == '__main__':
     pass
