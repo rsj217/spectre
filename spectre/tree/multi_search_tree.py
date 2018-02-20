@@ -170,3 +170,5 @@ if __name__ == '__main__':
 
     b = [i for i in bt.trav_inorder()]
     print(b)
+
+    bt.print()
