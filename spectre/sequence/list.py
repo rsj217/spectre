@@ -105,6 +105,7 @@ class List(object):
 
         node._pred = None
         node._succ = None
+        return node
 
     def find(self, e):
         for i in self:

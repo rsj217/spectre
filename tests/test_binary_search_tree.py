@@ -99,12 +99,15 @@ class TestBinarySearchTree(unittest.TestCase):
     def test_remove_with_rchild(self):
         bst = gen_binary_search_tree()
         bst.remove(40)
+        print(bst)
+
         self.assertEqual(bst.__repr__(), """<BinarySearchTree>(
-              36
-      27              58
-  16              53      69
-                46      64
+                              36
+              27                              58
+      16                              53              69
+                                  46              64
 )""")
+
 
     def test_remove_all_child(self):
         bst = gen_binary_search_tree()
@@ -124,10 +127,10 @@ class TestBinarySearchTree(unittest.TestCase):
 
         bst.remove(36)
         self.assertEqual(bst.__repr__(), """<BinarySearchTree>(
-              40
-      27              58
-  16              53      69
-                46      64
+                              40
+              27                              58
+      16                              53              69
+                                  46              64
 )""")
         self.assertEqual(bst.root.key, 40)
         self.assertEqual(bst.root.value, 40)
