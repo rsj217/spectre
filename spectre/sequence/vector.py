@@ -55,13 +55,10 @@ class Vector(object):
     def expand(self):
         if self._size < self._capacity:
             return
-
-        old_elem = self._elem
         new_capacity = 2 * self._capacity
         _elem = (new_capacity * ctypes.py_object)()
-        for index, i in enumerate(old_elem):
-            _elem[index] = old_elem[index]
-        del old_elem
+        for index, i in enumerate(self._elem):
+            _elem[index] = i
         self._elem = _elem
         self._capacity = new_capacity
 

@@ -120,5 +120,23 @@ class AVLTree(BalanceBinarySearchTree):
                 return self.connect34(g, v, p, g.lchild, v.lchild, v.rchild, p.rchild)
 
 
+class RedBlackTree(BinarySearchTree):
+
+    def insert(self, e):
+        pass
+
+    def remove(self, key):
+        pass
+
+    @staticmethod
+    def update_height(node):
+        lheight = RedBlackTree.stature(node.lchild)
+        rheight = RedBlackTree.stature(node.rchild)
+        node.height = max(lheight, rheight)
+        if node.is_black:
+            node.height += 1
+        return node.height
+
+
 if __name__ == '__main__':
     pass

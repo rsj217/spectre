@@ -101,7 +101,7 @@ class BinaryTree(object):
         while node:
             old_height = node.height
             new_height = self.update_height(node=node)
-            if old_height == new_height:
+            if new_height <= old_height:
                 break
             node = node.parent
 
