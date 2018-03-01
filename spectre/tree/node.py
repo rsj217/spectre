@@ -138,7 +138,7 @@ class BinNode(object):
             if not stack:
                 break
 
-            if stack[-1].has_rchild is not last_visit:
+            if stack[-1].rchild is not last_visit:
                 node = stack[-1].rchild
                 last_visit = None
             else:
