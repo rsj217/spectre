@@ -294,9 +294,5 @@ class TestTravel(unittest.TestCase):
         ret = [i.data for i in g]
         self.assertEqual(ret, inorder)
 
-    def test_printtree(self):
-        bt = gen_binary_tree()
-        print(bt)
-
 if __name__ == '__main__':
     unittest.main()
