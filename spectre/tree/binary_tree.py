@@ -66,6 +66,9 @@ class BinaryTree(object):
             last_index = arr_index
             del node._number
         del d
+
+        print(tree_str_arr)
+
         s = ''.join(tree_str_arr)
         return f'<{self.__class__.__name__}>({s}\n)'
 
